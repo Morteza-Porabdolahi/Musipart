@@ -1,0 +1,78 @@
+@font-face {
+  font-family: Avenir;
+  src: url("../fonts/AvenirLTStd-Book.eot");
+  src: local("Avenir LT Std 45 Book"), local("AvenirLTStd-Book"),
+    url("../fonts/AvenirLTStd-Book.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/AvenirLTStd-Book.woff2") format("woff2"),
+    url("../fonts/AvenirLTStd-Book.woff") format("woff"),
+    url("../fonts/AvenirLTStd-Book.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+}
+
+/* Tailwind Colors */
+:root {
+  --color-slate-900: #0f172a;
+  --color-slate-800: #1e293b;
+  --color-slate-700: #334155;
+  --color-slate-600: #475569;
+  --color-slate-500: #64748b;
+  --color-slate-400: #94a3b8;
+  --color-slate-300: #cbd5e1;
+  --color-slate-200: #e2e8f0;
+  --color-slate-100: #f1f5f9;
+  --color-slate-50: #f8fafc;
+}
+
+body {
+  background-color: var(--color-slate-900);
+  color: var(--color-slate-200);
+}
+
+body.light {
+  background-color: var(--color-slate-200);
+  color: var(--color-slate-900);
+}
+
+a,
+button,
+label {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+h2 {
+  font-size: calc(0.5vw + 1.8rem);
+}
+
+/* Animation for Switching Display : None */
+
+@keyframes displayAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,89 @@
+@media only screen and (min-width: 575.99px) {
+  .navbar {
+    column-count: 1;
+    float: left;
+    column-width: 5rem;
+    min-height: calc(100vh - 3rem);
+    padding: 2.5rem 0;
+  }
+
+  /*   .navbar-toggle:checked + .container__navbar > nav > .navbar { */
+  /*     padding: 2.5rem 5rem 0 0; */
+  /*   } */
+
+  /*   .navbar-toggle:checked + .container__navbar .navbar__item span { */
+  /*     display: inline; */
+  /*     margin-left: 1rem; */
+  /*   } */
+
+  /*   .navbar-toggle:checked + .container__navbar .navbar__item a, */
+  /*   .navbar-toggle:checked + .container__navbar .navbar__item label { */
+  /*     float: left; */
+  /*   } */
+
+  /*   .navbar-toggle:checked + .container__navbar .navbar__item { */
+  /*     padding: 0 0 3rem 2rem; */
+  /*   } */
+
+  /*   .navbar-toggle:checked ~ .container__main { */
+  /*     margin-left: calc(50px + 14rem); */
+  /*   } */
+
+  .header {
+    border-bottom: 1px solid var(--color-slate-600);
+    padding-bottom: 2rem;
+  }
+
+  .navbar__item {
+    margin-bottom: 3rem;
+  }
+
+  .navbar__item:first-child {
+    display: block;
+  }
+
+  .container__main {
+    min-height: calc(100vh - 3rem);
+    margin: 0;
+    margin-left: calc(50px + 2rem);
+    padding: 2rem;
+  }
+
+  .options__search {
+    display: none;
+  }
+
+  .header__input {
+    display: inline-block;
+    padding: 0.7rem 1rem;
+    width: 55%;
+    margin-top: 0.5rem;
+  }
+
+  .options__input {
+    display: none !important;
+  }
+
+  .music-card,
+  .artist-card {
+    min-width: calc((100% / 3) - 1rem);
+  }
+}
+
+@media only screen and (min-width: 850px) {
+  .music-card,
+  .artist-card {
+    min-width: calc(100% / 4 - 1rem);
+  }
+}
+
+@media only screen and (min-width: 1020px) {
+  .music-card,
+  .artist-card {
+    min-width: calc(100% / 6 - 1rem);
+  }
+
+  .section__content {
+    overflow: hidden;
+  }
+}
