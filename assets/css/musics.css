@@ -1,0 +1,33 @@
+.allmusics-section{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: .5rem;
+  padding: 1rem 0;
+  gap: 1rem;
+}
+
+.allmusics-section > .music-card  img{
+  width: 190px;
+  height: 190px;
+}
+
+.loadmore-container{
+  width: max-content;
+  margin: 0 auto;
+}
+
+
+.load-more{
+  border: 1px solid var(--color-slate-400);
+  background-color: transparent;
+  color: var(--color-slate-400);
+  border-radius: .5rem;
+  padding: 1rem 2.5rem;
+  font-size: calc(.3vw + 1rem);
+  transition: background-color .3s,color .3s;
+}
+
+.load-more:hover{
+  background-color: var(--color-slate-400);
+  color:var(--color-slate-900);
+}

@@ -11,18 +11,15 @@
   text-align: center;
 }
 
-.navbar__item:first-child {
-  display: none;
-}
-
 .navbar__item > a,
-label {
+.navbar__item > label {
   color: var(--color-slate-200);
   font-size: 1.9rem;
+  text-decoration: none;
   text-shadow: 1px 1px 10px var(--color-slate-400);
 }
 
 .navbar__item span {
   display: none;
-  animation: displayAnimation .3s;
+  animation: displayAnimation 0.3s;
 }

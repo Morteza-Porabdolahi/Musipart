@@ -1,0 +1,32 @@
+.artists-section {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+  margin-top: 0.5rem;
+}
+
+.artists-section .artist-card__img {
+  width: 190px;
+  height: 190px;
+}
+
+.loadmore-container {
+  width: max-content;
+  margin: 0 auto;
+}
+
+.load-more {
+  border: 1px solid var(--color-slate-400);
+  background-color: transparent;
+  color: var(--color-slate-400);
+  border-radius: 0.5rem;
+  padding: 1rem 2.5rem;
+  font-size: calc(0.3vw + 1rem);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.load-more:hover {
+  background-color: var(--color-slate-400);
+  color: var(--color-slate-900);
+}

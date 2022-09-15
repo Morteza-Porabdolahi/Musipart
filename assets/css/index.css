@@ -53,7 +53,7 @@ label {
 }
 
 a {
-  text-decoration: none;
+  text-underline-offset: 5px;
 }
 
 img {
@@ -63,6 +63,10 @@ img {
 
 h2 {
   font-size: calc(0.5vw + 1.8rem);
+}
+
+a:hover{
+  text-decoration: none;
 }
 
 /* Animation for Switching Display : None */
