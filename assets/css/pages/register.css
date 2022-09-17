@@ -1,0 +1,107 @@
+.main {
+  padding: 2.8rem 0;
+}
+
+.main__form-container {
+  background-image : url('../../images/pattern.png');
+  background-size: 10px 10px;
+  margin: 0 auto;
+  padding: 2rem;
+  max-width: 40rem;
+  text-align: center;
+  border-radius: 0.7rem;
+}
+
+.form__input-container {
+  position: relative;
+  width: 100%;
+}
+
+.main__form-container > h2 {
+  margin: 1rem 0;
+}
+
+label {
+  font-size: calc(0.3vw + 1rem);
+}
+
+.form__input-container > label {
+  position: absolute;
+  color: var(--color-slate-500);
+  top: 50%;
+  left: 0.4rem;
+  transform: translate(0, -50%);
+  transition: transform 0.3s;
+}
+
+.input-container__input {
+  background-color: transparent;
+  outline: none;
+  padding: 0.8rem 0.4rem;
+  font-size: calc(0.4vw + 1rem);
+  border: 0;
+  width: 100%;
+  border-bottom: 1px solid var(--color-slate-500);
+  color: var(--color-slate-300);
+}
+
+.form-container__form {
+  display: flex;
+  gap: 2.5rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-container__input:focus + label {
+  transform: translate(-4%, -180%);
+  color: var(--color-slate-400);
+}
+
+.radios__radio {
+  display: flex;
+}
+
+.radios__radio > label {
+  margin-top: 0.35rem;
+  color: var(--color-slate-400);
+}
+
+.form__radios {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.toggle-button,
+.form__submit-btn {
+  background-color: transparent;
+  border: 0;
+  font-size: calc(0.4vw + 1rem);
+  color: var(--color-slate-300);
+  border: 1px solid var(--color-slate-500);
+  border-radius: 0.4rem;
+  padding: 1rem;
+  max-width: 12rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.form-container__toggle-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.form__submit-btn {
+  cursor: pointer;
+}
+
+.toggle-button:hover,
+.form__submit-btn:hover {
+  background-color: var(--color-slate-300);
+  color: var(--color-slate-800);
+}
+
+.active-toggle{
+  background-color: var(--color-slate-300);
+  color: var(--color-slate-800);
+}

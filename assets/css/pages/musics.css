@@ -1,0 +1,12 @@
+.allmusics-section {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  padding: 1rem 0;
+  gap: 1rem;
+}
+
+.allmusics-section > .music-card img {
+  max-width: 190px;
+  max-height: 190px;
+}

@@ -1,0 +1,12 @@
+.artists-section {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+  margin-top: 0.5rem;
+}
+
+.artists-section .artist-card__img {
+  max-width: 190px;
+  max-height: 190px;
+}

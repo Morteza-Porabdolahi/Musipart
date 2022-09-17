@@ -14,11 +14,10 @@
     <link rel="stylesheet" href="../assets/css/navbar.css" />
     <link rel="stylesheet" href="../assets/css/main.css" />
     <link rel="stylesheet" href="../assets/css/header.css" />
-    <link rel="stylesheet" href="../assets/css/pages/playlists.css" />
-    <link rel="stylesheet" href="../assets/css/pages/general.css">
     <link rel="stylesheet" href="../assets/css/footer.css" />
+    <link rel="stylesheet" href="../assets/css/pages/register.css" />
     <link rel="stylesheet" href="../assets/css/mediaQueries.css" />
-    <title>Musipart || Playlists</title>
+    <title>Musipart || Register</title>
   </head>
   <body>
     <section class="container">
@@ -49,8 +48,8 @@
             </li>
             <li class="navbar__item">
               <a
-                href="./artists.html"
                 class="all-artists-btn navbar__item-link"
+                href="./artists.html"
                 title="Artists"
               >
                 <i class="ri-mic-fill"></i>
@@ -81,60 +80,67 @@
           <div class="header__options">
             <input type="checkbox" id="search-toggle" hidden />
             <input type="text" placeholder="Search..." class="options__input" />
-            <a title="SignIn/Register" href="#" class="options__signin"
-              >Sign In / Register</a
-            >
+      
             <label for="search-toggle" class="options__search">
               <i class="ri-search-line"></i>
             </label>
           </div>
         </header>
+
         <main class="main">
-          <section class="section">
-            <section class="section__header">
-              <h2 class="section__title">
-                <span class="styled-letter">Your</span> Playlists
-              </h2>
+          <section class="main__form-container">
+            <section class="form-container__toggle-buttons">
+              <button class="toggle-button">Login</button>
+              <button class="toggle-button active-toggle">Register</button>
             </section>
-            <section class="playlists">
-              <div class="music-card">
-                <div class="music-card__img-container">
-                  <img class="music-card__img" src="/assets/images/moein.jpg" />
-                </div>
-                <a href="" title="" class="playlist__name">Playlist 1</a>
-              </div>
+            <h2>Register</h2>
 
-              <div class="music-card">
-                <div class="music-card__img-container">
-                  <img class="music-card__img" src="/assets/images/moein.jpg" />
-                </div>
-                <a href="" title="" class="playlist__name">Playlist 1</a>
+            <form class="form-container__form">
+              <div class="form__input-container">
+                <input
+                  type="text"
+                  id="username"
+                  class="input-container__input"
+                />
+                <label for="username">Username</label>
               </div>
+              <div class="form__input-container">
+                <input
+                  type="text"
+                  id="password"
+                  class="input-container__input"
+                />
+                <label for="password">Password</label>
+              </div>
+              <div class="form__input-container">
+                <input
+                  type="text"
+                  id="confpassword"
+                  class="input-container__input"
+                />
+                <label for="confpassword">Confirm Password</label>
+              </div>
+              <div class="form__input-container">
+                <input type="email" id="email" class="input-container__input" />
+                <label for="email">Email</label>
+              </div>
+              <div class="form__input-container">
+                <input type="tel" id="phone" class="input-container__input" />
+                <label for="phone">Phone Number</label>
+              </div>
+              <div class="form__radios">
+                <div class="radios__radio">
+                  <label for="man">Man</label>
+                  <input type="radio" name="gender" id="man" />
+                </div>
 
-              <div class="music-card">
-                <div class="music-card__img-container">
-                  <img class="music-card__img" src="/assets/images/moein.jpg" />
+                <div class="radios__radio">
+                  <label for="woman">Woman</label>
+                  <input type="radio" name="gender" id="woman" />
                 </div>
-                <a href="" title="" class="playlist__name">Playlist 1</a>
               </div>
-
-              <div class="music-card">
-                <div class="music-card__img-container">
-                  <img class="music-card__img" src="/assets/images/moein.jpg" />
-                </div>
-                <a href="" title="" class="playlist__name">Playlist 1</a>
-              </div>
-
-              <div class="music-card">
-                <div class="music-card__img-container">
-                  <img class="music-card__img" src="/assets/images/moein.jpg" />
-                </div>
-                <a href="" title="" class="playlist__name">Playlist 1</a>
-              </div>
-            </section>
-            <div class="loadmore-container">
-              <button class="load-more">Add New</button>
-            </div>
+              <input type="submit" class="form__submit-btn" />
+            </form>
           </section>
         </main>
         <footer class="footer">

@@ -1,0 +1,19 @@
+.playlists {
+  display: flex;
+  margin-top: 0.5rem;
+  padding: 1rem 0;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.music-card__img {
+  max-width: 190px;
+  max-height: 190px;
+}
+
+.playlist__name {
+  color: #fff;
+  display: block;
+  padding: 1rem 0.6rem;
+  font-size: calc(0.3vw + 1.2rem);
+}
