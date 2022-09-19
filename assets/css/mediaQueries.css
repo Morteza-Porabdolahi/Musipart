@@ -7,27 +7,11 @@
     padding: 2.5rem 0;
   }
 
-  /*   .navbar-toggle:checked + .container__navbar > nav > .navbar { */
-  /*     padding: 2.5rem 5rem 0 0; */
-  /*   } */
-
-  /*   .navbar-toggle:checked + .container__navbar .navbar__item span { */
-  /*     display: inline; */
-  /*     margin-left: 1rem; */
-  /*   } */
-
-  /*   .navbar-toggle:checked + .container__navbar .navbar__item a, */
-  /*   .navbar-toggle:checked + .container__navbar .navbar__item label { */
-  /*     float: left; */
-  /*   } */
-
-  /*   .navbar-toggle:checked + .container__navbar .navbar__item { */
-  /*     padding: 0 0 3rem 2rem; */
-  /*   } */
-
-  /*   .navbar-toggle:checked ~ .container__main { */
-  /*     margin-left: calc(50px + 14rem); */
-  /*   } */
+  .details__image {
+    width: 30vw;
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
 
   .header {
     border-bottom: 1px solid var(--color-slate-600);
@@ -68,6 +52,14 @@
   .artist-card {
     min-width: calc((100% / 3) - 1rem);
   }
+
+  .setting {
+    display: block;
+  }
+
+  .container__music-player {
+    left: calc(5.5rem + 50px);
+  }
 }
 
 @media only screen and (min-width: 850px) {
@@ -75,6 +67,17 @@
   .artist-card {
     min-width: calc(100% / 4 - 1rem);
   }
+
+  .music-player__controls-container {
+    padding: 1rem 2.5rem 1rem 1.5rem;
+    left: 3rem;
+    right: 3.5rem;
+  }
+
+  .details__image{
+    width: 25vw;
+  }
+
 }
 
 @media only screen and (min-width: 1020px) {
@@ -85,5 +88,9 @@
 
   .section__content {
     overflow: hidden;
+  }
+
+  .details__image {
+    max-width: 30rem;
   }
 }

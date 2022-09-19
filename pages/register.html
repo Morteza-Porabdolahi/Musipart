@@ -80,7 +80,7 @@
           <div class="header__options">
             <input type="checkbox" id="search-toggle" hidden />
             <input type="text" placeholder="Search..." class="options__input" />
-      
+
             <label for="search-toggle" class="options__search">
               <i class="ri-search-line"></i>
             </label>
@@ -93,54 +93,80 @@
               <button class="toggle-button">Login</button>
               <button class="toggle-button active-toggle">Register</button>
             </section>
-            <h2>Register</h2>
-
-            <form class="form-container__form">
-              <div class="form__input-container">
-                <input
-                  type="text"
-                  id="username"
-                  class="input-container__input"
-                />
-                <label for="username">Username</label>
-              </div>
-              <div class="form__input-container">
-                <input
-                  type="text"
-                  id="password"
-                  class="input-container__input"
-                />
-                <label for="password">Password</label>
-              </div>
-              <div class="form__input-container">
-                <input
-                  type="text"
-                  id="confpassword"
-                  class="input-container__input"
-                />
-                <label for="confpassword">Confirm Password</label>
-              </div>
-              <div class="form__input-container">
-                <input type="email" id="email" class="input-container__input" />
-                <label for="email">Email</label>
-              </div>
-              <div class="form__input-container">
-                <input type="tel" id="phone" class="input-container__input" />
-                <label for="phone">Phone Number</label>
-              </div>
-              <div class="form__radios">
-                <div class="radios__radio">
-                  <label for="man">Man</label>
-                  <input type="radio" name="gender" id="man" />
+            <div class="form-container__forms">
+              <form class="forms__form">
+                <h2>Register</h2>
+                <div class="form__input-container">
+                  <input
+                    type="text"
+                    id="username"
+                    class="input-container__input"
+                  />
+                  <label for="username">Username</label>
                 </div>
-
-                <div class="radios__radio">
-                  <label for="woman">Woman</label>
-                  <input type="radio" name="gender" id="woman" />
+                <div class="form__input-container">
+                  <input
+                    type="text"
+                    id="password"
+                    class="input-container__input"
+                  />
+                  <label for="password">Password</label>
                 </div>
-              </div>
-              <input type="submit" class="form__submit-btn" />
-            </form>
+                <div class="form__input-container">
+                  <input
+                    type="text"
+                    id="confpassword"
+                    class="input-container__input"
+                  />
+                  <label for="confpassword">Confirm Password</label>
+                </div>
+                <div class="form__input-container">
+                  <input
+                    type="email"
+                    id="email"
+                    class="input-container__input"
+                  />
+                  <label for="email">Email</label>
+                </div>
+                <div class="form__input-container">
+                  <input type="tel" id="phone" class="input-container__input" />
+                  <label for="phone">Phone Number</label>
+                </div>
+                <div class="form__radios">
+                  <div class="radios__radio">
+                    <label for="man">Man</label>
+                    <input type="radio" name="gender" id="man" />
+                  </div>
+
+                  <div class="radios__radio">
+                    <label for="woman">Woman</label>
+                    <input type="radio" name="gender" id="woman" />
+                  </div>
+                </div>
+                <input type="submit" class="form__submit-btn" />
+              </form>
+
+              <form class="forms__form active-form">
+                <h2>Login</h2>
+                <div class="form__input-container">
+                  <input
+                    type="text"
+                    id="username"
+                    class="input-container__input"
+                  />
+                  <label for="username">Username</label>
+                </div>
+                <div class="form__input-container">
+                  <input
+                    type="text"
+                    id="password"
+                    class="input-container__input"
+                  />
+                  <label for="password">Password</label>
+                </div>
+                <input type="submit" class="form__submit-btn" />
+              </form>
+            </div>
           </section>
         </main>
         <footer class="footer">

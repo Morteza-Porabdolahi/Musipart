@@ -34,9 +34,9 @@
   vertical-align: middle;
 }
 
-.section__link:hover{
+.section__link:hover {
   color: var(--color-slate-400);
-  transition: color .3s;
+  transition: color 0.3s;
 }
 
 .section__header::after {
@@ -79,11 +79,13 @@
 
 .informations__music-name {
   font-weight: bold;
-  padding-bottom: 0.5rem;
   text-overflow: ellipsis;
   overflow: hidden;
   width: 12vw;
   white-space: nowrap;
+  color: #fff;
+  display: inline-block;
+  padding-bottom: .6rem;
 }
 
 .music-card__img-container,
@@ -119,17 +121,17 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border: 0;
-  font-size: calc(.1vw + 3rem);
+  font-size: calc(0.1vw + 3rem);
   background-color: var(--color-slate-900);
   border-radius: 50%;
-  padding: .9rem .7rem 0 .7rem;
+  padding: 0.9rem 0.7rem 0 0.7rem;
   color: var(--color-slate-300);
-  transition: color .3s,background-color .3s;
-  animation: displayAnimation .3s;
+  transition: color 0.3s, background-color 0.3s;
+  animation: displayAnimation 0.3s;
   display: none;
 }
 
-.music-card__play-btn:hover{
+.music-card__play-btn:hover {
   color: var(--color-slate-900);
   background-color: var(--color-slate-300);
 }
@@ -150,6 +152,8 @@
 
 .informations__music-artist {
   font-size: calc(0.2vw + 1.1rem);
+  color: #fff;
+  display: block;
 }
 
 .container__main::-webkit-scrollbar,
@@ -170,3 +174,142 @@
   border-radius: 2rem;
 }
 
+/* Music Player Styles */
+.container__music-player {
+  position: fixed;
+  background-color: var(--color-slate-900);
+  z-index: 1;
+  bottom: 2rem;
+  right: 3rem;
+  left: 2rem;
+  max-height: 8rem;
+  border-radius: 0.6rem;
+  box-shadow: 2px 2px 5px var(--color-slate-900);
+}
+
+.music-player__controls-container {
+  display: flex;
+  padding: 0.5rem 0.7rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.music-player__controls-container > img {
+  max-width: 6rem;
+  border-radius: 0.4rem;
+}
+
+.controls-container__controls {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  font-size: calc(0.6vw + 1.5rem);
+}
+
+.control:nth-child(2) {
+  background-color: var(--color-slate-800);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.7rem;
+  transition: background-color 0.3s;
+  font-size: calc(0.6vw + 2.5rem);
+}
+
+.control:nth-child(2):hover {
+  background-color: var(--color-slate-300);
+  color: var(--color-slate-900);
+}
+
+.controls-container__settings {
+  display: flex;
+  gap: 2.5vw;
+  font-size: calc(0.6vw + 1rem);
+}
+
+.setting:nth-child(3){
+  display: block;
+}
+
+.setting{
+  display: none;
+}
+
+.control,
+.setting {
+  cursor: pointer;
+}
+
+.music-player__progress {
+  position: relative;
+  cursor: pointer;
+  min-height: 0.25rem;
+}
+
+.music-player__progress::before {
+  position: absolute;
+  background-color: var(--color-slate-300);
+  transition: width 0.3s;
+  content: "";
+  top: 0;
+  border-radius: 0.4rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 20%;
+  height: 100%;
+}
+
+.setting:nth-child(1) {
+  gap: 1.5rem;
+  position: relative;
+}
+
+.setting:nth-child(1):hover > .volume-container {
+  display: flexbox;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+@supports (display: flex) {
+  .setting:nth-child(1):hover > .volume-container {
+    display: flex;
+  }
+}
+
+.volume-container {
+  position: absolute;
+  top: -3.5rem;
+  left: -5rem;
+  display: none;
+  background-color: var(--color-slate-900);
+  padding: 0.8rem;
+  border-radius: 0.4rem;
+  box-shadow: 1px 1px 5px var(--color-slate-800);
+}
+
+.volume-range {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  appearance: none;
+  background-color: transparent;
+  outline: none;
+  height: 0.8rem;
+}
+
+.volume-range::-webkit-slider-runnable-track {
+  background-color: var(--color-slate-800);
+  border-radius: 0.3rem;
+  height: 100%;
+}
+
+.volume-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: var(--color-slate-700);
+  cursor: pointer;
+  margin-top: -5px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}

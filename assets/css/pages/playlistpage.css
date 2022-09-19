@@ -1,0 +1,49 @@
+.playlists__boxes {
+  margin: 2rem 0 4rem 0;
+}
+
+.boxes__box {
+  display: flexbox;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  transition: background-color .3s;
+}
+
+.box__information {
+  display: flexbox;
+}
+
+.information__img {
+  max-width: 8rem;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+.main__playlists .setting {
+  display: inline-block;
+}
+
+@supports (display: flex) {
+  .boxes__box,
+  .box__information {
+    display: flex;
+  }
+}
+
+.information__text {
+  margin-top: 1rem;
+  font-size: calc(0.5vw + 1.1rem);
+}
+
+.information__text > small {
+  font-size: calc(0.5vw + 0.7rem);
+  margin-top: 1rem;
+}
+
+.boxes__box:hover{
+  background-color: var(--color-slate-700);
+  padding-right: 1rem;
+  border-radius: .2rem;
+}

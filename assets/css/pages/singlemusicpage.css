@@ -1,0 +1,35 @@
+.main__single-song {
+  text-align: center;
+}
+
+.details__image {
+  float: left;
+  border-radius: 0.4rem;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.details__description > h3 {
+  font-size: calc(0.4vw + 1.5rem);
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.description__lyrics {
+  margin: 2rem 0;
+}
+
+.description__lyrics > h4 {
+  font-size: calc(0.8vw + 1.2rem);
+}
+
+.description__lyrics > p {
+  font-size: 1.4rem;
+  line-height: 1.8;
+  margin-top: 1rem;
+}
+
+.controls-container__controls{
+  justify-content: center;
+}

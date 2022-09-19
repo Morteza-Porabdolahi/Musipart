@@ -3,7 +3,7 @@
 }
 
 .main__form-container {
-  background-image : url('../../images/pattern.png');
+  background-image: url("../../images/pattern.png");
   background-size: 10px 10px;
   margin: 0 auto;
   padding: 2rem;
@@ -12,13 +12,32 @@
   border-radius: 0.7rem;
 }
 
+.form-container__forms {
+  display: flexbox;
+  overflow: hidden;
+}
+
+@supports (display: flex) {
+  .form-container__forms {
+    display: flex;
+  }
+}
+
+.forms__form {
+  min-width: 100%;
+  display: flex;
+  gap: 2.5rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.forms__form > h2 {
+  margin-top: 2rem;
+}
+
 .form__input-container {
   position: relative;
   width: 100%;
-}
-
-.main__form-container > h2 {
-  margin: 1rem 0;
 }
 
 label {
@@ -43,13 +62,6 @@ label {
   width: 100%;
   border-bottom: 1px solid var(--color-slate-500);
   color: var(--color-slate-300);
-}
-
-.form-container__form {
-  display: flex;
-  gap: 2.5rem;
-  flex-direction: column;
-  align-items: center;
 }
 
 .input-container__input:focus + label {
@@ -101,7 +113,7 @@ label {
   color: var(--color-slate-800);
 }
 
-.active-toggle{
+.active-toggle {
   background-color: var(--color-slate-300);
   color: var(--color-slate-800);
 }
