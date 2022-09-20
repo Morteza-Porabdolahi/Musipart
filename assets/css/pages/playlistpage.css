@@ -3,47 +3,45 @@
 }
 
 .boxes__box {
-  display: flexbox;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
-  transition: background-color .3s;
-}
-
-.box__information {
-  display: flexbox;
+  cursor: pointer;
+  transition: padding 0.3s, background-color 0.3s;
+  margin-bottom: .8rem;
 }
 
 .information__img {
-  max-width: 8rem;
+  max-width: 6rem;
+}
+
+.information__img > img {
   border-radius: 0.4rem;
-  overflow: hidden;
-  margin-right: 1rem;
-}
-
-.main__playlists .setting {
-  display: inline-block;
-}
-
-@supports (display: flex) {
-  .boxes__box,
-  .box__information {
-    display: flex;
-  }
+  float: left;
 }
 
 .information__text {
-  margin-top: 1rem;
-  font-size: calc(0.5vw + 1.1rem);
+  margin: .8rem 0 0 .8rem;
+  font-size: calc(0.2vw + 1.2rem);
+  float: left;
 }
 
 .information__text > small {
-  font-size: calc(0.5vw + 0.7rem);
-  margin-top: 1rem;
+  font-size: calc(0.2vw + 1rem);
+  margin-top: 0.6rem;
+  display: inline-block;
 }
 
-.boxes__box:hover{
+.boxes__box:hover {
   background-color: var(--color-slate-700);
   padding-right: 1rem;
-  border-radius: .2rem;
+  border-radius: 0.2rem;
+}
+
+.boxes__box .setting {
+  float: right;
+  line-height: 6rem;
+}
+
+.boxes__box::after{
+  content: '';
+  clear: both;
+  display: block;
 }

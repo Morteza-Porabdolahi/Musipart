@@ -1,25 +1,24 @@
 .navbar {
   background-color: var(--color-slate-800);
-  border-radius: 2rem;
+  border-radius: 1rem;
   column-count: 4;
   padding: 1rem 0;
-  box-shadow: 1px 1px 5px var(--color-slate-700);
-  transition: padding 0.3s;
+  box-shadow: 5px 5px 10px var(--color-slate-900);
+  /* transition: padding 0.3 */
 }
 
 .navbar__item {
   text-align: center;
 }
 
-.navbar__item > a,
-.navbar__item > label {
-  color: var(--color-slate-200);
+.navbar__item > a{
+  color: var(--color-slate-100);
   font-size: 1.9rem;
   text-decoration: none;
-  text-shadow: 1px 1px 10px var(--color-slate-400);
+  text-shadow: 3px 3px 10px var(--color-slate-900);
 }
 
-.navbar__item span {
+.navbar__item  span {
   display: none;
   animation: displayAnimation 0.3s;
 }

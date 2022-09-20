@@ -1,43 +1,48 @@
+/* Container styles */
 .container {
   padding: 1.5rem;
   min-height: 100vh;
 }
 
+/* main Section Styles */
 .container__main {
   background-color: var(--color-slate-800);
-  max-height: calc(100vh - 4.5rem - 44px);
-  border-radius: 2rem;
-  padding: 2rem 1.5rem;
-  box-shadow: 1px 1px 5px var(--color-slate-700);
-  margin-top: 1.5rem;
+  box-shadow: 5px 5px 10px var(--color-slate-900);
   overflow: hidden auto;
-  transition: margin 0.3s;
+  /* Viewport height minus the paddings and the navbar height */
+  max-height: calc(100vh - 4.5rem - 43px);
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  margin-top: 1.5rem;
+  position: relative;
+  /* transition: margin 0.3s; */
 }
 
-/* main Section Styles */
 .section {
   margin-bottom: 4rem;
 }
 
 .main {
-  padding-top: 2.8rem;
+  padding-top: 3rem;
 }
 
 .section__title {
   float: left;
 }
 
+/* ***** Repeated Code! (For me) ******* */
+
 .section__link {
   float: right;
   color: var(--color-slate-200);
   font-size: calc(0.3vw + 1.4rem);
-  vertical-align: middle;
 }
 
 .section__link:hover {
   color: var(--color-slate-400);
   transition: color 0.3s;
 }
+/* ************** */
 
 .section__header::after {
   content: "";
@@ -46,11 +51,12 @@
 }
 
 .section__content {
-  margin-top: 0.5rem;
-  padding: 1rem 0;
+  /* For older Browsers */
+  display: box;
   display: flexbox;
-  overflow: auto;
-  gap: 1rem;
+  box-orient: horizontal;
+  padding: 1.5rem 0;
+  overflow: auto hidden;
 }
 
 @supports (display: flex) {
@@ -64,28 +70,39 @@
   min-width: calc(50% - 1rem);
 }
 
+/* Margins for All elements except last element */
+.music-card:not(:last-child),
+.artist-card:not(:last-child) {
+  margin-right: 1rem;
+}
+
 .music-card__img {
-  border-radius: 0.4rem;
+  border-radius: 0.5rem;
 }
 
 .artist-card__img {
   border-radius: 50%;
 }
 
-.music-card__informations,
+.music-card__informations {
+  margin: 0.9rem 0 0 0.5rem;
+}
+
 .artist-card__informations {
-  margin: 0.7rem 0 0 0.7rem;
+  margin: 0.9rem 0 0 0;
+}
+
+.artist-card__informations {
+  text-align: center;
 }
 
 .informations__music-name {
-  font-weight: bold;
   text-overflow: ellipsis;
+  width: calc(7vw + 6.5rem);
   overflow: hidden;
-  width: 12vw;
   white-space: nowrap;
-  color: #fff;
   display: inline-block;
-  padding-bottom: .6rem;
+  padding-bottom: 0.7rem;
 }
 
 .music-card__img-container,
@@ -94,25 +111,20 @@
   position: relative;
 }
 
-.music-card__img-container:hover > .music-card__play-btn {
-  display: block;
+.music-card__img-container::before,
+.artist-card__img-container::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+  background-color: var(--color-slate-800);
 }
 
 .music-card__img-container:hover::before {
   background-color: var(--color-slate-900);
-}
-
-.music-card__img-container::before,
-.artist-card__img-container::before {
-  content: "";
-  background-color: white;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background-color: var(--color-slate-800);
-  opacity: 0.3;
 }
 
 .music-card__play-btn {
@@ -120,15 +132,22 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-size: 2.2rem;
+  display: none;
   border: 0;
-  font-size: calc(0.1vw + 3rem);
   background-color: var(--color-slate-900);
-  border-radius: 50%;
-  padding: 0.9rem 0.7rem 0 0.7rem;
+  width: 4rem;
+  height: 4rem;
+  text-align: center;
+  line-height: 4rem;
   color: var(--color-slate-300);
+  border-radius: 50%;
   transition: color 0.3s, background-color 0.3s;
   animation: displayAnimation 0.3s;
-  display: none;
+}
+
+.music-card__img-container:hover > .music-card__play-btn {
+  display: block;
 }
 
 .music-card__play-btn:hover {
@@ -136,24 +155,29 @@
   background-color: var(--color-slate-300);
 }
 
-.styled-letter {
+.purple {
   color: #c026d3;
 }
 
-.informations__artist-name {
-  font-weight: bold;
-  text-align: center;
-}
+/* .informations__artist-name { */
+/*   /1* display: inline-block; *1/ */
+/* } */
 
 .informations__music-name,
 .informations__artist-name {
-  font-size: calc(0.3vw + 1.1rem);
+  font-size: calc(0.2vw + 1.2rem);
 }
 
 .informations__music-artist {
-  font-size: calc(0.2vw + 1.1rem);
-  color: #fff;
+  font-size: calc(0.2vw + 1rem);
   display: block;
+}
+
+/* Customizing Scrollbars */
+.container__main,
+.section__content {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-500) var(--color-slate-600);
 }
 
 .container__main::-webkit-scrollbar,
@@ -184,14 +208,26 @@
   left: 2rem;
   max-height: 8rem;
   border-radius: 0.6rem;
-  box-shadow: 2px 2px 5px var(--color-slate-900);
+  box-shadow: 3px 3px 10px var(--color-slate-900);
 }
 
 .music-player__controls-container {
-  display: flex;
+  /* Supporting older Browsers */
+  display: flexbox;
+  display: box;
+  flex-pack: justify;
+  flex-align: center;
+  box-pack: justify;
+  box-align: center;
   padding: 0.5rem 0.7rem;
-  justify-content: space-between;
-  align-items: center;
+}
+
+@supports (display: flex) {
+  .music-player__controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .music-player__controls-container > img {
@@ -200,21 +236,30 @@
 }
 
 .controls-container__controls {
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  font-size: calc(0.6vw + 1.5rem);
+  font-size: calc(0.2vw + 1.9rem);
+  display: flexbox;
+  display: box;
+  flex-align: center;
+  box-align: center;
+}
+
+@supports (display: flex) {
+  .controls-container__controls {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .control:nth-child(2) {
   background-color: var(--color-slate-800);
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.7rem;
+  font-size: calc(0.2vw + 2.8rem);
+  width: 4.5rem;
+  height: 4.5rem;
+  text-align: center;
+  line-height: 4.5rem;
   transition: background-color 0.3s;
-  font-size: calc(0.6vw + 2.5rem);
+  margin-top: -0.8rem;
 }
 
 .control:nth-child(2):hover {
@@ -222,23 +267,20 @@
   color: var(--color-slate-900);
 }
 
-.controls-container__settings {
-  display: flex;
-  gap: 2.5vw;
-  font-size: calc(0.6vw + 1rem);
-}
-
-.setting:nth-child(3){
+.setting:nth-child(3) {
   display: block;
-}
-
-.setting{
-  display: none;
 }
 
 .control,
 .setting {
   cursor: pointer;
+  margin-right: 1.5rem;
+  font-weight: normal;
+}
+
+.setting {
+  display: none;
+  font-size: calc(0.2vw + 1.3rem);
 }
 
 .music-player__progress {
@@ -249,27 +291,25 @@
 
 .music-player__progress::before {
   position: absolute;
-  background-color: var(--color-slate-300);
-  transition: width 0.3s;
   content: "";
-  top: 0;
   border-radius: 0.4rem;
+  transition: width 0.3s;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   width: 20%;
   height: 100%;
+  background-color: var(--color-slate-300);
 }
 
 .setting:nth-child(1) {
-  gap: 1.5rem;
   position: relative;
 }
 
 .setting:nth-child(1):hover > .volume-container {
   display: flexbox;
-  align-items: center;
-  gap: 0.6rem;
+  display: box;
 }
 
 @supports (display: flex) {
@@ -278,38 +318,17 @@
   }
 }
 
+.volume-container > * {
+  margin-right: 0.5rem;
+}
+
 .volume-container {
   position: absolute;
   top: -3.5rem;
-  left: -5rem;
+  left: -14rem;
   display: none;
-  background-color: var(--color-slate-900);
-  padding: 0.8rem;
+  padding: 1rem;
   border-radius: 0.4rem;
-  box-shadow: 1px 1px 5px var(--color-slate-800);
-}
-
-.volume-range {
-  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-  appearance: none;
-  background-color: transparent;
-  outline: none;
-  height: 0.8rem;
-}
-
-.volume-range::-webkit-slider-runnable-track {
-  background-color: var(--color-slate-800);
-  border-radius: 0.3rem;
-  height: 100%;
-}
-
-.volume-range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 18px;
-  width: 18px;
-  border-radius: 50%;
-  background: var(--color-slate-700);
-  cursor: pointer;
-  margin-top: -5px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 3px 3px 10px var(--color-slate-900);
+  background-color: var(--color-slate-900);
 }

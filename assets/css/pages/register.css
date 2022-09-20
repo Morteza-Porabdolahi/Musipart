@@ -1,19 +1,20 @@
 .main {
-  padding: 2.8rem 0;
+  padding-bottom: 4rem;
 }
 
 .main__form-container {
   background-image: url("../../images/pattern.png");
   background-size: 10px 10px;
-  margin: 0 auto;
   padding: 2rem;
+  margin: 0 auto;
   max-width: 40rem;
-  text-align: center;
   border-radius: 0.7rem;
+  text-align: center;
 }
 
 .form-container__forms {
   display: flexbox;
+  display: box;
   overflow: hidden;
 }
 
@@ -25,23 +26,20 @@
 
 .forms__form {
   min-width: 100%;
-  display: flex;
-  gap: 2.5rem;
-  flex-direction: column;
-  align-items: center;
 }
 
 .forms__form > h2 {
-  margin-top: 2rem;
+  margin: 3rem 0 2rem 0;
 }
 
 .form__input-container {
   position: relative;
+  margin-bottom: 3rem;
   width: 100%;
 }
 
 label {
-  font-size: calc(0.3vw + 1rem);
+  font-size: calc(0.2vw + 1.2rem);
 }
 
 .form__input-container > label {
@@ -54,66 +52,72 @@ label {
 }
 
 .input-container__input {
+  border-width: 0 0 1px 0;
+  border-color: var(--color-slate-600);
   background-color: transparent;
   outline: none;
   padding: 0.8rem 0.4rem;
-  font-size: calc(0.4vw + 1rem);
-  border: 0;
+  font-size: calc(0.2vw + 1.2rem);
   width: 100%;
-  border-bottom: 1px solid var(--color-slate-500);
   color: var(--color-slate-300);
 }
 
 .input-container__input:focus + label {
   transform: translate(-4%, -180%);
-  color: var(--color-slate-400);
-}
-
-.radios__radio {
-  display: flex;
+  color: var(--color-slate-300);
 }
 
 .radios__radio > label {
-  margin-top: 0.35rem;
   color: var(--color-slate-400);
 }
 
+.radios__radio > input {
+  vertical-align: bottom;
+  margin-left: 0.3rem;
+}
+
+.radios__radio {
+  float: left;
+  margin-left: 1rem;
+}
+
 .form__radios {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+  width: 14rem;
+  margin: 3rem auto;
+}
+
+.form__radios::after {
+  content: "";
+  clear: both;
+  display: block;
 }
 
 .toggle-button,
 .form__submit-btn {
   background-color: transparent;
   border: 0;
-  font-size: calc(0.4vw + 1rem);
-  color: var(--color-slate-300);
-  border: 1px solid var(--color-slate-500);
+  font-size: calc(0.2vw + 1.1rem);
+  color: var(--color-slate-400);
+  border: 1px solid var(--color-slate-400);
   border-radius: 0.4rem;
   padding: 1rem;
   max-width: 12rem;
+  width: 8rem;
   transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
 }
 
 .form-container__toggle-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
-}
-
-.form__submit-btn {
-  cursor: pointer;
+  text-align: right;
 }
 
 .toggle-button:hover,
 .form__submit-btn:hover {
   background-color: var(--color-slate-300);
-  color: var(--color-slate-800);
+  color: var(--color-slate-900);
 }
 
 .active-toggle {
   background-color: var(--color-slate-300);
-  color: var(--color-slate-800);
+  color: var(--color-slate-900);
 }

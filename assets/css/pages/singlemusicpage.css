@@ -1,19 +1,12 @@
-.main__single-song {
-  text-align: center;
-}
-
-.details__image {
-  float: left;
+.details__image > img {
   border-radius: 0.4rem;
-  width: 100%;
-  overflow: hidden;
-  margin-bottom: 2rem;
 }
 
 .details__description > h3 {
+  text-align: center;
   font-size: calc(0.4vw + 1.5rem);
   font-weight: bold;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
 }
 
 .description__lyrics {
@@ -21,15 +14,24 @@
 }
 
 .description__lyrics > h4 {
-  font-size: calc(0.8vw + 1.2rem);
+  font-size: calc(0.2vw + 1.8rem);
+  text-align: center;
 }
 
 .description__lyrics > p {
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   line-height: 1.8;
+  text-align: right;
   margin-top: 1rem;
 }
 
-.controls-container__controls{
-  justify-content: center;
+.controls-container__controls {
+  flex-pack: center;
+  box-pack: center;
+}
+
+@supports (display: flex) {
+  .controls-container__controls {
+    justify-content: center;
+  }
 }

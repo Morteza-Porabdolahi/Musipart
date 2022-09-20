@@ -14,10 +14,14 @@
 *,
 *::before,
 *::after {
+  /* Calculate width from borderBox */
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
+  /* For Easier Calculation of Font Sizes and etc. */
   font-size: 10px;
   font-family: Avenir, Arial, Helvetica, sans-serif;
 }
@@ -36,16 +40,19 @@ html {
   --color-slate-50: #f8fafc;
 }
 
+/* Dark Theme */
 body {
   background-color: var(--color-slate-900);
   color: var(--color-slate-200);
 }
 
+/* Light Theme */
 body.light {
   background-color: var(--color-slate-200);
-  color: var(--color-slate-900);
+  color: var(--color-slate-900) !important;
 }
 
+/* For Accessability Reasons */
 a,
 button,
 label {
@@ -53,9 +60,15 @@ label {
 }
 
 a {
-  text-underline-offset: 5px;
+  text-underline-offset: 3px;
+  color: #fff;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
+/* Prevent images from overflowing */
 img {
   max-width: 100%;
   max-height: 100%;
@@ -65,12 +78,7 @@ h2 {
   font-size: calc(0.5vw + 1.8rem);
 }
 
-a:hover{
-  text-decoration: none;
-}
-
 /* Animation for Switching Display : None */
-
 @keyframes displayAnimation {
   0% {
     opacity: 0;

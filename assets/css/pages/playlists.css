@@ -1,19 +1,76 @@
-.playlists {
-  display: flex;
-  margin-top: 0.5rem;
-  padding: 1rem 0;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.music-card__img {
-  max-width: 190px;
-  max-height: 190px;
-}
-
 .playlist__name {
   color: #fff;
   display: block;
-  padding: 1rem 0.6rem;
+  margin: .9rem 0 0 .5rem;
   font-size: calc(0.3vw + 1.2rem);
+}
+
+/* New playlist modal Styles */
+.container__modal{
+  display: none;
+  background-color: rgba(0,0,0,.8);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  z-index: 1;
+}
+
+.modal{
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: .6rem;
+  background-color: var(--color-slate-900);
+}
+
+.modal__modal-header{
+  font-size: 1.7rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-slate-600);
+} 
+
+.modal__modal-body{
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.modal-body__input{
+  background-color: transparent;
+  border: 1px solid var(--color-slate-600);
+  border-radius: .4rem;
+  padding: .9rem .8rem;
+  outline: none;
+  color: #fff;
+  width: 100%;
+}
+
+.modal-body__input::placeholder{
+  color: var(--color-slate-500);
+}
+
+.modal-footer__create-btn{
+  background-color: transparent;
+  border: 1px solid var(--color-slate-600);
+  color: var(--color-slate-300);
+  border-radius: .4rem;
+  transition: background-color .3s;
+  padding: .8rem 1.5rem;
+  font-size: 1.4rem;
+}
+
+.modal-footer__create-btn:hover{
+  background-color: var(--color-slate-600);
+}
+
+.modal__modal-header > a{
+  float: right;
+  margin-top: -2rem;
+  font-size:2.5rem;
+}
+
+.modal__modal-footer{
+  padding-bottom: 1.5rem;
 }
