@@ -21,30 +21,12 @@
     <title>Musipart || Playlists</title>
   </head>
   <body>
+    <!-- Start Website Container -->
     <section class="container">
-      <!-- <input type="checkbox" id="navbar-toggle" hidden class="navbar-toggle" /> -->
-      <section class="container__modal">
-        <section class="modal">
-          <section class="modal__modal-header">
-            <h3>Create Playlist</h3>
-            <a>&times;</a>
-          </section>
-          <section class="modal__modal-body">
-            <input type="text" class="modal-body__input" placeholder="Type whatever you want...">
-          </section>
-          <section class="modal__modal-footer">
-            <button class="modal-footer__create-btn">Create</button>
-          </section>
-        </section>
-      </section>
+      <!-- Start navbar --> 
       <section class="container__navbar">
         <nav>
           <ul class="navbar">
-            <!-- <li class="navbar__item"> -->
-            <!--   <label for="navbar-toggle" class="navbar__item-label"> -->
-            <!--     <i class="ri-list-check"></i> -->
-            <!--   </label> -->
-            <!-- </li> -->
             <li class="navbar__item">
               <a title="Home" href="/" class="navbar__item-link">
                 <i class="ri-home-2-line"></i>
@@ -84,6 +66,7 @@
           </ul>
         </nav>
       </section>
+      <!-- End navbar and Start main contaienr -->
       <section class="container__main">
         <header class="header">
           <img
@@ -103,6 +86,7 @@
             </label>
           </div>
         </header>
+        <!-- Start main --> 
         <main class="main">
           <section class="section">
             <section class="section__header">
@@ -151,6 +135,7 @@
             </div>
           </section>
         </main>
+        <!-- End main and Start Footer -->
         <footer class="footer">
           <p>
             2022 | Made With <span class="purple"><3</span> by
@@ -163,8 +148,26 @@
             >
           </p>
         </footer>
+        <!-- End Footer -->
       </section>
+      <!--End main container and Start playlist creation modal --> 
+      <section class="container__modal">
+        <section class="modal">
+          <section class="modal__modal-header">
+            <h3>Create Playlist</h3>
+            <a>&times;</a>
+          </section>
+          <section class="modal__modal-body">
+            <input type="text" class="modal-body__input" placeholder="Type whatever you want...">
+          </section>
+          <section class="modal__modal-footer">
+            <button class="modal-footer__create-btn">Create</button>
+          </section>
+        </section>
+      </section>
+      <!-- End playlist creation modal -->
     </section>
+    <!-- End Website Container -->
     <script src="/assets/js/script.js"></script>
   </body>
 </html>
