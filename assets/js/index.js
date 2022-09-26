@@ -1,17 +1,22 @@
-window.addEventListener('load', getAllSongs);
+const preloader = document.querySelector('.preloader-container');
 
+window.addEventListener('load', getAllSongs);
 
 async function getAllSongs() {
     // take datas and put them into an object named dataObj
-    const datasObj = {
-        // the innermost await(keyword) is for fetching the response and the outermost await(keyword) is for json() function
-        newMusics :(await(await fetch('https://haji-api.ir/music?q=new')).json()).results,
-        topArtists :(await(await fetch('https://haji-api.ir/music?q=trend')).json()).results,
-        dailyMusics :(await(await fetch('https://haji-api.ir/music?q=day')).json()).results,
-        weeklyMusics :(await(await fetch('https://haji-api.ir/music?q=week')).json()).results,
-    }
+    try{
+        const datasObj = {
+            // the innermost await(keyword) is for fetching the response and the outermost await(keyword) is for json() function
+            newMusics :(await(await fetch('https://haji-api.ir/music?q=new')).json()).results,
+            topArtists :(await(await fetch('https://haji-api.ir/music?q=trend')).json()).results,
+            dailyMusics :(await(await fetch('https://haji-api.ir/music?q=day')).json()).results,
+            weeklyMusics :(await(await fetch('https://haji-api.ir/music?q=week')).json()).results,
+        }
 
-    manipulateDatas(datasObj);
+        manipulateDatas(datasObj);
+    }catch(e){
+        if(e) preloader.style.display = 'none';
+    }
 }
 
 function manipulateDatas(datas) {
@@ -84,5 +89,6 @@ function insertInDom(containerClass,toInsert) {
     const container = document.querySelector(`.${containerClass}`);
     // append the wrapper in container
     container.appendChild(toInsert);
+    preloader.style.display = 'none';
 }
 

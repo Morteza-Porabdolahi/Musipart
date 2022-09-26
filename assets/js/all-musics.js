@@ -1,4 +1,6 @@
 const loadMoreBtn = document.querySelector('.load-more');
+const searchInput = document.querySelector('.search-input');
+const preloader = document.querySelector('.preloader-container');
 
 // clicked count on load more button
 let clickedCount = 0;
@@ -7,22 +9,27 @@ let perClick = 10;
 
 loadMoreBtn.addEventListener('click', manipulateData);
 window.addEventListener('load',  getAllMusics);
+searchInput.addEventListener('input',handleSearch);
 
 async function getAllMusics() {
     // Root url
     const url = 'https://haji-api.ir';
     const urls = [fetch(`${url}/music?q=day`),fetch(`${url}/music?q=week`),fetch(`${url}/music?q=new`)];
     // get responses Array using Promise.all function
-    const responses = await Promise.all(urls);
-    const allMusics = [];
+    try{
+        const responses = await Promise.all(urls);
+        const allMusics = [];
 
-    for(let i = 0 ; i < responses.length ; i++){
-        allMusics.push((await responses[i].json()).results);
+        for(let i = 0 ; i < responses.length ; i++){
+            allMusics.push((await responses[i].json()).results);
+        }
+
+        // create a global varriable called flattedMusics and use flat function to remove the subarrays
+        window.flattedMusics = allMusics.flat();
+    }catch(err){
+        if(err) preloader.style.display = 'none';
     }
-
-    // create a global varriable called flattedMusics and use flat function to remove the subarrays
-    window.flattedMusics = allMusics.flat();
-
+   
     manipulateData();
 };
 
@@ -76,5 +83,20 @@ function appendContainerIntoDom(wrapper) {
     allMusicsContainer.appendChild(wrapper);
     // show the load more button
     loadMoreBtn.style.display = 'block';
+    // hide Preloader
+    preloader.style.display = 'none';
 }
 
+function handleSearch(e) {
+    const filterResults = allResults.filter(result => {
+        if(e.target.value){
+            return result.title.toLowerCase().includes(e.target.value.toLowerCase())
+        } else
+            return result;
+        }
+    );
+
+    songsWrapper.innerHTML = '';
+
+    createHTMLElementsFromData(filterResults);
+}

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-  <head>
+<head>
     <meta name="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
-      name="keywords"
-      content="music player, online musicPlayer, best Musics of Year, best Musics, Hot Musics"
+        name="keywords"
+        content="music player, online musicPlayer, best Musics of Year, best Musics, Hot Musics"
     />
     <link rel="icon" type="image/x-icon" href="/assets/images/logo.png" />
     <link rel="stylesheet" href="/assets/css/reset.css" />
@@ -16,173 +16,177 @@
     <link rel="stylesheet" href="/assets/css/footer.css" />
     <link rel="stylesheet" href="/assets/css/mediaQueries.css" />
     <title>Musipart</title>
-  </head>
-  <body>
+</head>
+<body>
     <!-- Start Website Contaier -->
     <section class="container">
-      <!-- Start navbar -->
-      <section class="container__navbar">
-        <nav>
-          <ul class="navbar">
-            <li class="navbar__item">
-              <a title="Home" href="/" class="navbar__item-link">
-                <i class="ri-home-2-line"></i>
-                <span>Home</span>
-              </a>
-            </li>
-            <li class="navbar__item">
-              <a
-                class="musics-btn navbar__item-link"
-                href="/pages/musics.html"
-                title="Musics"
-              >
-                <i class="ri-disc-line"></i>
-                <span>Musics</span>
-              </a>
-            </li>
-            <li class="navbar__item">
-              <a
-                href="/pages/artists.html"
-                class="all-artists-btn navbar__item-link"
-                title="Artists"
-              >
-                <i class="ri-mic-fill"></i>
-                <span>Artists</span>
-              </a>
-            </li>
-            <li class="navbar__item">
-              <a
-                href="/pages/playlists.html"
-                class="navbar__item-link"
-                title="Playlists"
-              >
-                <i class="ri-play-list-line"></i>
-                <span>PlayLists</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </section>
-      <!-- End navbar and Start main container -->
-      <section class="container__main">
-        <!-- Start mainHeader -->
-        <header class="header">
-          <img
-            src="/assets/images/logo.png"
-            class="header__logo"
-            alt="a skyBlue colored Music Note and has some colored dots on top"
-          />
-          <div class="header__options">
-            <a
-              title="SignIn/Register"
-              href="./pages/register.html"
-              class="options__signin"
-            >Sign In / Register</a
-            >
-            <label for="search-toggle" class="options__search">
-              <i class="ri-search-line"></i>
-            </label>
-          </div>
-        </header>
-        <!-- End mainHeader and Start main -->
-        <main class="main">
-          <section class="main__top-daily-musics section">
-            <section class="section__header">
-              <h2 class="section__title">
-                <span class="purple">Daily</span> Top Musics
-              </h2>
-              <a href="./pages/daily-top.html" class="section__link">View All</a>
-            </section>
-            <section class="dailyMusics"></section>
-          </section>
-          <section class="main__top-weekly-section section">
-            <section class="section__header">
-              <h2 class="section__title">
-                <span class="purple">Weekly</span> Top Musics
-              </h2>
-              <a href="./pages/weekly-top.html" class="section__link">View All</a>
-            </section>
-            <section class="weeklyMusics"></section>
-          </section>
+        <!-- start Preloader -->
+        <section class="preloader-container">
+           <div class="preloader"></div> 
+        </section>
+        <!-- end Prelodaer and Start navbar -->
+        <section class="container__navbar">
+            <nav>
+                <ul class="navbar">
+                    <li class="navbar__item">
+                        <a title="Home" href="/" class="navbar__item-link">
+                            <i class="ri-home-2-line"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="navbar__item">
+                        <a
+                            class="musics-btn navbar__item-link"
+                            href="/pages/musics.html"
+                            title="Musics"
+                        >
+                            <i class="ri-disc-line"></i>
+                            <span>Musics</span>
+                        </a>
+                    </li>
+                    <li class="navbar__item">
+                        <a
+                            href="/pages/artists.html"
+                            class="all-artists-btn navbar__item-link"
+                            title="Artists"
+                        >
+                            <i class="ri-mic-fill"></i>
+                            <span>Artists</span>
+                        </a>
+                    </li>
+                    <li class="navbar__item">
+                        <a
+                            href="/pages/playlists.html"
+                            class="navbar__item-link"
+                            title="Playlists"
+                        >
+                            <i class="ri-play-list-line"></i>
+                            <span>PlayLists</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+        <!-- End navbar and Start main container -->
+        <section class="container__main">
+            <!-- Start mainHeader -->
+            <header class="header">
+                <img
+                    src="/assets/images/logo.png"
+                    class="header__logo"
+                    alt="a skyBlue colored Music Note and has some colored dots on top"
+                />
+                <div class="header__options">
+                    <a
+                        title="SignIn/Register"
+                        href="./pages/register.html"
+                        class="options__signin"
+                    >Sign In / Register</a
+                    >
+                    <label for="search-toggle" class="options__search">
+                        <i class="ri-search-line"></i>
+                    </label>
+                </div>
+            </header>
+            <!-- End mainHeader and Start main -->
+            <main class="main">
+                <section class="main__top-daily-musics section">
+                    <section class="section__header">
+                        <h2 class="section__title">
+                            <span class="purple">Daily</span> Top Musics
+                        </h2>
+                        <a href="./pages/daily-top.html" class="section__link">View All</a>
+                    </section>
+                    <section class="dailyMusics"></section>
+                </section>
+                <section class="main__top-weekly-section section">
+                    <section class="section__header">
+                        <h2 class="section__title">
+                            <span class="purple">Weekly</span> Top Musics
+                        </h2>
+                        <a href="./pages/weekly-top.html" class="section__link">View All</a>
+                    </section>
+                    <section class="weeklyMusics"></section>
+                </section>
 
-          <section class="main__top-artists section">
-            <section class="section__header">
-              <h2 class="section__title"> Artists
-              </h2>
-              <a href="./pages/artists.html" class="section__link">View All</a>
-            </section>
-            <section class="topArtists"></section>
-          </section>
+                <section class="main__top-artists section">
+                    <section class="section__header">
+                        <h2 class="section__title"> Artists
+                        </h2>
+                        <a href="./pages/artists.html" class="section__link">View All</a>
+                    </section>
+                    <section class="topArtists"></section>
+                </section>
 
-          <section class="main__new-releases section">
-            <section class="section__header">
-              <h2 class="section__title">
-                <span class="purple">New</span> Musics
-              </h2>
-              <a href="./pages/newmusics.html" class="section__link"
-              >View All</a
-              >
-            </section>
-            <section class="newMusics"></section>
-          </section>
-        </main>
-        <!-- End main and Start Footer -->
-        <footer class="footer">
-          <p>
-            2022 | Made With <span class="purple"><3</span> by
-            <a
-              title="Morteza's Github"
-              href="https://github.com/Morteza355"
-              refer="noopener,norefer"
-              target="_blank"
-            >Morteza</a
-            >
-          </p>
-        </footer>
-        <!-- End Footer -->
-      </section>
-      <!-- End main container and Start music Player --> 
-      <section class="container__music-player">
-        <audio hidden class="music-player__audio"></audio>
-        <div class="music-player__progress"></div>
-        <div class="music-player__controls-container">
-          <div class="controls-container__image">
-            <img class="image__music-img" src="assets/images/moein.jpg" alt="Moein" />
-          </div>
-          <div class="controls-container__controls">
-            <div class="control">
-              <i class="ri-skip-back-line"></i>
+                <section class="main__new-releases section">
+                    <section class="section__header">
+                        <h2 class="section__title">
+                            <span class="purple">New</span> Musics
+                        </h2>
+                        <a href="./pages/newmusics.html" class="section__link"
+                        >View All</a
+                        >
+                    </section>
+                    <section class="newMusics"></section>
+                </section>
+            </main>
+            <!-- End main and Start Footer -->
+            <footer class="footer">
+                <p>
+                    2022 | Made With <span class="purple"><3</span> by
+                    <a
+                        title="Morteza's Github"
+                        href="https://github.com/Morteza355"
+                        refer="noopener,norefer"
+                        target="_blank"
+                    >Morteza</a
+                    >
+                </p>
+            </footer>
+            <!-- End Footer -->
+        </section>
+        <!-- End main container and Start music Player --> 
+        <section class="container__music-player">
+            <audio hidden class="music-player__audio"></audio>
+            <div class="music-player__progress"></div>
+            <div class="music-player__controls-container">
+                <div class="controls-container__image">
+                    <img class="image__music-img" src="assets/images/moein.jpg" alt="Moein" />
+                </div>
+                <div class="controls-container__controls">
+                    <div class="control">
+                        <i class="ri-skip-back-line"></i>
+                    </div>
+                    <div class="control">
+                        <i class="ri-play-line"></i>
+                    </div>
+                    <div class="control">
+                        <i class="ri-skip-forward-line"></i>
+                    </div>
+                </div>
+                <div class="controls-container__settings">
+                    <div class="setting">
+                        <i class="ri-volume-up-line"></i>
+                        <div class="volume-container">
+                            <i class="ri-volume-down-line"></i>
+                            <input value="20" type="range" class="volume-range" max="100" />
+                            <i class="ri-volume-up-line"></i>
+                        </div>
+                    </div>
+                    <div class="setting">
+                        <i class="ri-repeat-line"></i>
+                    </div>
+                    <div class="setting">
+                        <i class="ri-hd-line"></i>
+                    </div>
+                </div>
             </div>
-            <div class="control">
-              <i class="ri-play-line"></i>
-            </div>
-            <div class="control">
-              <i class="ri-skip-forward-line"></i>
-            </div>
-          </div>
-          <div class="controls-container__settings">
-            <div class="setting">
-              <i class="ri-volume-up-line"></i>
-              <div class="volume-container">
-                <i class="ri-volume-down-line"></i>
-                <input value="20" type="range" class="volume-range" max="100" />
-                <i class="ri-volume-up-line"></i>
-              </div>
-            </div>
-            <div class="setting">
-              <i class="ri-repeat-line"></i>
-            </div>
-            <div class="setting">
-              <i class="ri-hd-line"></i>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- End music Player -->
+        </section>
+        <!-- End music Player -->
     </section>
     <!-- End Website Container -->
     <script src="assets/js/index.js"></script>
     <script src="assets/js/musicPlayerControll.js">
-   </script>
-  </body>
+</script>
+</body>
 </html>

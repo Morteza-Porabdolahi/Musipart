@@ -1,10 +1,13 @@
 const loadMoreBtn = document.querySelector('.load-more');
+const preloader = document.querySelector('.preloader-container');
+const searchInput = document.querySelector('.search-input');
 
 let clickedCount = 0;
 let perClick = 4;
 
 loadMoreBtn.addEventListener('click', manipulateData);
 window.addEventListener('load',getArtistsData);
+searchInput.addEventListener('input',handleSearch);
 
 async function getArtistsData(){
     const url = 'https://haji-api.ir/music?q=trend';
@@ -61,9 +64,23 @@ function appendContainerIntoDom(wrapper) {
     allArtistsContainer.appendChild(wrapper);
     // show the load more button
     loadMoreBtn.style.display = 'block';
+    // hide Preloader
+    preloader.style.display = 'none';
 }
 
+function handleSearch(e) {
+    const filterResults = allArtists.filter(artist => {
+        if(e.target.value){
+            return artist.fullName.toLowerCase().includes(e.target.value.toLowerCase())
+        } else
+            return artist;
+        }
+    );
 
+    allArtistsWrapper.innerHTML = '';
+
+    createHTMLElementsFromData(filterResults);
+}
 
 
 

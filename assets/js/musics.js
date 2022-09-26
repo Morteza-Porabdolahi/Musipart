@@ -1,5 +1,6 @@
 const loadMoreBtn = document.querySelector('.load-more');
-const searchInput = document.querySelector('.header__input');
+const searchInput = document.querySelector('.search-input');
+const preloader = document.querySelector('.preloader-container');
 
 const documentTitle = document.title;
 
@@ -14,11 +15,14 @@ loadMoreBtn.addEventListener('click', manipulateData);
 searchInput.addEventListener('input',handleSearch);
 
 async function getEntierMusics() {
-    const response = await fetch(url);
-    const {results} = await response.json();
-    // create a global varriable called allResults and put the results in it
-    window.allResults = results;
-
+    try{
+        const response = await fetch(url);
+        const {results} = await response.json();
+        // create a global varriable called allResults and put the results in it
+        window.allResults = results;
+    }catch(e){
+        if(e) preloader.style.display = 'none';
+    }
     manipulateData();
 }
 
@@ -67,6 +71,8 @@ function appendMusicsIntoDom(wrapper) {
     songsContaienr.appendChild(wrapper);
     // show the load more button
     loadMoreBtn.style.display = 'block';
+    // hide Preloader
+    preloader.style.display = 'none';
 }
 
 function handleSearch(e) {

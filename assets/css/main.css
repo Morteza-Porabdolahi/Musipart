@@ -332,3 +332,48 @@
   box-shadow: 3px 3px 10px var(--color-slate-900);
   background-color: var(--color-slate-900);
 }
+
+/* Preloader Styles */
+.preloader-container{
+    position: fixed;
+    top : 0;
+    z-index : 1;
+    bottom : 0;
+    left : 0;
+     display : flexbox;
+    flex-pack : center;
+    flex-align : center;
+    display: box;
+    box-align : center;
+    box-pack : center;   
+    right : 0;
+    background-color : var(--color-slate-900);
+}
+
+.preloader{
+    border: 10px solid var(--color-slate-400);
+    width : 200px;
+    height : 200px;
+    border-radius : 50%;
+    border-right : 10px solid var(--color-slate-600);
+    animation : rotation .9s infinite alternate;
+}
+
+@supports (display : flex){
+    .preloader-container{
+        display: flex;
+        align-items :center;
+        justify-content : center;
+    }
+}
+
+@keyframes rotation {
+    from{
+        rotate : 0;
+    }
+    to{
+        rotate : 360deg;
+    }
+}
+
+

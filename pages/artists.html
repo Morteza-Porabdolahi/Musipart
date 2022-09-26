@@ -23,8 +23,11 @@
 
     <!-- Start Website Container -->
     <section class="container">
-
-      <!-- Start navbar --> 
+      <!-- start Preloader -->
+      <section class="preloader-container">
+         <div class="preloader"></div> 
+      </section>
+      <!-- end preloader and Start navbar --> 
       <section class="container__navbar">
         <nav>
           <ul class="navbar">
@@ -75,10 +78,10 @@
             class="header__logo"
             alt="a skyBlue colored Music Note and has some colored dots on top"
           />
-          <input type="text" placeholder="Search..." class="header__input" />
+          <input type="text" placeholder="Search..." class="header__input search-input" />
           <div class="header__options">
             <input type="checkbox" id="search-toggle" hidden />
-            <input type="text" placeholder="Search..." class="options__input" />
+            <input type="text" placeholder="Search..." class="options__input search-input" />
             <a title="SignIn/Register" href="/pages/register.html" class="options__signin"
             >Sign In / Register</a
             >
