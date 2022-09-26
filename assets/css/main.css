@@ -159,18 +159,15 @@
   color: #c026d3;
 }
 
-/* .informations__artist-name { */
-/*   /1* display: inline-block; *1/ */
-/* } */
 
 .informations__music-name,
 .informations__artist-name {
   font-size: calc(0.2vw + 1.2rem);
+  display: block;
 }
 
 .informations__music-artist {
   font-size: calc(0.2vw + 1rem);
-  display: block;
 }
 
 /* Customizing Scrollbars */
@@ -200,6 +197,8 @@
 
 /* Music Player Styles */
 .container__music-player {
+  --progress-width : 0%;
+  display : none;
   position: fixed;
   background-color: var(--color-slate-900);
   z-index: 1;
@@ -230,9 +229,10 @@
   }
 }
 
-.music-player__controls-container > img {
+.controls-container__image > img {
   max-width: 6rem;
   border-radius: 0.4rem;
+  margin-right : 1rem;
 }
 
 .controls-container__controls {
@@ -293,12 +293,12 @@
   position: absolute;
   content: "";
   border-radius: 0.4rem;
-  transition: width 0.3s;
+  transition: all 0.3s;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  width: 20%;
+  width: var(--progress-width);
   height: 100%;
   background-color: var(--color-slate-300);
 }

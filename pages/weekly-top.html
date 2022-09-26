@@ -1,26 +1,28 @@
 <!DOCTYPE html>
+<html>
   <head>
     <meta name="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="keywords"
-      content="music player, online musicPlayer, best Musics of Year, best Musics, Hot Musics"
+      content="music player, online musicPlayer, best Musics of Year, best Musics"
     />
     <link rel="icon" type="image/x-icon" href="/assets/images/logo.png" />
-    <link rel="stylesheet" href="/assets/css/reset.css" />
-    <link rel="stylesheet" href="/assets/fonts/FontIcon/remixicon.css" />
-    <link rel="stylesheet" href="/assets/css/index.css" />
-    <link rel="stylesheet" href="/assets/css/navbar.css" />
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="stylesheet" href="/assets/css/header.css" />
-    <link rel="stylesheet" href="/assets/css/footer.css" />
-    <link rel="stylesheet" href="/assets/css/mediaQueries.css" />
-    <title>Musipart</title>
+    <link rel="stylesheet" href="../assets/css/reset.css" />
+    <link rel="stylesheet" href="../assets/fonts/FontIcon/remixicon.css" />
+    <link rel="stylesheet" href="../assets/css/index.css" />
+    <link rel="stylesheet" href="../assets/css/navbar.css" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/header.css" />
+    <link rel="stylesheet" href="../assets/css/footer.css" />
+    <link rel="stylesheet" href="../assets/css/pages/general.css" />
+    <link rel="stylesheet" href="../assets/css/mediaQueries.css" />
+    <title>Musipart || Weekly Musics</title>
   </head>
   <body>
-    <!-- Start Website Contaier -->
+    <!-- Start Website Container -->
     <section class="container">
-      <!-- Start navbar -->
+      <!-- Start navbar --> 
       <section class="container__navbar">
         <nav>
           <ul class="navbar">
@@ -33,7 +35,7 @@
             <li class="navbar__item">
               <a
                 class="musics-btn navbar__item-link"
-                href="/pages/musics.html"
+                href="./musics.html"
                 title="Musics"
               >
                 <i class="ri-disc-line"></i>
@@ -42,8 +44,8 @@
             </li>
             <li class="navbar__item">
               <a
-                href="/pages/artists.html"
                 class="all-artists-btn navbar__item-link"
+                href="./artists.html"
                 title="Artists"
               >
                 <i class="ri-mic-fill"></i>
@@ -52,7 +54,7 @@
             </li>
             <li class="navbar__item">
               <a
-                href="/pages/playlists.html"
+                href="./playlists.html"
                 class="navbar__item-link"
                 title="Playlists"
               >
@@ -63,20 +65,19 @@
           </ul>
         </nav>
       </section>
-      <!-- End navbar and Start main container -->
+      <!-- End navbar and Start main contaienr -->
       <section class="container__main">
-        <!-- Start mainHeader -->
         <header class="header">
           <img
             src="/assets/images/logo.png"
             class="header__logo"
             alt="a skyBlue colored Music Note and has some colored dots on top"
           />
+          <input type="text" placeholder="Search..." class="header__input" />
           <div class="header__options">
-            <a
-              title="SignIn/Register"
-              href="./pages/register.html"
-              class="options__signin"
+            <input type="checkbox" id="search-toggle" hidden />
+            <input type="text" placeholder="Search..." class="options__input" />
+            <a title="SignIn/Register" href="#" class="options__signin"
             >Sign In / Register</a
             >
             <label for="search-toggle" class="options__search">
@@ -84,46 +85,18 @@
             </label>
           </div>
         </header>
-        <!-- End mainHeader and Start main -->
+        <!-- Start main --> 
         <main class="main">
-          <section class="main__top-daily-musics section">
+          <section class="main__all-musics section">
             <section class="section__header">
               <h2 class="section__title">
-                <span class="purple">Daily</span> Top Musics
+                <span class="purple">Weekly</span> Musics
               </h2>
-              <a href="./pages/daily-top.html" class="section__link">View All</a>
             </section>
-            <section class="dailyMusics"></section>
-          </section>
-          <section class="main__top-weekly-section section">
-            <section class="section__header">
-              <h2 class="section__title">
-                <span class="purple">Weekly</span> Top Musics
-              </h2>
-              <a href="./pages/weekly-top.html" class="section__link">View All</a>
-            </section>
-            <section class="weeklyMusics"></section>
-          </section>
-
-          <section class="main__top-artists section">
-            <section class="section__header">
-              <h2 class="section__title"> Artists
-              </h2>
-              <a href="./pages/artists.html" class="section__link">View All</a>
-            </section>
-            <section class="topArtists"></section>
-          </section>
-
-          <section class="main__new-releases section">
-            <section class="section__header">
-              <h2 class="section__title">
-                <span class="purple">New</span> Musics
-              </h2>
-              <a href="./pages/newmusics.html" class="section__link"
-              >View All</a
-              >
-            </section>
-            <section class="newMusics"></section>
+            <section class="allmusics"></section>
+            <div class="loadmore-container">
+              <button class="load-more">Load More</button>
+            </div>
           </section>
         </main>
         <!-- End main and Start Footer -->
@@ -147,7 +120,7 @@
         <div class="music-player__progress"></div>
         <div class="music-player__controls-container">
           <div class="controls-container__image">
-            <img class="image__music-img" src="assets/images/moein.jpg" alt="Moein" />
+            <img class="image__music-img" src="" alt="Moein" />
           </div>
           <div class="controls-container__controls">
             <div class="control">
@@ -181,8 +154,6 @@
       <!-- End music Player -->
     </section>
     <!-- End Website Container -->
-    <script src="assets/js/index.js"></script>
-    <script src="assets/js/musicPlayerControll.js">
-   </script>
+    <script src="/assets/js/musics.js"></script>
   </body>
 </html>
