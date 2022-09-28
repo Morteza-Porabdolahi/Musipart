@@ -15,7 +15,7 @@ async function getAllSongs() {
 
         manipulateDatas(datasObj);
     }catch(e){
-        if(e) preloader.style.display = 'none';
+        if(e) preloader.style.display = 'none'
     }
 }
 
@@ -56,7 +56,7 @@ function createHtmlElementsFromDatas(newDatas) {
                             <img class="artist-card__img" src="${currentData.image.cover.url}"/>
                         </div>
                         <div class="artist-card__informations">
-                            <a href="/pages/artistmusics.html" class="informations__artist-name">${currentData.fullName}</a>
+                            <a href="/pages/artistmusics.html?q=${currentData.fullName}" class="informations__artist-name">${currentData.fullName}</a>
                         </div>
                     </div>`;
                 // put the cards in their special wrapper
@@ -71,8 +71,8 @@ function createHtmlElementsFromDatas(newDatas) {
                             </button>
                         </div>
                         <div class="music-card__informations">
-                            <a class="informations__music-name" href="/pages/singlemusicpage.html">${currentData.title}</a>
-                            ${currentData.artists.map(artist => `<a class="informations__music-artist" href="/pages/artistmusics.html">${artist.fullName}</a>`)}
+                            <a class="informations__music-name" href="/pages/singlemusicpage.html?id=${currentData.id}">${currentData.title}</a>
+                            ${currentData.artists.map(artist => `<a class="informations__music-artist" href="/pages/artistmusics.html?q=${artist.fullName}">${artist.fullName}</a>`)}
                         </div>
                     </div>`;
                 // put the cards in their special wrapper

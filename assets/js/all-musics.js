@@ -1,15 +1,6 @@
-const loadMoreBtn = document.querySelector('.load-more');
-const searchInput = document.querySelector('.search-input');
 const preloader = document.querySelector('.preloader-container');
 
-// clicked count on load more button
-let clickedCount = 0;
-// Items to show on every click on load more button
-let perClick = 10;
-
-loadMoreBtn.addEventListener('click', manipulateData);
 window.addEventListener('load',  getAllMusics);
-searchInput.addEventListener('input',handleSearch);
 
 async function getAllMusics() {
     // Root url
@@ -24,8 +15,8 @@ async function getAllMusics() {
             allMusics.push((await responses[i].json()).results);
         }
 
-        // create a global varriable called flattedMusics and use flat function to remove the subarrays
-        window.flattedMusics = allMusics.flat();
+        // create a global varriable called allRsults and use flat function to remove the subarrays
+        window.allResults = allMusics.flat();
     }catch(err){
         if(err) preloader.style.display = 'none';
     }
@@ -36,17 +27,16 @@ async function getAllMusics() {
 function manipulateData() {
     clickedCount++;
     // splice musics using clickedCount and perClick varriables
-    const spliceFlattedMusics = flattedMusics.splice((clickedCount*perClick) - perClick,perClick);
+    const spliceFlattedMusics = allResults.splice((clickedCount*perClick) - perClick,perClick);
 
-    if((clickedCount * perClick) < flattedMusics.length){
+    if((clickedCount * perClick) < allResults.length){
         createHTMLElementsFromData(spliceFlattedMusics);
     }
 }
 
-
 // create a wrapper for Musics
-const allMusicsWrapper = document.createElement('div');
-allMusicsWrapper.className = 'allmusics-section';
+const songsWrapper = document.createElement('div');
+songsWrapper.className = 'allmusics-section';
 
 function createHTMLElementsFromData(splicedMusics) {
     let musicCardTemplate;
@@ -62,17 +52,17 @@ function createHTMLElementsFromData(splicedMusics) {
                 </div>
                 <div class="music-card__informations">
                     <a href="/pages/singlemusicpage.html" class="informations__music-name">${music.title}</a>  
-                    ${music.artists.map(artist => `<a class="informations__music-artist" href="/pages/artistmusics.html">${artist.fullName}</a>`)}
+                    ${music.artists.map(artist => `<a class="informations__music-artist" href="/pages/artistmusics.html?q=${artist.fullName}">${artist.fullName}</a>`)}
                 </div>
             </div>`;
 
         // insert music cards html inside of the wrapper
-        allMusicsWrapper.insertAdjacentHTML('beforeend',musicCardTemplate);
+        songsWrapper.insertAdjacentHTML('beforeend',musicCardTemplate);
     });
     
     // send the wrapper to appendContainerIntoDom function just 'once'
     if(clickedCount === 1){
-        appendContainerIntoDom(allMusicsWrapper);
+        appendContainerIntoDom(songsWrapper);
     }
 }
 
@@ -87,16 +77,4 @@ function appendContainerIntoDom(wrapper) {
     preloader.style.display = 'none';
 }
 
-function handleSearch(e) {
-    const filterResults = allResults.filter(result => {
-        if(e.target.value){
-            return result.title.toLowerCase().includes(e.target.value.toLowerCase())
-        } else
-            return result;
-        }
-    );
 
-    songsWrapper.innerHTML = '';
-
-    createHTMLElementsFromData(filterResults);
-}

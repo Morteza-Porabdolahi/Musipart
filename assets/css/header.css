@@ -52,12 +52,13 @@
   font-size: 1.5rem;
   padding-right: 0.5rem;
   transition: color 0.3s;
-  color: var(--color-slate-200);
+  color: var(--color-slate-500);
+  cursor: default;
 }
 
-.options__signin:hover {
-  color: var(--color-slate-400);
-}
+/* .options__signin:hover { */
+/*   color: var(--color-slate-400); */
+/* } */
 
 .options__search {
   font-size: 1.9rem;

@@ -1,5 +1,3 @@
-const loadMoreBtn = document.querySelector('.load-more');
-const searchInput = document.querySelector('.search-input');
 const preloader = document.querySelector('.preloader-container');
 
 const documentTitle = document.title;
@@ -7,12 +5,7 @@ const documentTitle = document.title;
 // make request Url ready for requests
 const url = `https://haji-api.ir/music?q=${documentTitle.includes('Daily') ? 'day' : documentTitle.includes('Weekly') ? 'week' : 'new'}`;
 
-let clickedCount = 0;
-let perClick = 6;
-
 window.addEventListener('load',getEntierMusics);
-loadMoreBtn.addEventListener('click', manipulateData);
-searchInput.addEventListener('input',handleSearch);
 
 async function getEntierMusics() {
     try{
@@ -51,7 +44,7 @@ function createHTMLElementsFromData(splicedMusics) {
             </div>
             <div class="music-card__informations">
                 <a class="informations__music-name" href="/pages/singlemusicpage.html" >${song.title}</a>
-                ${song.artists.map(artist => `<a class="informations__music-artist" href="/pages/artistmusics.html">${artist.fullName}</a>`)}
+                ${song.artists.map(artist => `<a class="informations__music-artist" href="/pages/artistmusics.html?q=${artist.fullName}">${artist.fullName}</a>`)}
             </div>
         </div>`;
 
@@ -75,16 +68,3 @@ function appendMusicsIntoDom(wrapper) {
     preloader.style.display = 'none';
 }
 
-function handleSearch(e) {
-    const filterResults = allResults.filter(result => {
-        if(e.target.value){
-            return result.title.toLowerCase().includes(e.target.value.toLowerCase())
-        } else
-            return result;
-        }
-    );
-
-    songsWrapper.innerHTML = '';
-
-    createHTMLElementsFromData(filterResults);
-}

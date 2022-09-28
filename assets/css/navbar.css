@@ -22,3 +22,8 @@
   display: none;
   animation: displayAnimation 0.3s;
 }
+
+.navbar__item:nth-child(4) > a{
+    color: var(--color-slate-500);
+    cursor: default;
+}

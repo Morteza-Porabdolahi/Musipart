@@ -20,6 +20,13 @@
 <body>
     <!-- Start Website Contaier -->
     <section class="container">
+        <section class="alert-container">
+            <i class="ri-loader-3-line loading"></i>
+            <i class="ri-check-double-line done"></i>
+            <i class="ri-error-warning-line warning"></i>
+            <i class="ri-error-warning-fill error"></i>
+            <span></span>
+        </section>
         <!-- start Preloader -->
         <section class="preloader-container">
            <div class="preloader"></div> 
@@ -56,9 +63,8 @@
                     </li>
                     <li class="navbar__item">
                         <a
-                            href="/pages/playlists.html"
                             class="navbar__item-link"
-                            title="Playlists"
+                            title="Coming Soon"
                         >
                             <i class="ri-play-list-line"></i>
                             <span>PlayLists</span>
@@ -78,8 +84,7 @@
                 />
                 <div class="header__options">
                     <a
-                        title="SignIn/Register"
-                        href="./pages/register.html"
+                        title="Coming Soon"
                         class="options__signin"
                     >Sign In / Register</a
                     >
@@ -150,8 +155,10 @@
             <audio hidden class="music-player__audio"></audio>
             <div class="music-player__progress"></div>
             <div class="music-player__controls-container">
-                <div class="controls-container__image">
+                <div class="controls-container__description">
                     <img class="image__music-img" src="assets/images/moein.jpg" alt="Moein" />
+                    <small class="informations__music-name">Royaye Ma</small>
+                    <small href="#" class="informations__music-artist">Ebi,Shadmehr Aghili</small>
                 </div>
                 <div class="controls-container__controls">
                     <div class="control">

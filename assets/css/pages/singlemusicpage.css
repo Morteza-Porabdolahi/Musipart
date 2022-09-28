@@ -21,8 +21,8 @@
 .description__lyrics > p {
   font-size: 1.45rem;
   line-height: 1.8;
-  text-align: right;
-  margin-top: 1rem;
+  text-align:center;
+  margin-top: 2rem;
 }
 
 .controls-container__controls {
@@ -34,4 +34,10 @@
   .controls-container__controls {
     justify-content: center;
   }
+}
+
+.main__single-song::after{
+    content : '';
+    clear : both;
+    display : block;
 }

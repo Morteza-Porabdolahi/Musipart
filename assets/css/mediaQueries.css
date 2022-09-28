@@ -42,6 +42,10 @@
   .options__input {
     display: none !important;
   }
+    
+  .alert-container{
+        width: 30rem;
+    }
 
   .music-card,
   .artist-card {
@@ -71,6 +75,10 @@
 
   .details__image {
     width: 30%;
+  }
+
+  .controls-container__description > a{
+        display :block ;
   }
 }
 

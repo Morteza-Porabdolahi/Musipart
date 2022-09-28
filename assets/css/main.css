@@ -68,6 +68,7 @@
 .music-card,
 .artist-card {
   min-width: calc(50% - 1rem);
+    max-width : 17rem;
 }
 
 /* Margins for All elements except last element */
@@ -202,12 +203,16 @@
   position: fixed;
   background-color: var(--color-slate-900);
   z-index: 1;
-  bottom: 2rem;
+  bottom: 3rem;
   right: 3rem;
-  left: 2rem;
+  left : 3rem;
   max-height: 8rem;
   border-radius: 0.6rem;
   box-shadow: 3px 3px 10px var(--color-slate-900);
+}
+
+.controls-container__description > a{
+    display : none;
 }
 
 .music-player__controls-container {
@@ -221,6 +226,10 @@
   padding: 0.5rem 0.7rem;
 }
 
+.music-player__controls-container .informations__music-name{
+    margin-top : .8rem;
+}
+
 @supports (display: flex) {
   .music-player__controls-container {
     display: flex;
@@ -229,10 +238,12 @@
   }
 }
 
-.controls-container__image > img {
-  max-width: 6rem;
-  border-radius: 0.4rem;
-  margin-right : 1rem;
+.image__music-img{
+    max-width: 60px;
+    max-height : 60px;
+    float : left;
+    border-radius : .5rem;
+    margin-right : 1.5rem;
 }
 
 .controls-container__controls {
@@ -241,6 +252,7 @@
   display: box;
   flex-align: center;
   box-align: center;
+  flex : 0 0 22%;
 }
 
 @supports (display: flex) {
@@ -286,7 +298,11 @@
 .music-player__progress {
   position: relative;
   cursor: pointer;
-  min-height: 0.25rem;
+  min-height: 0.35rem;
+}
+
+.music-player__progress:hover{
+    min-height : .7rem;
 }
 
 .music-player__progress::before {
@@ -340,32 +356,22 @@
     z-index : 1;
     bottom : 0;
     left : 0;
-     display : flexbox;
-    flex-pack : center;
-    flex-align : center;
-    display: box;
-    box-align : center;
-    box-pack : center;   
     right : 0;
     background-color : var(--color-slate-900);
 }
 
 .preloader{
     border: 10px solid var(--color-slate-400);
-    width : 200px;
-    height : 200px;
+    margin : 0 auto;
+    margin-top : 20rem;
+    width : 20rem;
+    height : 20rem;
     border-radius : 50%;
     border-right : 10px solid var(--color-slate-600);
     animation : rotation .9s infinite alternate;
 }
 
-@supports (display : flex){
-    .preloader-container{
-        display: flex;
-        align-items :center;
-        justify-content : center;
-    }
-}
+
 
 @keyframes rotation {
     from{
@@ -376,4 +382,47 @@
     }
 }
 
+
+/* alert Styles */
+.alert-container{
+    position : fixed;
+    top : 2rem;
+    transition : left .2s;
+    left : -100rem;
+    font-size: 1.7rem;
+    background-color: var(--color-slate-900);
+    padding : 2rem;
+    width : 90%;
+    z-index: 1;
+    box-shadow : 1px 1px 9px var(--color-slate-900);
+    border-radius : .5rem;
+}
+
+.alert-container.active{
+    left: 2.5rem;
+}
+
+.alert-container > i, .alert-container > span {
+    vertical-align: middle;
+}
+
+.alert-container > i.loading{
+    color: rgb(0,100,255);
+}
+
+.alert-container > i.warning{
+    color: rgb(255,255,0);
+}
+
+.alert-container > i.error{
+    color : hsl(0,100%,55%);
+}
+
+.alert-container > i.done{
+    color: rgb(0,255,0);
+}
+
+.alert-container > i{
+    display: none;
+}
 
