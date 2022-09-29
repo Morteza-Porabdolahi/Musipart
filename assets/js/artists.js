@@ -1,17 +1,22 @@
-const preloader = document.querySelector('.preloader-container');
 const searchInput = document.querySelector('.search-input');
 
 window.addEventListener('load',getArtistsData);
 searchInput.addEventListener('input',handleSearch);
 
 async function getArtistsData(){
+  try{
     const url = 'https://haji-api.ir/music?q=trend';
     const response = await fetch(url);
     const artists = await response.json();
+
     // create a global varrible called allArtists and put the results in it
     window.allArtists = artists.results;
-    
-    createHTMLElementsFromData(allArtists);
+
+  }catch(e){
+    if(e) hidePreloader();
+  }
+
+  createHTMLElementsFromData(allArtists);
 }
 
 
@@ -40,12 +45,12 @@ function createHTMLElementsFromData(artists) {
 }
 
 function appendContainerIntoDom(wrapper) {
-    // all Artists Container
-    const allArtistsContainer = document.querySelector('.artists');
-    // append the wrapper inside of the parent Container
-    allArtistsContainer.appendChild(wrapper);
-    // hide Preloader
-    preloader.style.display = 'none';
+  // all Artists Container
+  const allArtistsContainer = document.querySelector('.artists');
+  // append the wrapper inside of the parent Container
+  allArtistsContainer.appendChild(wrapper);
+
+  hidePreloader();
 }
 
 function handleSearch(e) {

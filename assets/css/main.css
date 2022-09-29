@@ -59,6 +59,14 @@
   overflow: auto hidden;
 }
 
+/* not found message (p tag)*/
+.content__not-found{
+  font-size : calc(1vw + 1rem);
+  color : var(--color-slate-400);
+  margin : 4rem 0 2rem 0;
+  text-align: center;
+}
+
 @supports (display: flex) {
   .section__content {
     display: flex;

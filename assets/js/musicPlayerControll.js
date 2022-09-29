@@ -1,84 +1,73 @@
+// the <audio> tag
 const audioElem = document.querySelector('.music-player__audio');
+// the music player play button
 const playerPlayBtn = document.querySelector('.control:nth-child(2)');
+// the music player image
 const playerImage = document.querySelector('.image__music-img');
+// music container itself
 const musicPlayerContainer = document.querySelector('.container__music-player');
 const volumeSlider = document.querySelector('.volume-range');
-const repeatVolume = document.querySelector('.setting:nth-child(2)');
+// repeat song Button
+const repeatSong = document.querySelector('.setting:nth-child(2)');
+// change quality Button
 const qualityBtn = document.querySelector('.setting:nth-child(3)');
+// the song progress bar
 const progressBar = document.querySelector('.music-player__progress');
+
 const musicName = document.querySelector('.controls-container__description > .informations__music-name');
 const artistsName = document.querySelector('.controls-container__description > .informations__music-artist');
 
 let currentTime;
 // for Switching between Hd and non Hd quality
 let isHD = false;
-// current Playing Music Object
-let currentMusic;
 let isPlaying;
 let defaultVolume = .2;
 
 async function getMusic(id) {
-    const url = `https://haji-api.ir/music?q=info&t=${id}`;
+  const url = `https://haji-api.ir/music?q=info&t=${id}`;
 
+  try{
     showAlert('loading','Loading...');
 
-    try{
-        const response = await fetch(url);
-        const musicObj = response.json();
-        
-        if(response.status === 200){
-            return musicObj;
-        }
-    } catch(e){
-        if(e) {
-            hideAlert();
+    const response = await fetch(url);
+    const musicObj = response.json();
 
-            showAlert('error','An error occured !');
-            setTimeout(hideAlert, 1000);
-        }
+    return musicObj;
 
+  } catch(e){
+    if(e) {
+      showAlert('error','An error occured !');
+      setTimeout(hideAlert, 1000);
     }
+  }
 }
 
-function showAlert(mode,text) {
-    const alertContainer = document.querySelector('.alert-container');
-    
-    alertContainer.lastElementChild.textContent = text;
-    alertContainer.querySelector(`i.${mode}`).style.display = 'inline';
-    
-    alertContainer.classList.add('active');
-}
-
-function hideAlert() {
-    const alertContainer = document.querySelector('.alert-container');
-
-    alertContainer.querySelectorAll('i').forEach(icon => icon.style.display = 'none');
-    alertContainer.classList.remove('active');
-}
-
+// this function is set to music cards play buttons (shows when hovers on music cards)
 async function playEntireMusic(e,musicId) {
-    musicPlayerContainer.style.display = 'none';
-    pauseMusic();
+  musicPlayerContainer.style.display = 'none';
+  pauseMusic();
 
-    currentMusic = await getMusic(musicId);
-    audioElem.src = currentMusic.audio.medium.url;
+  // get the musicObj and save it in a global varriable called currentMusic
+  window.currentMusic = await getMusic(musicId);
+  audioElem.src = currentMusic.audio.medium.url;
 
-    // when everything is ready , play the music
-   audioElem.addEventListener('canplay', () => {
-        hideAlert();
-        setRequirementEvents();
+  // when everything is ready , play the music
+  audioElem.addEventListener('canplay', () => {
+    setRequirementEvents();
 
-        playerImage.src = currentMusic.image.thumbnail_small.url;
-        playerImage.alt = currentMusic.title;
+    playerImage.src = currentMusic.image.thumbnail_small.url;
+    playerImage.alt = currentMusic.title;
 
-        musicName.textContent = currentMusic.title;
-        artistsName.textContent = currentMusic.artists.map(artist => artist.fullName);
+    musicName.textContent = currentMusic.title;
+    artistsName.textContent = currentMusic.artists.map(artist => artist.fullName);
 
-        audioElem.volume = defaultVolume;
-        musicPlayerContainer.style.display = 'block';
+    audioElem.volume = defaultVolume;
 
-        playMusic();
-    }); 
+    musicPlayerContainer.style.display = 'block';
+
+    hideAlert();
+    playMusic();
+  }); 
 
 
 }
@@ -87,7 +76,7 @@ function setRequirementEvents() {
     // for Volume changing
     volumeSlider.addEventListener('input',handleAudioVolume);
     // for loop controlling
-    repeatVolume.addEventListener('click',handleReapetOrNot);
+    repeatSong.addEventListener('click',handleReapetOrNot);
     // for switching between qualities
     qualityBtn.addEventListener('click', handleAudioQuality);
     // for playing and pausing
@@ -106,6 +95,7 @@ function handleProgressBar(){
 
 function resetProgressBarWidth() {
     pauseMusic();
+
     musicPlayerContainer.style.setProperty('--progress-width','0');
 }
 
@@ -152,9 +142,11 @@ function handleAudioVolume(e) {
 
 function handleAudioQuality() {
     // pause the music , save the currentTime, change the url , play the music from saved Time
-
     currentTime = audioElem.currentTime;
     isHD = !isHD;
+
+    showAlert('done',`HD Mode is Now ${isHD ? 'Enabled' : 'Disabled' }`);
+    setTimeout(hideAlert, 1000);
 
     if(isHD){
         audioElem.src = currentMusic.audio.high.url;
@@ -164,9 +156,6 @@ function handleAudioQuality() {
 
     audioElem.currentTime = currentTime;
     playMusic();
-
-    showAlert('done',`HD Mode is Now ${isHD ? 'Enabled' : 'Disabled' }`);
-    setTimeout(hideAlert, 1000);
 }
 
 function setCurrentTime(e) {
