@@ -15,14 +15,16 @@ async function getSingleMuaic() {
 }
 
 function handleData(song) {
-    const musicImage = document.querySelector('.details__image > img');
-    const musicTitle = document.querySelector('.details__description > h3');
+    const musicImage = document.querySelector('.description__image > img');
+    const musicTitle = document.querySelector('.texts__titles > h3');
     const lyricsContainer = document.querySelector('.description__lyrics > p');
 
     musicImage.alt = song.title;
     musicImage.src = song.image.cover.url;
     musicTitle.textContent = song.title;
+
     lyricsContainer.textContent = song.lyrics ? song.lyrics : 'No lyrics Found...!';
+
     audioElem.src = song.audio.medium.url;
     
 }

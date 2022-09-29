@@ -6,11 +6,9 @@
     min-height: calc(100vh - 3rem);
     padding: 2.5rem 0;
   }
-
-  .details__image {
-    float: left;
-    width: 50%;
-    margin: 0 1rem 0.5rem 0;
+  
+  .alert-container.active{
+        left : 2.5rem;
   }
 
   .header {
@@ -73,11 +71,22 @@
     padding: 1rem 0rem 1rem 1rem;
   }
 
-  .details__image {
-    width: 30%;
+  .description__image{
+    width : 30%;
+    margin-right : 6rem;
+    float : left;
+  }
+    
+  .description__texts{
+    float : right;
+    width : 60%;
   }
 
-  .controls-container__description > a{
+  .details__description{
+    padding : 3rem;
+  }
+
+  .controls-container__description > small{
         display :block ;
   }
 }
@@ -88,9 +97,6 @@
     min-width: calc(100% / 5 - 1rem);
   }
 
-  .details__image {
-    max-width: 35rem;
-  }
 }
 
 @media only screen and (min-width: 1200px) {

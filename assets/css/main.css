@@ -211,7 +211,7 @@
   box-shadow: 3px 3px 10px var(--color-slate-900);
 }
 
-.controls-container__description > a{
+.controls-container__description > small{
     display : none;
 }
 
@@ -298,7 +298,7 @@
 .music-player__progress {
   position: relative;
   cursor: pointer;
-  min-height: 0.35rem;
+  min-height: 0.3rem;
 }
 
 .music-player__progress:hover{
@@ -387,6 +387,7 @@
 .alert-container{
     position : fixed;
     top : 2rem;
+    right : 4rem;
     transition : left .2s;
     left : -100rem;
     font-size: 1.7rem;
@@ -399,7 +400,7 @@
 }
 
 .alert-container.active{
-    left: 2.5rem;
+    left: 1.5rem;
 }
 
 .alert-container > i, .alert-container > span {
