@@ -61,7 +61,7 @@ label {
 
 a {
   text-underline-offset: 3px;
-  color: #fff;
+  color: var(--color-slate-300);
 }
 
 a:hover {

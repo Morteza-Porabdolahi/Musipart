@@ -6,9 +6,9 @@
     min-height: calc(100vh - 3rem);
     padding: 2.5rem 0;
   }
-  
-  .alert-container.active{
-        left : 2.5rem;
+
+  .alert-container.active {
+    left: 2.5rem;
   }
 
   .header {
@@ -40,10 +40,11 @@
   .options__input {
     display: none !important;
   }
-    
-  .alert-container{
-        width: 30rem;
-    }
+
+  .alert-container {
+    width: 30rem;
+    top: 2rem;
+  }
 
   .music-card,
   .artist-card {
@@ -71,23 +72,23 @@
     padding: 1rem 0rem 1rem 1rem;
   }
 
-  .description__image{
-    width : 30%;
-    margin-right : 6rem;
-    float : left;
-  }
-    
-  .description__texts{
-    float : right;
-    width : 60%;
+  .description__image {
+    width: 30%;
+    margin-right: 6rem;
+    float: left;
   }
 
-  .details__description{
-    padding : 3rem;
+  .description__texts {
+    float: right;
+    width: 60%;
   }
 
-  .controls-container__description > small{
-        display :block ;
+  .details__description {
+    padding: 3rem;
+  }
+
+  .controls-container__description > small {
+    display: block;
   }
 }
 
@@ -96,7 +97,6 @@
   .artist-card {
     min-width: calc(100% / 5 - 1rem);
   }
-
 }
 
 @media only screen and (min-width: 1200px) {
@@ -108,7 +108,7 @@
   .artists-section,
   .allmusics-section,
   .playlists {
-    flex-pack: start;
+    -ms-flex-pack: start;
     box-pack: start;
   }
 

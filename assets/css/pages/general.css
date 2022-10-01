@@ -1,48 +1,50 @@
 .loadmore-container {
-    width: max-content;
-    margin: 0 auto;
+  width: max-content;
+  margin: 0 auto;
 }
 
 .load-more {
-    border: 1px solid var(--color-slate-300);
-    background-color: transparent;
-    color: var(--color-slate-300);
-    border-radius: 0.3rem;
-    padding: 1.2rem 3.5rem;
-    font-size: calc(0.2vw + 1.2rem);
-    transition: background-color 0.3s, color 0.3s;
-    display : none;
+  border: 1px solid var(--color-slate-300);
+  background-color: transparent;
+  color: var(--color-slate-300);
+  border-radius: 0.3rem;
+  padding: 1.2rem 3.5rem;
+  font-size: calc(0.2vw + 1.2rem);
+  transition: background-color 0.3s, color 0.3s;
+  display: none;
 }
 
 .load-more:hover {
-    background-color: var(--color-slate-300);
-    color: var(--color-slate-900);
+  background-color: var(--color-slate-300);
+  color: var(--color-slate-900);
 }
 
 .artists-section,
 .allmusics-section,
 .playlists {
-    display: flexbox;
-    flex-wrap: wrap;
-    flex-pack: center;
-    display: box;
-    box-pack: center;
-    box-lines: multiple;
-    padding: 1rem 0;
-    margin: 1rem 0;
+  display: -ms-flexbox;
+  display: -moz-box;
+  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -ms-flex-pack: center;
+  box-pack: center;
+  box-lines: multiple;
+  padding: 1rem 0;
+  margin: 1rem 0;
 }
 
 @supports (display: flex) {
-    .artists-section,
-    .allmusics-section,
-    .playlists {
-        display: flex;
-        justify-content: center;
-    }
+  .artists-section,
+  .allmusics-section,
+  .playlists {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .artist-card,
 .music-card {
-    max-width: 17rem;
-    margin-bottom: 2rem;
+  min-height: 17rem;
+  max-width: 17rem;
+  margin-bottom: 2rem;
 }

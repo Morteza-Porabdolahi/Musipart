@@ -5,7 +5,7 @@
 .boxes__box {
   cursor: pointer;
   transition: padding 0.3s, background-color 0.3s;
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
 }
 
 .information__img {
@@ -18,7 +18,7 @@
 }
 
 .information__text {
-  margin: .8rem 0 0 .8rem;
+  margin: 0.8rem 0 0 0.8rem;
   font-size: calc(0.2vw + 1.2rem);
   float: left;
 }
@@ -40,8 +40,8 @@
   line-height: 6rem;
 }
 
-.boxes__box::after{
-  content: '';
+.boxes__box::after {
+  content: "";
   clear: both;
   display: block;
 }

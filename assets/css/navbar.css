@@ -1,7 +1,7 @@
 .navbar {
   background-color: var(--color-slate-800);
   border-radius: 1rem;
-  column-count: 4;
+  column-count: 5;
   padding: 1rem 0;
   box-shadow: 5px 5px 10px var(--color-slate-900);
   /* transition: padding 0.3 */
@@ -23,7 +23,7 @@
   animation: displayAnimation 0.3s;
 }
 
-.navbar__item:nth-child(4) > a{
-    color: var(--color-slate-500);
-    cursor: default;
+.navbar__item:last-child > a{
+  color: var(--color-slate-500);
+  cursor: default;
 }

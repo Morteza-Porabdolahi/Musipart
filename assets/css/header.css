@@ -37,7 +37,7 @@
 }
 
 .options__input {
-  animation: displayAnimation .3s;
+  animation: displayAnimation 0.3s;
   position: absolute;
   bottom: -2rem;
   right: 0;

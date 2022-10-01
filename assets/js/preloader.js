@@ -1,5 +1,9 @@
-const preloader = document.querySelector('.preloader-container');
+const preloader = document.querySelector(".preloader-container");
 
-function hidePreloader(){
-  preloader.style.display = 'none';
+function hidePreloader() {
+  preloader.style.display = "none";
+}
+
+function showPreloader() {
+  preloader.style.display = "block";
 }

@@ -13,8 +13,8 @@
 }
 
 .form-container__forms {
-  display: flexbox;
-  display: box;
+  display: -ms-flexbox;
+  display: -moz-box;
   overflow: hidden;
 }
 

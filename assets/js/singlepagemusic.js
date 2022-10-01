@@ -1,44 +1,48 @@
-const playBtn = document.querySelector('.control:nth-child(2)');
-const audioElem = document.querySelector('audio');
+const playBtn = document.querySelector(".control:nth-child(2)");
+const audioElem = document.querySelector("audio");
 
-playBtn.addEventListener('click',playOrPauseAudio);
-window.addEventListener('load',getSingleMuaic);
+playBtn.addEventListener("click", playOrPauseAudio);
+window.addEventListener("load", getSingleMuaic);
 
 let isPlaying = false;
 
 async function getSingleMuaic() {
-  try{
+  try {
     // get the music object from it's id
-    const id = new URLSearchParams(location.search).get('id');
+    const id = new URLSearchParams(location.search).get("id");
 
     const response = await fetch(`https://haji-api.ir/music?q=info&t=${id}`);
     const data = await response.json();
 
-    handleData(data);
+    // set Document Title as song name
+    document.title = `Musipart || ${data.title}`;
 
-  }catch(e){
-    if(e) {
+    handleData(data);
+  } catch (e) {
+    if (e) {
       hidePreloader();
 
-      showAlert('error', 'Something went Wrong !');
+      showAlert("error", "Something went Wrong !");
       setTimeout(hideAlert, 1000);
-    } 
+    }
   }
 }
 
 function handleData(song) {
-  const musicImage = document.querySelector('.description__image > img');
-  const musicTitle = document.querySelector('.texts__titles > h3');
-  const musicArtists = document.querySelector('.texts__titles > p');
-  const lyricsContainer = document.querySelector('.description__lyrics > p');
+  const musicImage = document.querySelector(".description__image > img");
+  const musicTitle = document.querySelector(".texts__titles > h3");
+  const musicArtists = document.querySelector(".texts__titles > p");
+  const lyricsContainer = document.querySelector(".description__lyrics > p");
 
   musicImage.alt = song.title;
   musicImage.src = song.image.cover.url;
 
   musicTitle.textContent = song.title;
-  musicArtists.textContent = song.artists.map(artist => artist.fullName);
+  musicArtists.textContent = song.artists.map((artist) => artist.fullName);
 
-  lyricsContainer.textContent = song.lyrics ? song.lyrics : 'No lyrics Found...!';
+  lyricsContainer.textContent = song.lyrics
+    ? song.lyrics
+    : "No lyrics Found...!";
 
   audioElem.src = song.audio.medium.url;
 
@@ -47,22 +51,22 @@ function handleData(song) {
 
 function pauseMusic() {
   isPlaying = false;
-  playBtn.firstElementChild.className = 'ri-play-line';
+  playBtn.firstElementChild.className = "ri-play-line";
 
   audioElem.pause();
 }
 
 function playMusic() {
   isPlaying = true;
-  playBtn.firstElementChild.className = 'ri-pause-line';
+  playBtn.firstElementChild.className = "ri-pause-line";
 
   audioElem.play();
 }
 
 function playOrPauseAudio() {
-  if(!isPlaying){
+  if (!isPlaying) {
     playMusic();
-  }else{
+  } else {
     pauseMusic();
-  } 
+  }
 }

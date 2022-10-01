@@ -8,6 +8,7 @@
       content="music player, online musicPlayer, best Musics of Year, best Musics"
     />
     <link rel="icon" type="image/x-icon" href="/assets/images/logo.png" />
+
     <link rel="stylesheet" href="/assets/css/reset.css" />
     <link rel="stylesheet" href="/assets/fonts/FontIcon/remixicon.css" />
     <link rel="stylesheet" href="/assets/css/index.css" />
@@ -15,7 +16,7 @@
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link rel="stylesheet" href="/assets/css/header.css" />
     <link rel="stylesheet" href="/assets/css/footer.css" />
-    <link rel="stylesheet" href="../assets/css/pages/general.css">
+    <link rel="stylesheet" href="../assets/css/pages/general.css" />
     <link rel="stylesheet" href="/assets/css/mediaQueries.css" />
     <title>Musipart</title>
   </head>
@@ -24,9 +25,9 @@
     <section class="container">
       <!-- start Preloader -->
       <section class="preloader-container">
-         <div class="preloader"></div> 
+        <div class="preloader"></div>
       </section>
-      <!-- end preloader and Start navbar --> 
+      <!-- end preloader and Start navbar -->
       <section class="container__navbar">
         <nav>
           <ul class="navbar">
@@ -58,9 +59,16 @@
             </li>
             <li class="navbar__item">
               <a
+                href="/pages/search-musics.html"
                 class="navbar__item-link"
-                title="Coming Soon"
+                title="Search Musics"
               >
+                <i class="ri-search-line"></i>
+                <span>Search Musics</span>
+              </a>
+            </li>
+            <li class="navbar__item">
+              <a class="navbar__item-link" title="Coming Soon">
                 <i class="ri-play-list-line"></i>
                 <span>PlayLists</span>
               </a>
@@ -77,22 +85,17 @@
             alt="a skyBlue colored Music Note and has some colored dots on top"
           />
           <div class="header__options">
-            <a
-              title="Coming Soon"
-              class="options__signin"
-            >Sign In / Register</a
+            <a title="Coming Soon" class="options__signin"
+              >Sign In / Register</a
             >
-            <label for="search-toggle" class="options__search">
-              <i class="ri-search-line"></i>
-            </label>
           </div>
         </header>
-        <!-- Start main --> 
+        <!-- Start main -->
         <main class="main">
           <section class="main__artist-musics">
             <h2>
-                <span class="artist-name"></span>'s
-                <span class="purple">Musics</span>
+              <span class="artist-name"></span>'s
+              <span class="purple">Musics</span>
             </h2>
             <section class="artist-musics"></section>
           </section>
@@ -106,17 +109,28 @@
               href="https://github.com/Morteza355"
               refer="noopener,norefer"
               target="_blank"
-            >Morteza</a
+              >Morteza</a
             >
           </p>
         </footer>
         <!-- End Footer -->
       </section>
-      <!--End main container and Start music player --> 
+      <!--End main container and Start music player -->
       <section class="container__music-player">
+        <audio hidden class="music-player__audio"></audio>
         <div class="music-player__progress"></div>
         <div class="music-player__controls-container">
-          <img src="" alt="" class="image__music-img" />
+          <div class="controls-container__description">
+            <img
+              class="image__music-img"
+              src="/assets/images/moein.jpg"
+              alt="Moein"
+            />
+            <small class="informations__music-name">Royaye Ma</small>
+            <small href="#" class="informations__music-artist"
+              >Ebi,Shadmehr Aghili</small
+            >
+          </div>
           <div class="controls-container__controls">
             <div class="control">
               <i class="ri-skip-back-line"></i>
@@ -133,12 +147,9 @@
               <i class="ri-volume-up-line"></i>
               <div class="volume-container">
                 <i class="ri-volume-down-line"></i>
-                <input value="20" type="range" class="volume-range" />
+                <input value="20" type="range" class="volume-range" max="100" />
                 <i class="ri-volume-up-line"></i>
               </div>
-            </div>
-            <div class="setting">
-              <i class="ri-shuffle-line"></i>
             </div>
             <div class="setting">
               <i class="ri-repeat-line"></i>
