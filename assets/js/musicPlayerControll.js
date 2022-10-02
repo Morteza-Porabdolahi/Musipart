@@ -153,6 +153,8 @@ function handleAudioQuality() {
   currentTime = audioElem.currentTime;
   isHD = !isHD;
 
+  resetProgressBarWidth();
+
   showAlert("done", `HD Mode is Now ${isHD ? "Enabled" : "Disabled"}`);
   setTimeout(hideAlert, 1000);
 
