@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
+
   <head>
-    <meta name="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta
-      name="keywords"
-      content="music player, online musicPlayer, best Musics of Year, best Musics"
-    />
+    <meta name="keywords" content="musics, daily musics, top daily musics" />
     <link rel="icon" type="image/x-icon" href="/assets/images/logo.png" />
     <link rel="stylesheet" href="../assets/css/reset.css" />
-    <link rel="stylesheet" href="../assets/fonts/FontIcon/remixicon.css" />
     <link rel="stylesheet" href="../assets/css/index.css" />
     <link rel="stylesheet" href="../assets/css/navbar.css" />
     <link rel="stylesheet" href="../assets/css/main.css" />
@@ -19,63 +16,57 @@
     <link rel="stylesheet" href="../assets/css/mediaQueries.css" />
     <title>Musipart || Daily Musics</title>
   </head>
+
   <body>
+    <noscript>Please Turn on Javascript in your browser to continue</noscript>
     <!-- Start Website Container -->
-    <section class="container">
-      <section class="alert-container">
-        <i class="ri-loader-3-line loading"></i>
-        <i class="ri-check-double-line done"></i>
-        <i class="ri-error-warning-line warning"></i>
-        <i class="ri-error-warning-fill error"></i>
+    <div class="container">
+      <div class="alert-container">
+        <img alt="a blue Loading Icon" class="loading" src="/assets/icons/loader-5-line.svg" >
+        <img alt="a green check Icon" class="done" src="/assets/icons/check-line.svg" >
+        <img alt="a yellow circled Icon with a Exclamation mark in it" class="warning" src="/assets/icons/error-warning-line.svg" >
+        <img alt="a red circled Icon with a Exclamation mark in it" class="error" src="/assets/icons/error-warning-fill.svg" >
         <span></span>
-      </section>
+      </div>
       <!-- start Preloader -->
-      <section class="preloader-container">
+      <div class="preloader-container">
         <div class="preloader"></div>
-      </section>
+      </div>
       <!-- end preloader and Start navbar -->
       <section class="container__navbar">
         <nav>
           <ul class="navbar">
             <li class="navbar__item">
               <a title="Home" href="/" class="navbar__item-link">
-                <i class="ri-home-2-line"></i>
+                <img alt="a white Home Icon" src="/assets/icons/home-2-line.svg" />
                 <span>Home</span>
               </a>
             </li>
             <li class="navbar__item">
               <a
                 class="musics-btn navbar__item-link"
-                href="./musics.html"
+                href="/pages/musics.html"
                 title="Musics"
               >
-                <i class="ri-disc-line"></i>
+                <img alt="a white music disc Icon" src="/assets/icons/disc-line.svg" />
                 <span>Musics</span>
               </a>
             </li>
             <li class="navbar__item">
-              <a
-                class="all-artists-btn navbar__item-link"
-                href="./artists.html"
-                title="Artists"
-              >
-                <i class="ri-mic-fill"></i>
+              <a href="/pages/artists.html" class="all-artists-btn navbar__item-link" title="Artists">
+                <img alt="a white Microphone Icon" src="/assets/icons/mic-line.svg" />
                 <span>Artists</span>
               </a>
             </li>
             <li class="navbar__item">
-              <a
-                href="/pages/search-musics.html"
-                class="navbar__item-link"
-                title="Search Musics"
-              >
-                <i class="ri-search-line"></i>
+              <a href="/pages/search-musics.html" class="navbar__item-link" title="Search Musics">
+                <img alt="a white search Icon" src="/assets/icons/search-line.svg" />
                 <span>Search Musics</span>
               </a>
             </li>
             <li class="navbar__item">
               <a class="navbar__item-link" title="Coming Soon">
-                <i class="ri-play-list-line"></i>
+                <img alt="a gray playlist Icon" src="/assets/icons/play-list-line.svg" />
                 <span>PlayLists</span>
               </a>
             </li>
@@ -83,35 +74,22 @@
         </nav>
       </section>
       <!-- End navbar and Start main contaienr -->
-      <section class="container__main">
+      <div class="container__main">
         <header class="header">
-          <img
-            src="/assets/images/logo.png"
-            class="header__logo"
-            alt="a skyBlue colored Music Note and has some colored dots on top"
-          />
-          <input
-            type="text"
-            placeholder="Search..."
-            class="header__input search-input"
-          />
+          <img src="/assets/images/logo.png" class="header__logo" alt="a skyBlue colored Music Note and has some colored dots on top" />
+          <input type="text" placeholder="Search..." class="header__input search-input" />
           <div class="header__options">
             <input type="checkbox" id="search-toggle" hidden />
-            <input
-              type="text"
-              placeholder="Search..."
-              class="options__input search-input"
-            />
-            <a title="Coming Soon" class="options__signin"
-            >Sign In / Register</a
-            >
+            <input type="text" placeholder="Search..." class="options__input search-input" />
+            <a title="Coming Soon" class="options__signin">Sign In / Register</a>
             <label for="search-toggle" class="options__search">
-              <i class="ri-search-line"></i>
+              <img src="/assets/icons/search-line.svg" />
             </label>
           </div>
         </header>
-        <!-- Start main -->
+        <!-- start main and footer container -->
         <div class="main-footer-container">
+          <!-- Start main -->
           <main class="main">
             <section class="main__all-musics section">
               <section class="section__header">
@@ -128,66 +106,55 @@
           <!-- End main and Start Footer -->
           <footer class="footer">
             <p>
-              2022 | Made With <span class="purple"><3</span> by
-              <a
-                title="Morteza's Github"
-                href="https://github.com/Morteza355"
-                refer="noopener,norefer"
-                target="_blank"
-              >Morteza</a
-              >
+              2022 | Made With <span class="purple">&lt;3</span> by
+              <a title="Morteza's Github" href="https://github.com/Morteza355" rel="noopener noreferrer" target="_blank">Morteza</a>
             </p>
           </footer>
+          <!-- End Footer -->
         </div>
-        <!-- End Footer -->
-      </section>
+        <!-- end main and footer container -->
+      </div>
       <!-- End main container and Start music Player -->
       <section class="container__music-player">
         <audio hidden class="music-player__audio"></audio>
         <div class="music-player__progress"></div>
         <div class="music-player__controls-container">
           <div class="controls-container__description">
-            <img
-              class="image__music-img"
-              src="/assets/images/moein.jpg"
-              alt="Moein"
-            />
-            <small class="informations__music-name">Royaye Ma</small>
-            <small href="#" class="informations__music-artist"
-            >Ebi,Shadmehr Aghili</small
-            >
+            <img class="image__music-img" src="" alt="" />
+            <small class="informations__music-name"></small>
+            <small class="informations__music-artist"></small>
           </div>
           <div class="controls-container__controls">
             <div class="control">
-              <i class="ri-skip-back-line"></i>
+              <img alt="a white Skip to back Icon" src="/assets/icons/skip-back-line.svg">
             </div>
             <div class="control">
-              <i class="ri-play-line"></i>
+              <img alt="a white play Icon" src="/assets/icons/play-mini-line.svg">
             </div>
             <div class="control">
-              <i class="ri-skip-forward-line"></i>
+              <img alt="a white skip to forward Icon" src="/assets/icons/skip-forward-line.svg">
             </div>
           </div>
           <div class="controls-container__settings">
             <div class="setting">
-              <i class="ri-volume-up-line"></i>
+              <img alt="an speaker Icon wich has a high sound" src="/assets/icons/volume-up-line.svg">
               <div class="volume-container">
-                <i class="ri-volume-down-line"></i>
+              <img alt="an speaker Icon wich has a low sound" src="/assets/icons/volume-down-line.svg">
                 <input value="20" type="range" class="volume-range" max="100" />
-                <i class="ri-volume-up-line"></i>
+              <img alt="an speaker Icon wich has a high sound" src="/assets/icons/volume-up-line.svg">
               </div>
             </div>
             <div class="setting">
-              <i class="ri-repeat-line"></i>
+              <img src="/assets/icons/repeat-line.svg" alt="a white repeat Icon">
             </div>
             <div class="setting">
-              <i class="ri-hd-line"></i>
+              <img src="/assets/icons/hd-line.svg" alt="Hd switching icon which has a text on it, HD">
             </div>
           </div>
         </div>
       </section>
       <!-- End music Player -->
-    </section>
+    </div>
     <!-- End Website Container -->
     <script src="/assets/js/alert.js"></script>
     <script src="/assets/js/preloader.js"></script>
@@ -195,4 +162,5 @@
     <script src="/assets/js/musicPlayerControll.js"></script>
     <script src="/assets/js/general.js"></script>
   </body>
+
 </html>

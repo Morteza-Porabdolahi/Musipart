@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
+
   <head>
-    <meta name="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta
-      name="keywords"
-      content="music player, online musicPlayer, best Musics of Year, best Musics"
-    />
+    <meta name="keywords" content="best artist musics, artist musics, new artist musics , all artist musics" />
     <link rel="icon" type="image/x-icon" href="/assets/images/logo.png" />
 
     <link rel="stylesheet" href="/assets/css/reset.css" />
-    <link rel="stylesheet" href="/assets/fonts/FontIcon/remixicon.css" />
     <link rel="stylesheet" href="/assets/css/index.css" />
     <link rel="stylesheet" href="/assets/css/navbar.css" />
     <link rel="stylesheet" href="/assets/css/main.css" />
@@ -20,20 +17,22 @@
     <link rel="stylesheet" href="/assets/css/mediaQueries.css" />
     <title>Musipart</title>
   </head>
+
   <body>
+    <noscript>Please Turn on Javascript in your browser to continue</noscript>
     <!-- Start Website Container -->
-    <section class="container">
+    <div class="container">
       <!-- start Preloader -->
-      <section class="preloader-container">
+      <div class="preloader-container">
         <div class="preloader"></div>
-      </section>
+      </div>
       <!-- end preloader and Start navbar -->
       <section class="container__navbar">
         <nav>
           <ul class="navbar">
             <li class="navbar__item">
               <a title="Home" href="/" class="navbar__item-link">
-                <i class="ri-home-2-line"></i>
+                <img alt="a white Home Icon" src="/assets/icons/home-2-line.svg" />
                 <span>Home</span>
               </a>
             </li>
@@ -43,33 +42,25 @@
                 href="/pages/musics.html"
                 title="Musics"
               >
-                <i class="ri-disc-line"></i>
+                <img alt="a white music disc Icon" src="/assets/icons/disc-line.svg" />
                 <span>Musics</span>
               </a>
             </li>
             <li class="navbar__item">
-              <a
-                href="/pages/artists.html"
-                class="all-artists-btn navbar__item-link"
-                title="Artists"
-              >
-                <i class="ri-mic-fill"></i>
+              <a href="/pages/artists.html" class="all-artists-btn navbar__item-link" title="Artists">
+                <img alt="a white Microphone Icon" src="/assets/icons/mic-line.svg" />
                 <span>Artists</span>
               </a>
             </li>
             <li class="navbar__item">
-              <a
-                href="/pages/search-musics.html"
-                class="navbar__item-link"
-                title="Search Musics"
-              >
-                <i class="ri-search-line"></i>
+              <a href="/pages/search-musics.html" class="navbar__item-link" title="Search Musics">
+                <img alt="a white search Icon" src="/assets/icons/search-line.svg" />
                 <span>Search Musics</span>
               </a>
             </li>
             <li class="navbar__item">
               <a class="navbar__item-link" title="Coming Soon">
-                <i class="ri-play-list-line"></i>
+                <img alt="a gray playlist Icon" src="/assets/icons/play-list-line.svg" />
                 <span>PlayLists</span>
               </a>
             </li>
@@ -77,21 +68,16 @@
         </nav>
       </section>
       <!-- End navbar and Start main contaienr -->
-      <section class="container__main">
+      <div class="container__main">
         <header class="header">
-          <img
-            src="/assets/images/logo.png"
-            class="header__logo"
-            alt="a skyBlue colored Music Note and has some colored dots on top"
-          />
+          <img src="/assets/images/logo.png" class="header__logo" alt="a skyBlue colored Music Note and has some colored dots on top" />
           <div class="header__options">
-            <a title="Coming Soon" class="options__signin"
-              >Sign In / Register</a
-            >
+            <a title="Coming Soon" class="options__signin">Sign In / Register</a>
           </div>
         </header>
-        <!-- Start main -->
+        <!-- Start main and footer container -->
         <div class="main-footer-container">
+          <!-- Start main -->
           <main class="main">
             <section class="main__artist-musics">
               <h2>
@@ -104,69 +90,58 @@
           <!-- End main and Start Footer -->
           <footer class="footer">
             <p>
-              2022 | Made With <span class="purple"><3</span> by
-              <a
-                title="Morteza's Github"
-                href="https://github.com/Morteza355"
-                refer="noopener,norefer"
-                target="_blank"
-                >Morteza</a
-              >
+              2022 | Made With <span class="purple">&lt;3</span> by
+              <a title="Morteza's Github" href="https://github.com/Morteza355" rel="noopener noreferrer" target="_blank">Morteza</a>
             </p>
           </footer>
         </div>
         <!-- End Footer -->
-      </section>
+      </div>
       <!--End main container and Start music player -->
       <section class="container__music-player">
         <audio hidden class="music-player__audio"></audio>
         <div class="music-player__progress"></div>
         <div class="music-player__controls-container">
           <div class="controls-container__description">
-            <img
-              class="image__music-img"
-              src="/assets/images/moein.jpg"
-              alt="Moein"
-            />
-            <small class="informations__music-name">Royaye Ma</small>
-            <small href="#" class="informations__music-artist"
-              >Ebi,Shadmehr Aghili</small
-            >
+            <img class="image__music-img" src="" alt="" />
+            <small class="informations__music-name"></small>
+            <small class="informations__music-artist"></small>
           </div>
           <div class="controls-container__controls">
             <div class="control">
-              <i class="ri-skip-back-line"></i>
+              <img alt="a white Skip to back Icon" src="/assets/icons/skip-back-line.svg">
             </div>
             <div class="control">
-              <i class="ri-play-line"></i>
+              <img alt="a white play Icon" src="/assets/icons/play-mini-line.svg">
             </div>
             <div class="control">
-              <i class="ri-skip-forward-line"></i>
+              <img alt="a white skip to forward Icon" src="/assets/icons/skip-forward-line.svg">
             </div>
           </div>
           <div class="controls-container__settings">
             <div class="setting">
-              <i class="ri-volume-up-line"></i>
+              <img alt="an speaker Icon wich has a high sound" src="/assets/icons/volume-up-line.svg">
               <div class="volume-container">
-                <i class="ri-volume-down-line"></i>
+              <img alt="an speaker Icon wich has a low sound" src="/assets/icons/volume-down-line.svg">
                 <input value="20" type="range" class="volume-range" max="100" />
-                <i class="ri-volume-up-line"></i>
+              <img alt="an speaker Icon wich has a high sound" src="/assets/icons/volume-up-line.svg">
               </div>
             </div>
             <div class="setting">
-              <i class="ri-repeat-line"></i>
+              <img src="/assets/icons/repeat-line.svg" alt="a white repeat Icon">
             </div>
             <div class="setting">
-              <i class="ri-hd-line"></i>
+              <img src="/assets/icons/hd-line.svg" alt="Hd switching icon which has a text on it, HD">
             </div>
           </div>
         </div>
       </section>
       <!-- End music player -->
-    </section>
+    </div>
     <!-- End Website Container -->
     <script src="/assets/js/alert.js"></script>
     <script src="/assets/js/preloader.js"></script>
     <script src="/assets/js/artistmusics.js"></script>
   </body>
+
 </html>

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
-    <meta name="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="keywords"
-      content="music player, online musicPlayer, best Musics of Year, best Musics"
+      content=""
     />
     <link rel="icon" type="image/x-icon" href="/assets/images/logo.png" />
     <link rel="stylesheet" href="/assets/css/reset.css" />
-    <link rel="stylesheet" href="/assets/fonts/FontIcon/remixicon.css" />
     <link rel="stylesheet" href="/assets/css/index.css" />
     <link rel="stylesheet" href="/assets/css/navbar.css" />
     <link rel="stylesheet" href="/assets/css/main.css" />
@@ -20,19 +19,20 @@
     <title>Musipart</title>
   </head>
   <body>
+    <noscript>Please Turn on Javascript in your browser to continue</noscript>
     <!-- Start Website Container -->
-    <section class="container">
+    <div class="container">
       <!-- start Preloader -->
-      <section class="preloader-container">
+      <div class="preloader-container">
         <div class="preloader"></div>
-      </section>
+      </div>
       <!-- end preloader and Start navbar -->
       <section class="container__navbar">
         <nav>
           <ul class="navbar">
             <li class="navbar__item">
               <a title="Home" href="/" class="navbar__item-link">
-                <i class="ri-home-2-line"></i>
+                <img alt="a white Home Icon" src="/assets/icons/home-2-line.svg" />
                 <span>Home</span>
               </a>
             </li>
@@ -42,33 +42,25 @@
                 href="/pages/musics.html"
                 title="Musics"
               >
-                <i class="ri-disc-line"></i>
+                <img alt="a white music disc Icon" src="/assets/icons/disc-line.svg" />
                 <span>Musics</span>
               </a>
             </li>
             <li class="navbar__item">
-              <a
-                href="/pages/artists.html"
-                class="all-artists-btn navbar__item-link"
-                title="Artists"
-              >
-                <i class="ri-mic-fill"></i>
+              <a href="/pages/artists.html" class="all-artists-btn navbar__item-link" title="Artists">
+                <img alt="a white Microphone Icon" src="/assets/icons/mic-line.svg" />
                 <span>Artists</span>
               </a>
             </li>
             <li class="navbar__item">
-              <a
-                href="/pages/search-musics.html"
-                class="navbar__item-link"
-                title="Search Musics"
-              >
-                <i class="ri-search-line"></i>
+              <a href="/pages/search-musics.html" class="navbar__item-link" title="Search Musics">
+                <img alt="a white search Icon" src="/assets/icons/search-line.svg" />
                 <span>Search Musics</span>
               </a>
             </li>
             <li class="navbar__item">
               <a class="navbar__item-link" title="Coming Soon">
-                <i class="ri-play-list-line"></i>
+                <img alt="a gray playlist Icon" src="/assets/icons/play-list-line.svg" />
                 <span>PlayLists</span>
               </a>
             </li>
@@ -76,7 +68,7 @@
         </nav>
       </section>
       <!-- End navbar and Start main contaienr -->
-      <section class="container__main">
+      <div class="container__main">
         <header class="header">
           <img
             src="/assets/images/logo.png"
@@ -89,8 +81,9 @@
             >
           </div>
         </header>
-        <!-- Start main -->
+          <!-- start main and footer container -->
         <div class="main-footer-container">
+        <!-- Start main -->
           <main class="main">
             <section class="main__single-song">
               <audio></audio>
@@ -98,23 +91,23 @@
                 <div class="details__description">
                   <div class="description__container">
                     <div class="description__image">
-                      <img src="/assets/images/moein.jpg" alt="" />
+                      <img src="" alt="" />
                     </div>
                     <div class="description__texts">
                       <div class="texts__titles">
-                        <h3>Royaye Ma</h3>
-                        <p>Shadmehr Aghili,Ebi</p>
+                        <h3></h3>
+                        <p></p>
                       </div>
                       <div class="description__controls">
                         <div class="controls-container__controls">
                           <div class="control">
-                            <i class="ri-skip-back-line"></i>
+                            <img src="/assets/icons/skip-back-line.svg"/>
                           </div>
                           <div class="control">
-                            <i class="ri-play-line"></i>
+                            <img src="/assets/icons/play-mini-line.svg"/>
                           </div>
                           <div class="control">
-                            <i class="ri-skip-forward-line"></i>
+                            <img src="/assets/icons/skip-forward-line.svg"/>
                           </div>
                         </div>
                       </div>
@@ -131,21 +124,22 @@
           <!-- End main and Start Footer -->
           <footer class="footer">
             <p>
-              2022 | Made With <span class="purple"><3</span> by
+              2022 | Made With <span class="purple">&lt;3</span> by
               <a
                 title="Morteza's Github"
                 href="https://github.com/Morteza355"
-                refer="noopener,norefer"
+                rel="noopener noreferrer"
                 target="_blank"
               >Morteza</a
               >
             </p>
           </footer>
-        </div>
         <!-- End Footer -->
-      </section>
+        </div>
+          <!-- end main and footer container -->
+      </div>
       <!--End main container -->
-    </section>
+    </div>
     <!-- End Website Container -->
     <script src="/assets/js/alert.js"></script>
     <script src="/assets/js/preloader.js"></script>
