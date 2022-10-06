@@ -81,7 +81,7 @@ function createHTMLElementsFromData(filteredData = []) {
 <div class="music-card">
 <div class="music-card__img-container">
 <img loading="lazy" class="music-card__img" src="${song.image.cover.url}" />
-<button class="music-card__play-btn">
+<button class="music-card__play-btn" onclick="playEntireMusic(event,'${song.id}')">
 <img src="/assets/icons/play-mini-line.svg"/>
 </button>
 </div>

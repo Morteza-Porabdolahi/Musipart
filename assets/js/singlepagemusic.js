@@ -18,10 +18,14 @@ async function getSingleMuaic() {
     const response = await fetch(`https://haji-api.ir/music?q=info&t=${id}`);
     const data = await response.json();
 
-    // set Document Title as song name
-    document.title = `Musipart || ${data.title}`;
+    if(!data.hasOwnProperty('id')){
+      location.href = "/pages/404.html"
+    }else{
+      // set Document Title as song name
+      document.title = `Musipart || ${data.title}`;
 
-    handleData(data);
+      handleData(data);
+    }
   } catch (e) {
     if (e) {
       hidePreloader();
