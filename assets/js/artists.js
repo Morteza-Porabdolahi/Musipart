@@ -16,7 +16,12 @@ async function getArtistsData() {
     // create a global varrible called allArtists and put the results in it
     window.allArtists = artists.results;
   } catch (e) {
-    if (e) hidePreloader();
+    if (e){
+      hidePreloader();
+
+      showAlert('error','Something went wrong !');
+      setTimeout(hideAlert,1000);
+    } 
   }
 
   createHTMLElementsFromData(allArtists);
