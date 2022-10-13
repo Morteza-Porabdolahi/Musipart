@@ -111,7 +111,7 @@ ${song.artists.map(
 function insertInDom(wrapper) {
   container.innerHTML = '';
 
-  if(searchInput.value){
+  if(searchInputs[0].value || searchInputs[1].value){
     container.append(wrapper);
   }
 }
