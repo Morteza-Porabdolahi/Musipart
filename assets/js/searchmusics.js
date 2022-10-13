@@ -56,7 +56,11 @@ async function getDatasFromApi(url) {
         helpTag.style.display = 'block';
       }
     }
-  } catch (e) {}
+  } catch (e) {
+    showAlert('error','Something Went Wrong!');
+
+    setTimeout(hideAlert,1000);
+  }
 }
 
 let musicsWrapper;
