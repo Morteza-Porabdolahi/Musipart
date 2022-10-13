@@ -2,6 +2,9 @@ const searchInput = document.querySelector('.search-input');
 const helpTag = document.querySelector('.help');
 const container = document.querySelector('.allmusics__searched');
 
+// for Debouncing
+let timeout;
+
 searchInput.addEventListener('input', handleSearchQuery);
 
 /*
@@ -10,17 +13,22 @@ searchInput.addEventListener('input', handleSearchQuery);
 * @param {object} e - event Object
 */
 function handleSearchQuery(e) {
+  helpTag.style.display = 'none';
+
   const inputValue = e.target.value;
 
   if (!e.target.value) {
     helpTag.style.display = 'block';
+    helpTag.innerHTML = 'Please Search a Music Name !'
+
     container.innerHTML = '';
-    return;
   } else {
     helpTag.style.display = 'none';
 
     const url = `https://haji-api.ir/music?q=search&t=${inputValue}`;
-    getDatasFromApi(url);
+
+    clearTimeout(timeout);
+    timeout = setTimeout(() => getDatasFromApi(url),800);
   }
 }
 
@@ -34,12 +42,19 @@ async function getDatasFromApi(url) {
     const response = await fetch(url);
     const data = await response.json();
 
-    const filterSongs = data.results.filter((item) =>
-      item.hasOwnProperty('song'),
-    );
-
     if (response.status === 200) {
-      manipulateHtml(filterSongs);
+      const filterSongs = data.results.filter((item) =>
+        item.hasOwnProperty('song'),
+      );
+      
+      if(filterSongs.length > 0){
+        manipulateHtml(filterSongs);
+      }else{
+        container.innerHTML = '';
+
+        helpTag.innerHTML = 'No Musics Found !';
+        helpTag.style.display = 'block';
+      }
     }
   } catch (e) {}
 }
@@ -92,5 +107,7 @@ ${song.artists.map(
 function insertInDom(wrapper) {
   container.innerHTML = '';
 
-  container.append(wrapper);
+  if(searchInput.value){
+    container.append(wrapper);
+  }
 }
