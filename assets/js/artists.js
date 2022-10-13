@@ -1,7 +1,7 @@
-const searchInput = document.querySelector('.search-input');
+const searchInputs = document.querySelectorAll('.search-input');
 
 window.addEventListener('load', getArtistsData);
-searchInput.addEventListener('input', handleSearch);
+searchInputs.forEach(input => input.addEventListener('input', handleSearch));
 
 /*
 * get Artits array from api

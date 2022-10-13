@@ -1,11 +1,11 @@
-const searchInput = document.querySelector('.search-input');
+const searchInputs = document.querySelectorAll('.search-input');
 const helpTag = document.querySelector('.help');
 const container = document.querySelector('.allmusics__searched');
 
 // for Debouncing
 let timeout;
 
-searchInput.addEventListener('input', handleSearchQuery);
+searchInputs.forEach(input => input.addEventListener('input', handleSearchQuery));
 
 /*
 * handles the user entered input
