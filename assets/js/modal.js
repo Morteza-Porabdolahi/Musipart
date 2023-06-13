@@ -1,30 +1,30 @@
-const modalContainer = document.querySelector('.modal-container');
+const modalContainer = document.querySelector(".modal-container");
 
 // using the event bubbling
-document.documentElement.addEventListener('click', handleClickedElements);
+document.documentElement.addEventListener("click", handleClickedElements);
 
 /*
-* handle Clicks using event event bubbling
-* @function handleClickedElements
-* @param {object} e - event Object
-*/
+ * handle Clicks using event event bubbling
+ * @function handleClickedElements
+ * @param {object} e - event Object
+ */
 function handleClickedElements(e) {
   const clickedElementClass = e.target.classList;
 
-  if (clickedElementClass.contains('close-modal')) {
-    e.target.addEventListener('click', hideModal);
-  } else if (clickedElementClass.contains('load-more')) {
-    e.target.addEventListener('click', showModal);
+  if (clickedElementClass.contains("close-modal")) {
+    e.target.addEventListener("click", hideModal);
+  } else if (clickedElementClass.contains("load-more")) {
+    e.target.addEventListener("click", showModal);
   } else {
-    e.target.addEventListener('click', handleModalClose);
+    e.target.addEventListener("click", handleModalClose);
   }
 }
 
 /*
-* handle modal Close when clicked outside of modal
-* @function handleModalClose
-* @param {object} e - event Object
-*/
+ * handle modal Close when clicked outside of modal
+ * @function handleModalClose
+ * @param {object} e - event Object
+ */
 function handleModalClose(e) {
   // get the modal content
   const modal = modalContainer.firstElementChild;
@@ -36,17 +36,17 @@ function handleModalClose(e) {
 }
 
 /*
-* shows modal
-* @function showModal
-*/
+ * shows modal
+ * @function showModal
+ */
 function showModal() {
-  modalContainer.style.display = 'block';
+  modalContainer.style.display = "block";
 }
 
 /*
-* hides modal
-* @function showModal
-*/
+ * hides modal
+ * @function showModal
+ */
 function hideModal() {
-  modalContainer.style.display = 'none';
+  modalContainer.style.display = "none";
 }

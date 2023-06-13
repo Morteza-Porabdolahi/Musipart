@@ -1,6 +1,6 @@
 // this file is uses the general.js file functions and variables!!
 import { showAlert, hideAlert } from "./utils/alert.js";
-import {  getAllMusics } from "./utils/api.js";
+import { getAllMusics } from "./utils/api.js";
 import { hidePreloader } from "./utils/preloader.js";
 import { perClick, clickedCount, setClickCount } from "./utils/general.js";
 
@@ -43,7 +43,7 @@ async function manipulateData() {
     const spliceFlattedMusics = allMusics
       .slice()
       .splice(clickedCount * perClick - perClick, perClick);
-  
+
     createHTMLElementsFromData(spliceFlattedMusics);
   } catch (err) {
     if (err) {
@@ -109,9 +109,9 @@ function createHTMLElementsFromData(splicedMusics = []) {
  */
 function appendContainerIntoDom(wrapper) {
   const allMusicsContainer = document.querySelector(".allmusics");
-  const loadMoreBtn = document.querySelector('.load-more');
+  const loadMoreBtn = document.querySelector(".load-more");
 
-  loadMoreBtn.addEventListener('click', manipulateData);
+  loadMoreBtn.addEventListener("click", manipulateData);
   allMusicsContainer.appendChild(wrapper);
   loadMoreBtn.style.display = "block";
 

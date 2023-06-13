@@ -1,25 +1,25 @@
-import {getSingleMusic} from './utils/api.js';
+import { getSingleMusic } from "./utils/api.js";
 
-const playBtn = document.querySelector('.control:nth-child(2)');
-const audioElem = document.querySelector('audio');
+const playBtn = document.querySelector(".control:nth-child(2)");
+const audioElem = document.querySelector("audio");
 
-playBtn.addEventListener('click', playOrPauseAudio);
-window.addEventListener('load', getSongInformation);
+playBtn.addEventListener("click", playOrPauseAudio);
+window.addEventListener("load", getSongInformation);
 
 let isPlaying = false;
 
 /*
-* gets the single music using search parameters
-* @function getSingleMuaic
-*/
+ * gets the single music using search parameters
+ * @function getSingleMuaic
+ */
 async function getSongInformation() {
   try {
-    const id = new URLSearchParams(location.search).get('id');
+    const id = new URLSearchParams(location.search).get("id");
     const music = await getSingleMusic(id);
 
-    if(!music.hasOwnProperty('id')){
-      location.href = "/pages/404.html"
-    }else{
+    if (!music.hasOwnProperty("id")) {
+      location.href = "/pages/404.html";
+    } else {
       document.title = `Musipart || ${music.title}`;
       setMusicInfos(music);
     }
@@ -27,22 +27,22 @@ async function getSongInformation() {
     if (e) {
       hidePreloader();
 
-      showAlert('error', 'Something went Wrong !');
+      showAlert("error", "Something went Wrong !");
       setTimeout(hideAlert, 1000);
     }
   }
 }
 
 /*
-* put the song informations such as lyrics,title,... into dom
-* @function getSingleMuaic
-* @param {object} song - the song Object
-*/
+ * put the song informations such as lyrics,title,... into dom
+ * @function getSingleMuaic
+ * @param {object} song - the song Object
+ */
 function setMusicInfos(song) {
-  const musicImage = document.querySelector('.description__image > img');
-  const musicTitle = document.querySelector('.texts__titles > h3');
-  const musicArtists = document.querySelector('.texts__titles > p');
-  const lyricsContainer = document.querySelector('.description__lyrics > p');
+  const musicImage = document.querySelector(".description__image > img");
+  const musicTitle = document.querySelector(".texts__titles > h3");
+  const musicArtists = document.querySelector(".texts__titles > p");
+  const lyricsContainer = document.querySelector(".description__lyrics > p");
 
   musicImage.alt = song.title;
   musicImage.src = song.image.cover.url;
@@ -50,9 +50,9 @@ function setMusicInfos(song) {
   musicTitle.textContent = song.title;
   musicArtists.textContent = song.artists.map((artist) => artist.fullName);
 
-  lyricsContainer.textContent = song.lyrics ?
-    song.lyrics :
-    'No lyrics Found...!';
+  lyricsContainer.textContent = song.lyrics
+    ? song.lyrics
+    : "No lyrics Found...!";
 
   audioElem.src = song.audio.medium.url;
 
@@ -60,31 +60,31 @@ function setMusicInfos(song) {
 }
 
 /*
-* pauses the playing music
-* @function pauseMusic
-*/
+ * pauses the playing music
+ * @function pauseMusic
+ */
 function pauseMusic() {
   isPlaying = false;
-  playBtn.firstElementChild.src = '/assets/icons/play-mini-line.svg';
+  playBtn.firstElementChild.src = "/assets/icons/play-mini-line.svg";
 
   audioElem.pause();
 }
 
 /*
-* plays the music
-* @function playMusic
-*/
+ * plays the music
+ * @function playMusic
+ */
 function playMusic() {
   isPlaying = true;
-  playBtn.firstElementChild.src = '/assets/icons/pause-mini-line.svg';
+  playBtn.firstElementChild.src = "/assets/icons/pause-mini-line.svg";
 
   audioElem.play();
 }
 
 /*
-* if the music is playing pause it and else play it
-* @function playOrPauseAudio
-*/
+ * if the music is playing pause it and else play it
+ * @function playOrPauseAudio
+ */
 function playOrPauseAudio() {
   if (!isPlaying) {
     playMusic();

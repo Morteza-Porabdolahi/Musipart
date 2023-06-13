@@ -4,9 +4,7 @@ const searchInputs = document.querySelectorAll(".search-input");
 const newArtists = [];
 
 window.addEventListener("load", getArtistsData);
-searchInputs.forEach((input) =>
-  input.addEventListener("input", handleSearch)
-);
+searchInputs.forEach((input) => input.addEventListener("input", handleSearch));
 
 /*
  * get Artits array from api
@@ -17,7 +15,7 @@ async function getArtistsData() {
     const artists = await getArtists();
 
     newArtists = artists;
-    
+
     createHTMLElementsFromData(artists);
   } catch (e) {
     if (e) {
@@ -66,7 +64,7 @@ function createHTMLElementsFromData(artists = []) {
 function appendContainerIntoDom(wrapper) {
   const allArtistsContainer = document.querySelector(".artists");
 
-  allArtistsContainer.innerHTML = '';
+  allArtistsContainer.innerHTML = "";
   allArtistsContainer.appendChild(wrapper);
 
   hidePreloader();
