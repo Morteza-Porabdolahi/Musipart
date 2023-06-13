@@ -22,4 +22,39 @@ function getSingleMusic(id) {
   return myFetch(`${API_URL}/api/music/${id}`);
 }
 
-export { myFetch, API_URL,getAllMusics,getSingleMusic };
+function getArtistMusics(artistName) {
+  return myFetch(`${API_URL}/api/artists/${artistName}/musics`);
+}
+
+function getArtists() {
+  return myFetch(`${API_URL}/api/artists`);
+}
+
+function searchMusics(query = "") {
+  return myFetch(`${API_URL}/api/musics/${query}`);
+}
+
+function getNewMusics() {
+  return myFetch(`${API_URL}/api/musics/new`);
+}
+
+function getDailyMusics() {
+  return myFetch(`${API_URL}/api/musics/day`);
+}
+
+function getWeeklyMusics() {
+  return myFetch(`${API_URL}/api/musics/weekly`);
+}
+
+export {
+  myFetch,
+  API_URL,
+  getAllMusics,
+  getSingleMusic,
+  getArtistMusics,
+  getArtists,
+  searchMusics,
+  getNewMusics,
+  getDailyMusics,
+  getWeeklyMusics,
+};

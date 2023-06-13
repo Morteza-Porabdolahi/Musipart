@@ -1,47 +1,48 @@
-const searchInputs = document.querySelectorAll('.search-input');
+import { getArtists } from "./utils/api.js";
 
-window.addEventListener('load', getArtistsData);
-searchInputs.forEach(input => input.addEventListener('input', handleSearch));
+const searchInputs = document.querySelectorAll(".search-input");
+const newArtists = [];
+
+window.addEventListener("load", getArtistsData);
+searchInputs.forEach((input) =>
+  input.addEventListener("input", handleSearch)
+);
 
 /*
-* get Artits array from api
-* @function getArtistsData
-*/
+ * get Artits array from api
+ * @function getArtistsData
+ */
 async function getArtistsData() {
   try {
-    const url = 'https://haji-api.ir/music?q=trend';
-    const response = await fetch(url);
-    const artists = await response.json();
+    const artists = await getArtists();
 
-    // create a global varrible called allArtists and put the results in it
-    window.allArtists = artists.results;
+    newArtists = artists;
+    
+    createHTMLElementsFromData(artists);
   } catch (e) {
-    if (e){
+    if (e) {
       hidePreloader();
 
-      showAlert('error','Something went wrong !');
-      setTimeout(hideAlert,1000);
-    } 
+      showAlert("error", "Something went wrong !");
+      setTimeout(hideAlert, 1000);
+    }
   }
-
-  createHTMLElementsFromData(allArtists);
 }
 
-
-// the wrapper of all artists
-const allArtistsWrapper = document.createElement('div');
-allArtistsWrapper.className = 'artists-section';
-
 /*
-* create HTML Elements (artist card) using the artists created Array with getArtistsData function
-* @function createHTMLElementsFromData
-* @param {array} artists - all artists
-*/
+ * create HTML Elements (artist card) using the artists created Array with getArtistsData function
+ * @function createHTMLElementsFromData
+ * @param {array} artists - all artists
+ */
 function createHTMLElementsFromData(artists = []) {
-  let artistCardTemplate;
+  // the wrapper of all artists
+  const allArtistsWrapper = document.createElement("div");
+  let artistCardsTemplate;
+
+  allArtistsWrapper.className = "artists-section";
 
   artists.forEach((artist) => {
-    artistCardTemplate = `
+    artistCardsTemplate += `
             <div class="artist-card">
                 <div class="artist-card__img-container">
                     <img loading="lazy" class="artist-card__img" src="${artist.image.cover.url}"/>
@@ -51,44 +52,41 @@ function createHTMLElementsFromData(artists = []) {
                 </div>
             </div>`;
     // insert artist cards html inside of the wrapper
-    allArtistsWrapper.insertAdjacentHTML('beforeend', artistCardTemplate);
   });
 
+  allArtistsWrapper.insertAdjacentHTML("beforeend", artistCardsTemplate);
   appendContainerIntoDom(allArtistsWrapper);
 }
 
 /*
-* append the artists wrapper into dom
-* @function appendContainerIntoDom
-* @param {HTMLElement} wrapper - the wrapper of artists
-*/
+ * append the artists wrapper into dom
+ * @function appendContainerIntoDom
+ * @param {HTMLElement} wrapper - the wrapper of artists
+ */
 function appendContainerIntoDom(wrapper) {
-  // all Artists Container
-  const allArtistsContainer = document.querySelector('.artists');
-  // append the wrapper inside of the parent Container
+  const allArtistsContainer = document.querySelector(".artists");
+
+  allArtistsContainer.innerHTML = '';
   allArtistsContainer.appendChild(wrapper);
 
   hidePreloader();
 }
 
 /*
-* handles the user entered input in search input
-* @function handleSearch
-* @param {object} e - event object
-*/
+ * handles the user entered input in search input
+ * @function handleSearch
+ * @param {object} e - event object
+ */
 function handleSearch(e) {
-  const filterResults = allArtists.filter((artist) => {
+  const filterResults = newArtists.filter((artist) => {
     if (e.target.value) {
-      return artist.fullName.toLowerCase().includes(e.target.value.toLowerCase());
+      return artist.fullName
+        .toLowerCase()
+        .includes(e.target.value.toLowerCase());
     } else {
       return artist;
     }
-  },
-  );
-
-  allArtistsWrapper.innerHTML = '';
+  });
 
   createHTMLElementsFromData(filterResults);
 }
-
-

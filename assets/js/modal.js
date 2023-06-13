@@ -1,6 +1,6 @@
 const modalContainer = document.querySelector('.modal-container');
 
-// using the event phases
+// using the event bubbling
 document.documentElement.addEventListener('click', handleClickedElements);
 
 /*

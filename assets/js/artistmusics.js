@@ -1,19 +1,18 @@
-const container = document.querySelector('.artist-musics');
+import getArtistMusics from "./utils/api.js";
 
-window.addEventListener('load', setTitles);
+const container = document.querySelector(".artist-musics");
+
+window.addEventListener("load", setDocumentTitle);
 
 /*
-* set document title as artist name and gets the artist name in search params
-* @function setTitles
-*/
-function setTitles() {
+ * set document title as artist name and gets the artist name in search params
+ * @function setTitles
+ */
+function setDocumentTitle() {
   // artist name element
-  const titleElement = document.querySelector('.artist-name');
-
-  // get Search params
+  const titleElement = document.querySelector(".artist-name");
   const locationSearch = location.search;
-  // get the "q" param
-  const artistName = new URLSearchParams(locationSearch).get('q');
+  const artistName = new URLSearchParams(locationSearch).get("q");
 
   document.title = `Musipart || ${artistName}`;
   titleElement.textContent = artistName;
@@ -22,32 +21,15 @@ function setTitles() {
 }
 
 /*
-* get the data from artist name sent by setTitles functions
-* @function getDatasAndFilterIt
-* @param {string} artistName - artist fullName
-*/
-async function getDatasAndFilterIt(artistName = '') {
-  const rootUrl = 'https://haji-api.ir/music?q=';
-
+ * get the data from artist name sent by setTitles functions
+ * @function getDatasAndFilterIt
+ * @param {string} artistName - artist fullName
+ */
+async function getDatasAndFilterIt(artistName = "") {
   try {
-    const urls = [
-      fetch(`${rootUrl}new`),
-      fetch(`${rootUrl}week`),
-      fetch(`${rootUrl}day`),
-    ];
-    const getAllMusics = await Promise.all(urls);
-    const allMusics = [];
+    const artistMusics = await getArtistMusics(artistName);
 
-    for (let i = 0; i < getAllMusics.length; i++) {
-      allMusics.push((await getAllMusics[i].json()).results);
-    }
-
-    const newDatas = allMusics.flat();
-    const filteredData = newDatas.filter((song) =>
-      song.artists.find((artist) => artist.fullName === artistName),
-    );
-
-    if (filteredData.length > 0) {
+    if (artistMusics.length > 0) {
       createHTMLElementsFromData(filteredData);
     } else {
       hidePreloader();
@@ -59,52 +41,54 @@ async function getDatasAndFilterIt(artistName = '') {
     if (e) {
       hidePreloader();
 
-      showAlert('error', 'Something went Wrong !');
+      showAlert("error", "Something went Wrong !");
       setTimeout(hideAlert, 1000);
     }
   }
 }
 
 /*
-* create HTML Elements (music card and artist card) using the filtered musics with getDatasAndFilterIt function
-* @function createHTMLElementsFromData
-* @param {array} filteredData - filtered Musics
-*/
-function createHTMLElementsFromData(filteredData = []) {
-  let musicCardTemplate;
+ * create HTML Elements (music card and artist card) using the filtered musics with getDatasAndFilterIt function
+ * @function createHTMLElementsFromData
+ * @param {array} filteredData - filtered Musics
+ */
+function createHTMLElementsFromData(artistMusics = []) {
+  let musicCardsTemplate;
 
-  const wrapper = document.createElement('div');
-  wrapper.className = 'allmusics-section';
+  const wrapper = document.createElement("div");
+  wrapper.className = "allmusics-section";
 
-  filteredData.forEach((song) => {
-    musicCardTemplate = `
+  artistMusics.forEach((song) => {
+    musicCardsTemplate += `
 <div class="music-card">
 <div class="music-card__img-container">
 <img loading="lazy" class="music-card__img" src="${song.image.cover.url}" />
-<button class="music-card__play-btn" onclick="playEntireMusic(event,'${song.id}')">
+<button class="music-card__play-btn" onclick="playEntireMusic(event,'${
+      song.id
+    }')">
 <img src="/assets/icons/play-mini-line.svg"/>
 </button>
 </div>
 <div class="music-card__informations">
 <a href="/pages/singlemusicpage.html?id=${
-  song.id
-}" class="informations__music-name">${song.title}</a>  
+      song.id
+    }" class="informations__music-name">${song.title}</a>  
 <small class="informations__music-artist">${song.artists.map(
-      (artist) => artist.fullName,
-  )}</small>
+      (artist) => artist.fullName
+    )}</small>
 </div>
 </div>`;
-    wrapper.insertAdjacentHTML('beforeend', musicCardTemplate);
   });
 
+  wrapper.insertAdjacentHTML("beforeend", musicCardsTemplate);
   appendMusicsIntoDom(wrapper);
 }
 
 /*
-* append the musics wrapper into dom
-* @function appendMusicsIntoDom
-* @param {HTMLElement} wrapper - the wrapper of Musics
-*/
+ * append the musics wrapper into dom
+ * @function appendMusicsIntoDom
+ * @param {HTMLElement} wrapper - the wrapper of Musics
+ */
 function appendMusicsIntoDom(wrapper) {
   container.append(wrapper);
 

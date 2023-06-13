@@ -1,8 +1,10 @@
+import {getSingleMusic} from './utils/api.js';
+
 const playBtn = document.querySelector('.control:nth-child(2)');
 const audioElem = document.querySelector('audio');
 
 playBtn.addEventListener('click', playOrPauseAudio);
-window.addEventListener('load', getSingleMuaic);
+window.addEventListener('load', getSongInformation);
 
 let isPlaying = false;
 
@@ -10,21 +12,16 @@ let isPlaying = false;
 * gets the single music using search parameters
 * @function getSingleMuaic
 */
-async function getSingleMuaic() {
+async function getSongInformation() {
   try {
-    // get the music object from it's id
     const id = new URLSearchParams(location.search).get('id');
+    const music = await getSingleMusic(id);
 
-    const response = await fetch(`https://haji-api.ir/music?q=info&t=${id}`);
-    const data = await response.json();
-
-    if(!data.hasOwnProperty('id')){
+    if(!music.hasOwnProperty('id')){
       location.href = "/pages/404.html"
     }else{
-      // set Document Title as song name
-      document.title = `Musipart || ${data.title}`;
-
-      handleData(data);
+      document.title = `Musipart || ${music.title}`;
+      setMusicInfos(music);
     }
   } catch (e) {
     if (e) {
@@ -41,7 +38,7 @@ async function getSingleMuaic() {
 * @function getSingleMuaic
 * @param {object} song - the song Object
 */
-function handleData(song) {
+function setMusicInfos(song) {
   const musicImage = document.querySelector('.description__image > img');
   const musicTitle = document.querySelector('.texts__titles > h3');
   const musicArtists = document.querySelector('.texts__titles > p');
