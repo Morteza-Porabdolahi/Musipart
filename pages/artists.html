@@ -13,8 +13,9 @@
     <link rel="stylesheet" href="../assets/css/header.css" />
     <link rel="stylesheet" href="../assets/css/footer.css" />
     <link rel="stylesheet" href="../assets/css/pages/general.css" />
+    <link rel="stylesheet" href="../assets/css/pages/search-artists.css" />
     <link rel="stylesheet" href="../assets/css/mediaQueries.css" />
-    <title>Musipart || Artists</title>
+    <title>Musipart || Search Artists</title>
   </head>
 
   <body>
@@ -28,11 +29,7 @@
         <img alt="a red circled Icon with a Exclamation mark in it" class="error" src="/assets/icons/error-warning-fill.svg" >
         <span></span>
       </div>
-      <!-- start Preloader -->
-      <div class="preloader-container">
-        <div class="preloader"></div>
-      </div>
-      <!-- end preloader and Start navbar -->
+      <!-- Start navbar -->
       <section class="container__navbar">
         <nav>
           <ul class="navbar">
@@ -40,16 +37,6 @@
               <a title="Home" href="/" class="navbar__item-link">
                 <img alt="a white Home Icon" src="/assets/icons/home-2-line.svg" />
                 <span>Home</span>
-              </a>
-            </li>
-            <li class="navbar__item">
-              <a
-                class="musics-btn navbar__item-link"
-                href="/pages/musics.html"
-                title="Musics"
-              >
-                <img alt="a white music disc Icon" src="/assets/icons/disc-line.svg" />
-                <span>Musics</span>
               </a>
             </li>
             <li class="navbar__item">
@@ -94,10 +81,13 @@
             <section class="section">
               <section class="section__header">
                 <h2 class="section__title">
-                  <span class="purple">All</span> Artists
+                  <span class="purple">Search</span> Artists
                 </h2>
               </section>
-              <section class="artists"></section>
+              <section class="artists">
+                <p class="help">Please Search a Artist Name !</p>
+                <section class="artists__container"></section>
+              </section>
               <div class="loadmore-container">
                 <button class="load-more">Load More</button>
               </div>

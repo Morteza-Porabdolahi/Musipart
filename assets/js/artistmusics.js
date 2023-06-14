@@ -1,4 +1,6 @@
-import getArtistMusics from "./utils/api.js";
+import {getArtistMusics} from "./utils/api.js";
+import { hidePreloader } from "./utils/preloader.js";
+import { showAlert,hideAlert} from "./utils/alert.js";
 
 const container = document.querySelector(".artist-musics");
 
@@ -30,7 +32,7 @@ async function getDatasAndFilterIt(artistName = "") {
     const artistMusics = await getArtistMusics(artistName);
 
     if (artistMusics.length > 0) {
-      createHTMLElementsFromData(filteredData);
+      createHTMLElementsFromData(artistMusics);
     } else {
       hidePreloader();
 
@@ -39,6 +41,7 @@ async function getDatasAndFilterIt(artistName = "") {
     }
   } catch (e) {
     if (e) {
+      console.log(e);
       hidePreloader();
 
       showAlert("error", "Something went Wrong !");
@@ -53,12 +56,12 @@ async function getDatasAndFilterIt(artistName = "") {
  * @param {array} filteredData - filtered Musics
  */
 function createHTMLElementsFromData(artistMusics = []) {
-  let musicCardsTemplate;
+  let musicCardsTemplate = '';
 
   const wrapper = document.createElement("div");
   wrapper.className = "allmusics-section";
 
-  artistMusics.forEach((song) => {
+  artistMusics.forEach(({song}) => {
     musicCardsTemplate += `
 <div class="music-card">
 <div class="music-card__img-container">

@@ -1,4 +1,4 @@
-const { searchMusics } = require("./utils/api");
+import {searchMusics} from './utils/api.js'
 
 const searchInput = document.querySelector(".search-input");
 const helpTag = document.querySelector(".help");
@@ -36,17 +36,15 @@ function handleSearchQuery(e) {
 async function getDatasFromApi(query = "") {
   try {
     const searchedSongs = await searchMusics(query);
-    const filterSongs = searchedSongs.filter((item) =>
-      item.hasOwnProperty("song")
-    );
 
-    if (filterSongs.length <= 0) {
+    if (searchedSongs.length <= 0) {
       container.innerHTML = "";
 
       helpTag.innerHTML = "No Musics Found !";
       helpTag.style.display = "block";
     } else {
-      manipulateHtml(filterSongs);
+      helpTag.style.display = "none";
+      manipulateHtml(searchedSongs);
     }
   } catch (e) {
     showAlert("error", "Something Went Wrong!");
@@ -55,7 +53,7 @@ async function getDatasFromApi(query = "") {
   }
 }
 
-let musicsCard;
+let musicsCard = '';
 let musicsWrapper = document.createElement("div");
 
 musicsWrapper.className = "allmusics-section";
@@ -69,6 +67,7 @@ function manipulateHtml(songs = []) {
   musicsWrapper = musicsWrapper.cloneNode(true);
 
   musicsWrapper.innerHTML = "";
+  musicsCard = '';
 
   songs.forEach(({ song }) => {
     musicsCard += `
@@ -104,6 +103,5 @@ ${song.artists.map(
  */
 function insertInDom(wrapper) {
   container.innerHTML = "";
-
   container.append(wrapper);
 }

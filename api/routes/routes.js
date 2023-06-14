@@ -3,26 +3,6 @@ const router = express.Router();
 const fetch = require("../utils/interceptFetch");
 const API_URL = "https://haji-api.ir/music";
 
-router.get("/musics", async (_, res) => {
-  try {
-    const allMusicsData = await Promise.all([
-      fetch(`${API_URL}?q=day`),
-      fetch(`${API_URL}?q=week`),
-      fetch(`${API_URL}?q=new`),
-      fetch(`${API_URL}?q=trend`),
-    ]);
-    const allMusics = allMusicsData.reduce((acc, curr) => {
-      acc = [...acc, ...curr.results];
-      return acc;
-    }, []);
-
-    res.send(allMusics);
-  } catch (e) {
-    if (e) console.log(e);
-    res.send(e);
-  }
-});
-
 router.get("/music/:id", async (req, res) => {
   try {
     const specificMusic = await fetch(`${API_URL}/?q=info&t=${req.params.id}`);
@@ -36,15 +16,13 @@ router.get("/music/:id", async (req, res) => {
 
 router.get("/artists/:artist/musics", async (req, res) => {
   try {
-    const allMusicsData = await Promise.all([
-      fetch(`${API_URL}?q=day`),
-      fetch(`${API_URL}?q=week`),
-      fetch(`${API_URL}?q=new`),
-    ]);
-    const filterArtistMusics = allMusicsData.reduce((acc, curr) => {
-      acc = [...acc, ...curr.results];
-      return acc;
-    }, []).filter((music) => music.artists.find(artist => artist === req.params.artist));
+    const allArtistDatas = await fetch(
+      `${API_URL}?q=search&t=${req.params.artist}`
+    );
+
+    const filterArtistMusics = allArtistDatas.results.filter(
+      (item) => item.type === "song"
+    );
 
     res.send(filterArtistMusics);
   } catch (e) {
@@ -53,22 +31,26 @@ router.get("/artists/:artist/musics", async (req, res) => {
   }
 });
 
-router.get("/artists", async (_, res) => {
+router.get("/artists", async (req, res) => {
   try {
-    const allMusicsData = await fetch(`${API_URL}?q=trend`);
-   
-    res.send(allMusicsData.results);
+    const allArtists = await fetch(
+      `${API_URL}?q=search&t=${req.query.artist}`
+    );
+    console.log(allArtists);
+    res.send(allArtists.results.filter(item => item.type === 'artist'));
   } catch (e) {
     if (e) console.log(e);
     res.send(e);
   }
 });
 
-router.get("/musics/:query", async (req, res) => {
+router.get("/musics", async (req, res) => {
   try {
-    const getSearchedSongs = await fetch(`${API_URL}?q=search&t=${req.params.query}`);
-   
-    res.send(getSearchedSongs.results);
+    const getSearchedSongs = await fetch(
+      `${API_URL}?q=search&t=${req.query.q}`
+    );
+
+    res.send(getSearchedSongs.results.filter(item => item.type === 'song'));
   } catch (e) {
     if (e) console.log(e);
     res.send(e);
@@ -78,7 +60,7 @@ router.get("/musics/:query", async (req, res) => {
 router.get("/musics/new", async (_, res) => {
   try {
     const newMusics = await fetch(`${API_URL}?q=new`);
-   
+
     res.send(newMusics.results);
   } catch (e) {
     if (e) console.log(e);
@@ -89,7 +71,7 @@ router.get("/musics/new", async (_, res) => {
 router.get("/musics/daily", async (_, res) => {
   try {
     const dailyMusics = await fetch(`${API_URL}?q=day`);
-   
+
     res.send(dailyMusics.results);
   } catch (e) {
     if (e) console.log(e);
@@ -100,8 +82,19 @@ router.get("/musics/daily", async (_, res) => {
 router.get("/musics/weekly", async (_, res) => {
   try {
     const weeklyMusics = await fetch(`${API_URL}?q=week`);
-   
+
     res.send(weeklyMusics.results);
+  } catch (e) {
+    if (e) console.log(e);
+    res.send(e);
+  }
+});
+
+router.get("/topArtists", async (_, res) => {
+  try {
+    const topArtists = await fetch(`${API_URL}?q=trend`);
+
+    res.send(topArtists.results);
   } catch (e) {
     if (e) console.log(e);
     res.send(e);

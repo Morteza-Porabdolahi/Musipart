@@ -1,10 +1,9 @@
 import { showAlert, hideAlert } from "./utils/alert.js";
 import {
-  API_URL,
   getNewMusics,
   getDailyMusics,
   getWeeklyMusics,
-  getArtists,
+  getTopArtists,
 } from "./utils/api.js";
 import { hidePreloader } from "./utils/preloader.js";
 
@@ -16,10 +15,10 @@ window.addEventListener("load", getAllSongsAndArtists);
  */
 function getAllSongsAndArtists() {
   try {
-    handleNewMusics();
     handleDailyMusics();
     handleWeeklyMusics();
     handleArtists();
+    handleNewMusics();
   } catch (e) {
     if (e) {
       hidePreloader();
@@ -33,6 +32,7 @@ async function handleNewMusics() {
   const newMusicsContainer = document.querySelector(".newMusics");
   const newMusics = await getNewMusics();
   const manipulatedDatas = manipulateDatas(newMusics);
+
   createHtmlElementsFromSongs(manipulatedDatas, newMusicsContainer);
 }
 
@@ -40,6 +40,7 @@ async function handleDailyMusics() {
   const dailyMusicsContainer = document.querySelector(".dailyMusics");
   const dailyMusics = await getDailyMusics();
   const manipulatedDatas = manipulateDatas(dailyMusics);
+
   createHtmlElementsFromSongs(manipulatedDatas, dailyMusicsContainer);
 }
 
@@ -47,13 +48,15 @@ async function handleWeeklyMusics() {
   const weeklyMusicsContainer = document.querySelector(".weeklyMusics");
   const weeklyMusics = await getWeeklyMusics();
   const manipulatedDatas = manipulateDatas(weeklyMusics);
+
   createHtmlElementsFromSongs(manipulatedDatas, weeklyMusicsContainer);
 }
 
 async function handleArtists() {
   const artistsContainer = document.querySelector(".topArtists");
-  const artists = await getArtists();
+  const artists = await getTopArtists();
   const manipulatedDatas = manipulateDatas(artists);
+
   createHtmlFromArtists(manipulatedDatas, artistsContainer);
 }
 
@@ -63,10 +66,8 @@ async function handleArtists() {
  * @param {object} datas - the object of datas
  */
 function manipulateDatas(datas = []) {
-  let manipulatedDatas = [];
   // take 6 elemenets of array
-  newDatas = datas.splice(...makeStartAndEndIndex(datas, 6));
-  return manipulatedDatas;
+  return datas.slice().splice(...makeStartAndEndIndex(datas, 6));
 }
 
 /*
@@ -91,25 +92,39 @@ function makeStartAndEndIndex(datas = [], elemNum) {
  */
 function createHtmlElementsFromSongs(songs = [], container) {
   let wrapper = document.createElement("div"),
-    musicsCard;
+    musicsCard = "";
+
   wrapper.className = "section__content";
   wrapper = wrapper.cloneNode(true);
   wrapper.innerHTML = "";
+
   if (songs.length <= 0) {
     wrapper.style.justifyContent = "center";
     wrapper.innerHTML = '<p class="content__not-found">No Musics Found !</p>';
   } else {
     for (let song of songs) {
-      musicsCard += ` <div class="music-card"> <div class="music-card__img-container"> <img loading="lazy" class="music-card__img" src="${
-        song.image.cover.url
-      }" /> <button onclick="playEntireMusic(event,'${
-        song.id
-      }')" class="music-card__play-btn"> <img src="/assets/icons/play-mini-line.svg"/> </button> </div> <div class="music-card__informations"> <a class="informations__music-name" href="/pages/singlemusicpage.html?id=${
-        song.id
-      }">${song.title}</a> ${song.artists.map(
-        (artist) =>
-          `<a class="informations__music-artist" href="/pages/artistmusics.html?q=${artist.fullName}">${artist.fullName}</a>`
-      )} </div> </div>`;
+      musicsCard += `
+      <div class="music-card"> 
+        <div class="music-card__img-container"> 
+          <img loading="lazy" class="music-card__img" src="${
+            song.image.cover.url
+          }"/> 
+          <button onclick="playEntireMusic(event,'${
+            song.id
+          }')" class="music-card__play-btn">   
+            <img src="/assets/icons/play-mini-line.svg"/> 
+          </button> 
+        </div> 
+        <div class="music-card__informations"> 
+          <a class="informations__music-name" href="/pages/singlemusicpage.html?id=${
+            song.id
+          }">${song.title}</a> 
+          ${song.artists.map(
+            (artist) =>
+              `<a class="informations__music-artist" href="/pages/artistmusics.html?q=${artist.fullName}">${artist.fullName}</a>`
+          )} 
+        </div> 
+      </div>`;
     }
     wrapper.insertAdjacentHTML("beforeend", musicsCard);
   }
@@ -123,10 +138,12 @@ function createHtmlElementsFromSongs(songs = [], container) {
  */
 function createHtmlFromArtists(artists = [], container) {
   let wrapper = document.createElement("div"),
-    artistsCard;
+    artistsCard = "";
+
   wrapper.className = "section__content";
   wrapper = wrapper.cloneNode(true);
   wrapper.innerHTML = "";
+
   if (artists.length <= 0) {
     wrapper.style.justifyContent = "center";
     wrapper.innerHTML = '<p class="content__not-found">No Musics Found !</p>';

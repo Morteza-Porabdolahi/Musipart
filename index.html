@@ -47,15 +47,9 @@
             </a>
           </li>
           <li class="navbar__item">
-            <a class="musics-btn navbar__item-link" href="/pages/musics.html" title="Musics">
-              <img alt="a white music disc Icon" src="/assets/icons/disc-line.svg" />
-              <span>Musics</span>
-            </a>
-          </li>
-          <li class="navbar__item">
-            <a href="/pages/artists.html" class="all-artists-btn navbar__item-link" title="Artists">
+            <a href="/pages/artists.html" class="all-artists-btn navbar__item-link" title="Search Artists">
               <img alt="a white Microphone Icon" src="/assets/icons/mic-line.svg" />
-              <span>Artists</span>
+              <span>Search Artists</span>
             </a>
           </li>
           <li class="navbar__item">
@@ -92,7 +86,7 @@
               <h2 class="section__title">
                 <span class="purple">Daily</span> Top Musics
               </h2>
-              <a href="./pages/daily-top.html" class="section__link">View All</a>
+              <a href="./pages/daily-top.html?q=daily" class="section__link">View All</a>
             </div>
             <section class="dailyMusics"></section>
           </section>
@@ -101,14 +95,15 @@
               <h2 class="section__title">
                 <span class="purple">Weekly</span> Top Musics
               </h2>
-              <a href="./pages/weekly-top.html" class="section__link">View All</a>
+              <a href="./pages/weekly-top.html?q=weekly" class="section__link">View All</a>
             </section>
             <section class="weeklyMusics"></section>
           </section>
 
           <section class="main__top-artists section">
             <section class="section__header">
-              <h2 class="section__title"> Artists
+              <h2 class="section__title">
+                <span class="purple">Top</span> Artists
               </h2>
               <a href="./pages/artists.html" class="section__link">View All</a>
             </section>
@@ -120,7 +115,7 @@
               <h2 class="section__title">
                 <span class="purple">New</span> Musics
               </h2>
-              <a href="./pages/newmusics.html" class="section__link">View All</a>
+              <a href="./pages/newmusics.html?q=new" class="section__link">View All</a>
             </section>
             <section class="newMusics"></section>
           </section>
@@ -180,7 +175,7 @@
   </div>
   <!-- End Website Container -->
   <script src="assets/js/index.js" type="module"></script>
-  <script src="assets/js/musicPlayerControll.js">
+  <script src="assets/js/musicPlayerControll.js" type="module">
   </script>
 </body>
 

@@ -1,25 +1,34 @@
 import { getArtists } from "./utils/api.js";
+import { showAlert, hideAlert } from "./utils/alert.js";
 
-const searchInputs = document.querySelectorAll(".search-input");
-const newArtists = [];
+const helpTag = document.querySelector(".help");
+const allArtistsContainer = document.querySelector(".artists__container");
+const searchInput = document.querySelector(".search-input");
 
-window.addEventListener("load", getArtistsData);
-searchInputs.forEach((input) => input.addEventListener("input", handleSearch));
+let timeout;
+
+searchInput.addEventListener("input", handleSearch);
 
 /*
  * get Artits array from api
  * @function getArtistsData
  */
-async function getArtistsData() {
+async function getArtistsData(artistName = "") {
   try {
-    const artists = await getArtists();
+    const artists = await getArtists(artistName);
 
-    newArtists = artists;
+    if (Object.keys(artists).length <= 0) {
+      allArtistsContainer.innerHTML = "";
 
-    createHTMLElementsFromData(artists);
+      helpTag.innerHTML = "No Artists Found !";
+      helpTag.style.display = "block";
+    } else {
+      helpTag.style.display = "none";
+      createHTMLElementsFromData(artists);
+    }
   } catch (e) {
     if (e) {
-      hidePreloader();
+      console.log(e);
 
       showAlert("error", "Something went wrong !");
       setTimeout(hideAlert, 1000);
@@ -35,11 +44,11 @@ async function getArtistsData() {
 function createHTMLElementsFromData(artists = []) {
   // the wrapper of all artists
   const allArtistsWrapper = document.createElement("div");
-  let artistCardsTemplate;
+  let artistCardsTemplate = "";
 
   allArtistsWrapper.className = "artists-section";
 
-  artists.forEach((artist) => {
+  for (let { artist } of artists) {
     artistCardsTemplate += `
             <div class="artist-card">
                 <div class="artist-card__img-container">
@@ -49,9 +58,7 @@ function createHTMLElementsFromData(artists = []) {
                     <a href="/pages/artistmusics.html?q=${artist.fullName}" class="informations__artist-name">${artist.fullName}</a>
                 </div>
             </div>`;
-    // insert artist cards html inside of the wrapper
-  });
-
+  }
   allArtistsWrapper.insertAdjacentHTML("beforeend", artistCardsTemplate);
   appendContainerIntoDom(allArtistsWrapper);
 }
@@ -62,12 +69,8 @@ function createHTMLElementsFromData(artists = []) {
  * @param {HTMLElement} wrapper - the wrapper of artists
  */
 function appendContainerIntoDom(wrapper) {
-  const allArtistsContainer = document.querySelector(".artists");
-
   allArtistsContainer.innerHTML = "";
   allArtistsContainer.appendChild(wrapper);
-
-  hidePreloader();
 }
 
 /*
@@ -76,15 +79,15 @@ function appendContainerIntoDom(wrapper) {
  * @param {object} e - event object
  */
 function handleSearch(e) {
-  const filterResults = newArtists.filter((artist) => {
-    if (e.target.value) {
-      return artist.fullName
-        .toLowerCase()
-        .includes(e.target.value.toLowerCase());
-    } else {
-      return artist;
-    }
-  });
+  const inputValue = e.target.value;
 
-  createHTMLElementsFromData(filterResults);
+  if (!e.target.value) {
+    allArtistsContainer.innerHTML = "";
+
+    helpTag.innerHTML = "Please Search a Artist Name !";
+    helpTag.style.display = "block";
+  } else {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => getArtistsData(inputValue), 800);
+  }
 }

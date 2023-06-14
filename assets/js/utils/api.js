@@ -14,10 +14,6 @@ async function myFetch(...args) {
   }
 }
 
-function getAllMusics() {
-  return myFetch(`${API_URL}/api/musics`);
-}
-
 function getSingleMusic(id) {
   return myFetch(`${API_URL}/api/music/${id}`);
 }
@@ -26,12 +22,12 @@ function getArtistMusics(artistName) {
   return myFetch(`${API_URL}/api/artists/${artistName}/musics`);
 }
 
-function getArtists() {
-  return myFetch(`${API_URL}/api/artists`);
+function getArtists(artistName = "") {
+  return myFetch(`${API_URL}/api/artists?artist=${artistName}`);
 }
 
 function searchMusics(query = "") {
-  return myFetch(`${API_URL}/api/musics/${query}`);
+  return myFetch(`${API_URL}/api/musics?q=${query}`);
 }
 
 function getNewMusics() {
@@ -39,17 +35,20 @@ function getNewMusics() {
 }
 
 function getDailyMusics() {
-  return myFetch(`${API_URL}/api/musics/day`);
+  return myFetch(`${API_URL}/api/musics/daily`);
 }
 
 function getWeeklyMusics() {
   return myFetch(`${API_URL}/api/musics/weekly`);
 }
 
+function getTopArtists() {
+  return myFetch(`${API_URL}/api/topArtists`);
+}
+
 export {
   myFetch,
-  API_URL,
-  getAllMusics,
+  getTopArtists,
   getSingleMusic,
   getArtistMusics,
   getArtists,

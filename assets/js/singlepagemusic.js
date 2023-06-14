@@ -1,4 +1,5 @@
 import { getSingleMusic } from "./utils/api.js";
+import {hidePreloader} from './utils/preloader.js'
 
 const playBtn = document.querySelector(".control:nth-child(2)");
 const audioElem = document.querySelector("audio");
