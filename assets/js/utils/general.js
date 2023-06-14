@@ -37,4 +37,17 @@ function createHtmlFromArtist(artist = {}) {
     </div>`;
 }
 
-export { _, createHtmlFromSong, createHtmlFromArtist };
+function showHelpTag(content = "") {
+  const helpTag = _.querySelector(".help");
+
+  helpTag.innerHTML = content;
+  helpTag.style.display = "block";
+}
+
+function hideHelpTag() {
+  const helpTag = _.querySelector(".help");
+
+  helpTag.style.display = "none";
+}
+
+export { _, createHtmlFromSong, createHtmlFromArtist,showHelpTag,hideHelpTag };

@@ -6,7 +6,11 @@ import {
   getTopArtists,
 } from "./utils/musicApi.js";
 import { hidePreloader } from "./utils/preloader.js";
-import { _ ,createHtmlFromArtist,createHtmlFromSong} from "./utils/general.js";
+import {
+  _,
+  createHtmlFromArtist,
+  createHtmlFromSong,
+} from "./utils/general.js";
 
 window.addEventListener("load", getAllSongsAndArtists);
 
@@ -23,42 +27,39 @@ function getAllSongsAndArtists() {
   } catch (e) {
     if (e) {
       hidePreloader();
-      showAlert("error", "Something went Wrong !");
-      setTimeout(hideAlert, 1000);
+      showAlert("error", "Something went Wrong !",1500);
     }
   }
 }
 
 async function handleNewMusics() {
-  const newMusicsContainer = _.querySelector(".newMusics");
   const newMusics = await getNewMusics();
-  const manipulatedDatas = manipulateDatas(newMusics);
 
-  createHtmlElementsFromSongs(manipulatedDatas, newMusicsContainer);
+  createHtmlFromSongs(spliceSixElemsOfArray(newMusics), "newMusics");
 }
 
 async function handleDailyMusics() {
-  const dailyMusicsContainer = _.querySelector(".dailyMusics");
   const dailyMusics = await getDailyMusics();
-  const manipulatedDatas = manipulateDatas(dailyMusics);
 
-  createHtmlElementsFromSongs(manipulatedDatas, dailyMusicsContainer);
+  createHtmlFromSongs(
+    spliceSixElemsOfArray(dailyMusics),
+    "dailyMusics"
+  );
 }
 
 async function handleWeeklyMusics() {
-  const weeklyMusicsContainer = _.querySelector(".weeklyMusics");
   const weeklyMusics = await getWeeklyMusics();
-  const manipulatedDatas = manipulateDatas(weeklyMusics);
 
-  createHtmlElementsFromSongs(manipulatedDatas, weeklyMusicsContainer);
+  createHtmlFromSongs(
+    spliceSixElemsOfArray(weeklyMusics),
+    "weeklyMusics"
+  );
 }
 
 async function handleArtists() {
-  const artistsContainer = _.querySelector(".topArtists");
   const artists = await getTopArtists();
-  const manipulatedDatas = manipulateDatas(artists);
 
-  createHtmlFromArtists(manipulatedDatas, artistsContainer);
+  createHtmlFromArtists(spliceSixElemsOfArray(artists), "topArtists");
 }
 
 /*
@@ -66,8 +67,7 @@ async function handleArtists() {
  * @function manipulateData
  * @param {object} datas - the object of datas
  */
-function manipulateDatas(datas = []) {
-  // take 6 elemenets of array
+function spliceSixElemsOfArray(datas = []) {
   return datas.slice().splice(...makeStartAndEndIndex(datas, 6));
 }
 
@@ -91,24 +91,28 @@ function makeStartAndEndIndex(datas = [], elemNum) {
  * @function createHTMLElementsFromData
  * @param {object} newDatas - filtered Datas
  */
-function createHtmlElementsFromSongs(songs = [], container) {
-  let wrapper = _.createElement("div"),
-    musicsCard = "";
+let wrapper = _.createElement("div"),
+musicsCardTemplate = "",
+artistsCardTemplate = "";
 
-  wrapper.className = "section__content";
+wrapper.className = "section__content";
+
+function createHtmlFromSongs(songs = [], containerClass = "") {
   wrapper = wrapper.cloneNode(true);
+
   wrapper.innerHTML = "";
+  musicsCardTemplate = '';
 
   if (songs.length <= 0) {
     wrapper.style.justifyContent = "center";
     wrapper.innerHTML = '<p class="content__not-found">No Musics Found !</p>';
   } else {
     for (let song of songs) {
-      musicsCard += createHtmlFromSong(song);
+      musicsCardTemplate += createHtmlFromSong(song);
     }
-    wrapper.insertAdjacentHTML("beforeend", musicsCard);
+    wrapper.insertAdjacentHTML("beforeend", musicsCardTemplate);
   }
-  insertInDom(wrapper, container);
+  insertInDom(wrapper, containerClass);
 }
 
 /*
@@ -116,31 +120,23 @@ function createHtmlElementsFromSongs(songs = [], container) {
  * @function createHTMLElementsFromData
  * @param {object} newDatas - filtered Datas
  */
-function createHtmlFromArtists(artists = [], container) {
-  let wrapper = _.createElement("div"),
-    artistsCard = "";
-
-  wrapper.className = "section__content";
+function createHtmlFromArtists(artists = [], containerClass = "") {
   wrapper = wrapper.cloneNode(true);
+
   wrapper.innerHTML = "";
+  artistsCardTemplate = '';
 
   if (artists.length <= 0) {
     wrapper.style.justifyContent = "center";
-    wrapper.innerHTML = '<p class="content__not-found">No Musics Found !</p>';
+    wrapper.innerHTML = '<p class="content__not-found">No Artists Found !</p>';
   } else {
     for (let artist of artists) {
-      artistsCard += `
-    <div class="artist-card"> 
-        <div class="artist-card__img-container"> 
-         <img loading="lazy" class="artist-card__img" src="${artist.image.cover.url}"/> 
-        </div> 
-        <div class="artist-card__informations"> 
-        <a href="/pages/artistmusics.html?q=${artist.fullName}" class="informations__artist-name">${artist.fullName}</a> </div> 
-    </div>`;
+      artistsCardTemplate += createHtmlFromArtist(artist);
     }
-    wrapper.insertAdjacentHTML("beforeend", artistsCard);
+
+    wrapper.insertAdjacentHTML("beforeend", artistsCardTemplate);
   }
-  insertInDom(wrapper, container);
+  insertInDom(wrapper, containerClass);
 }
 
 /*
@@ -149,7 +145,9 @@ function createHtmlFromArtists(artists = [], container) {
  * @param {string} containerClass - the container class name
  * @param {HTMLElement} toInsert - the wrapper of musics or artists
  */
-function insertInDom(toInsert, container) {
-  container.appendChild(toInsert);
+function insertInDom(wrapper, containerClass) {
+  const container = _.querySelector(`.${containerClass}`);
+
+  container.appendChild(wrapper);
   hidePreloader();
 }

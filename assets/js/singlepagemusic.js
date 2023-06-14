@@ -16,8 +16,8 @@ let isPlaying = false;
  */
 async function getSongInformation() {
   try {
-    const id = new URLSearchParams(location.search).get("id");
-    const music = await getSingleMusic(id);
+    const musicId = new URLSearchParams(location.search).get("id");
+    const music = await getSingleMusic(musicId);
 
     if (!music.hasOwnProperty("id")) {
       location.href = "/pages/404.html";
@@ -28,9 +28,7 @@ async function getSongInformation() {
   } catch (e) {
     if (e) {
       hidePreloader();
-
-      showAlert("error", "Something went Wrong !");
-      setTimeout(hideAlert, 1000);
+      showAlert("error", "Something went Wrong !",1500);
     }
   }
 }

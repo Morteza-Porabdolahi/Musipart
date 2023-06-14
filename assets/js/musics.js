@@ -1,13 +1,14 @@
-import { showAlert, hideAlert } from "./utils/alert.js";
+import { showAlert } from "./utils/alert.js";
 import { getWeeklyMusics, getDailyMusics, getNewMusics } from "./utils/musicApi.js";
 import { hidePreloader } from "./utils/preloader.js";
-import { paginateDatas } from "./utils/pagination.js";
-import { _ } from "./utils/general.js";
+import { paginateDatas,clickedCount } from "./utils/pagination.js";
+import { _ ,createHtmlFromSong } from "./utils/general.js";
 
 window.addEventListener("load", getSpecificSongs);
 
 const urlQuery = new URLSearchParams(location.search).get("q");
-let results;
+const perClick = 10;
+let resultSongs;
 
 /*
  * this function is in multiple pages and configured by url query
@@ -17,41 +18,40 @@ async function getSpecificSongs() {
   try {
     if (urlQuery === "daily") {
       const dailyMusics = await getDailyMusics();
-      results = dailyMusics;
-
+console.log(dailyMusics);
+      resultSongs = dailyMusics;
     } else if (urlQuery === "weekly") {
       const weeklyMusics = await getWeeklyMusics();
-      results = weeklyMusics
+
+      resultSongs = weeklyMusics
     } else {
       const newMusics = await getNewMusics();
-      results = newMusics
+
+      resultSongs = newMusics
     }
 
-    const paginatedDatas = paginateDatas(results,10);
+    const paginatedDatas = paginateDatas(resultSongs,perClick);
     createHtmlFromSongs(paginatedDatas);
   } catch (e) {
     if (e) {
       console.log(e);
       hidePreloader();
-
-      showAlert("error", "Something went Wrong !");
-      setTimeout(hideAlert, 1000);
+      showAlert("error", "Something went Wrong !",1500);
     }
   }
 }
-
-
-// create a wrapper for songs
-const songsWrapper = _.createElement("div");
-songsWrapper.className = "allmusics-section";
 
 /*
  * create HTML Elements (music card) using the spliced musics with manipulateData function
  * @function createHTMLElementsFromData
  * @param {array} splicedMusics - spliced Musics
  */
+
+const songsWrapper = _.createElement("div");
+songsWrapper.className = "allmusics-section";
+
 function createHtmlFromSongs(songs = []) {
-  let musicCardsTemplate = "";
+  let musicsCardTemplate = "";
 
   if (songs.length <= 0) {
     songsWrapper.style.justifyContent = "center";
@@ -59,13 +59,25 @@ function createHtmlFromSongs(songs = []) {
       '<p class="content__not-found">No Musics Found !</p>';
   } else {
     for (let song of songs) {
-      musicCardsTemplate += createHtmlFromSongs(song);
+      musicsCardTemplate += createHtmlFromSong(song);
     }
-    songsWrapper.insertAdjacentHTML("beforeend", musicCardsTemplate);
+    songsWrapper.insertAdjacentHTML("beforeend", musicsCardTemplate);
   }
-
+  
   if (clickedCount === 1) {
     appendMusicsIntoDom(songsWrapper);
+  }
+  handleLoadMoreBtn();
+}
+
+function handleLoadMoreBtn(){
+  const loadMoreBtn = _.querySelector(".load-more");
+  if(resultSongs.length > perClick && perClick * clickedCount < resultSongs.length){
+    loadMoreBtn.addEventListener("click", getSpecificSongs);
+    loadMoreBtn.style.display = "block";
+  }else{
+    loadMoreBtn.removeEventListener("click", getSpecificSongs);
+    loadMoreBtn.style.display = "none";
   }
 }
 
@@ -76,14 +88,7 @@ function createHtmlFromSongs(songs = []) {
  */
 function appendMusicsIntoDom(wrapper) {
   const songsContaienr = _.querySelector(".allmusics");
-  const loadMoreBtn = _.querySelector(".load-more");
 
   songsContaienr.appendChild(wrapper);
-
-  if (results.length > perClick) {
-    loadMoreBtn.addEventListener("click", getSpecificSongs);
-    loadMoreBtn.style.display = "block";
-  }
-
   hidePreloader();
 }

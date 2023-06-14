@@ -2,22 +2,15 @@ import { getSingleMusic } from "./utils/musicApi.js";
 import { showAlert, hideAlert } from "./utils/alert.js";
 import { _ } from "./utils/general.js";
 
-// the <audio> tag
 const audioElem = _.querySelector(".music-player__audio");
-// the music player play button
 const playerPlayBtn = _.querySelector(".control:nth-child(2)");
 // the music player image
 const playerImage = _.querySelector(".image__music-img");
-// music container itself
 const musicPlayerContainer = _.querySelector(".container__music-player");
 const volumeSlider = _.querySelector(".volume-range");
-// repeat song Button
 const repeatSong = _.querySelector(".setting:nth-child(2)");
-// change quality Button
 const qualityBtn = _.querySelector(".setting:nth-child(3)");
-// the song progress bar
 const progressBar = _.querySelector(".music-player__progress");
-
 const musicName = _.querySelector(
   ".controls-container__description > .informations__music-name"
 );
@@ -26,11 +19,13 @@ const artistsName = _.querySelector(
 );
 
 let currentTime;
+let currentMusic;
 // for Switching between Hd and non Hd quality
 let isHD = false;
-let isPlaying;
-let defaultVolume = 0.2;
+let isPlaying = false;
+let defaultVolume = +localStorage.getItem("player-volume") || 0.2;
 
+volumeSlider.value = defaultVolume * 100;
 /*
  * this function is set as an onclick event to music cards play buttons (shows when hovers on music cards)
  * @function playEntireMusic
@@ -40,20 +35,18 @@ window.playEntireMusic = async function (_, musicId) {
   try {
     showAlert("loading", "Loading...");
 
-    window.currentMusic = await getSingleMusic(musicId);
+    currentMusic = await getSingleMusic(musicId);
 
     pauseMusic();
     musicPlayerContainer.style.display = "none";
 
-    // get the musicObj and save it in a global varriable called currentMusic
     audioElem.src = currentMusic.audio.medium.url;
-    // when everything is ready , play the music
+
     audioElem.addEventListener("canplay", playTheAudioWhenReady);
     audioElem.addEventListener("error", handleAudioElemErrors);
   } catch (e) {
     if (e) {
-      showAlert("error", "An error occured !");
-      setTimeout(hideAlert, 1000);
+      showAlert("error", "An error occured !", 1500);
     }
   }
 };
@@ -65,8 +58,7 @@ window.playEntireMusic = async function (_, musicId) {
 function handleAudioElemErrors() {
   hideAlert();
 
-  showAlert("error", "Something went Wrong!");
-  setTimeout(hideAlert, 1000);
+  showAlert("error", "The audio could not loaded successfully !", 1500);
 }
 
 /*
@@ -95,17 +87,11 @@ function playTheAudioWhenReady() {
  * @function setRequirementEvents
  */
 function setRequirementEvents() {
-  // for Volume changing
   volumeSlider.addEventListener("input", handleAudioVolume);
-  // for loop controlling
   repeatSong.addEventListener("click", handleReapetOrNot);
-  // for switching between qualities
   qualityBtn.addEventListener("click", handleAudioQuality);
-  // for playing and pausing
   playerPlayBtn.addEventListener("click", handlePlayerPauseOrClick);
-  // for music ProgressBar
   audioElem.addEventListener("timeupdate", handleProgressBar);
-  // when music ends...
   audioElem.addEventListener("ended", resetProgressBarWidth);
   // for current time customization
   progressBar.addEventListener("click", setCurrentTime);
@@ -175,9 +161,9 @@ function handleReapetOrNot() {
 
   showAlert(
     "done",
-    `Repeat Mode is Now ${audioElem.loop ? "Enabled" : "Disabled"}`
+    `Repeat Mode is Now ${audioElem.loop ? "Enabled" : "Disabled"}`,
+    1500
   );
-  setTimeout(hideAlert, 1000);
 }
 
 /*
@@ -187,6 +173,8 @@ function handleReapetOrNot() {
  */
 function handleAudioVolume(e) {
   defaultVolume = e.target.value / 100;
+
+  localStorage.setItem("player-volume", defaultVolume);
   audioElem.volume = defaultVolume;
 }
 
@@ -200,13 +188,12 @@ function handleAudioQuality() {
   isHD = !isHD;
 
   resetProgressBarWidth();
-
   audioElem.src = currentMusic.audio[`${isHD ? "high" : "medium"}`].url;
   audioElem.currentTime = currentTime;
+  
   playMusic();
 
-  showAlert("done", `HD Mode is Now ${isHD ? "Enabled" : "Disabled"}`);
-  setTimeout(hideAlert, 1000);
+  showAlert("done", `HD Mode is Now ${isHD ? "Enabled" : "Disabled"}`,1500);
 }
 
 /*

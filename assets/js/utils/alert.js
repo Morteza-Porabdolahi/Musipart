@@ -20,7 +20,9 @@ function showAlert(mode, text , ms) {
 
   alertContainer.classList.add("active");
   
-  setTimeout(hideAlert, ms);
+  if(ms){
+    setTimeout(hideAlert, ms);
+  }
 }
 
 /*

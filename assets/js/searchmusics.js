@@ -1,8 +1,8 @@
 import {searchMusics} from './utils/musicApi.js'
-import { _, createHtmlFromSong } from './utils/general.js';
+import { _, createHtmlFromSong ,showHelpTag , hideHelpTag} from './utils/general.js';
+import { showAlert } from './utils/alert.js';
 
 const searchInput = _.querySelector(".search-input");
-const helpTag = _.querySelector(".help");
 const container = _.querySelector(".allmusics__searched");
 
 // for Debouncing
@@ -21,8 +21,7 @@ function handleSearchQuery(e) {
   if (!e.target.value) {
     container.innerHTML = "";
 
-    helpTag.innerHTML = "Please Search a Music Name !";
-    helpTag.style.display = "block";
+    showHelpTag("Please Search a Music Name !")
   } else {
     clearTimeout(timeout);
     timeout = setTimeout(() => getDatasFromApi(inputValue), 800);
@@ -41,41 +40,39 @@ async function getDatasFromApi(query = "") {
     if (searchedSongs.length <= 0) {
       container.innerHTML = "";
 
-      helpTag.innerHTML = "No Musics Found !";
-      helpTag.style.display = "block";
+      showHelpTag('No Musics Found !');
     } else {
-      helpTag.style.display = "none";
-      manipulateHtml(searchedSongs);
+      hideHelpTag();
+      createHtmlFromSongs(searchedSongs);
     }
   } catch (e) {
-    showAlert("error", "Something Went Wrong!");
-
-    setTimeout(hideAlert, 1000);
+    console.log(e);
+    showAlert("error", "Something Went Wrong!",1500);
   }
 }
 
-let musicsCard = '';
-let musicsWrapper = _.createElement("div");
-
-musicsWrapper.className = "allmusics-section";
 /*
  * gets the data and put it as music card into dom
  * @function manipulateHtml
  * @param {array} data - the data that api has sent to us
  */
+let songsWrapper = _.createElement("div"),
+ musicsCardTemplate = '';
 
-function manipulateHtml(songs = []) {
-  musicsWrapper = musicsWrapper.cloneNode(true);
+songsWrapper.className = "allmusics-section";
 
-  musicsWrapper.innerHTML = "";
-  musicsCard = '';
+function createHtmlFromSongs(songs = []) {
+  songsWrapper = songsWrapper.cloneNode(true);
+
+  songsWrapper.innerHTML = "";
+  musicsCardTemplate = '';
 
   for(let {song} of songs){
-    musicsCard += createHtmlFromSong(song);
+    musicsCardTemplate += createHtmlFromSong(song);
   }
 
-  musicsWrapper.insertAdjacentHTML("beforeend", musicsCard);
-  insertInDom(musicsWrapper);
+  songsWrapper.insertAdjacentHTML("beforeend", musicsCardTemplate);
+  insertInDom(songsWrapper);
 }
 
 /*
@@ -85,5 +82,6 @@ function manipulateHtml(songs = []) {
  */
 function insertInDom(wrapper) {
   container.innerHTML = "";
+
   container.append(wrapper);
 }

@@ -5,9 +5,9 @@ function setClickCount(count) {
   clickedCount = count;
 }
 
-function paginateDatas(datas = [],perClick){
-    setClickCount(clickedCount + 1);
-    return datas.slice().splice(clickedCount * perClick - perClick, perClick)
+function paginateDatas(datas = [], perClick) {
+  setClickCount(clickedCount + 1);
+  return datas.slice().splice(clickedCount * perClick - perClick, perClick);
 }
 
-export { paginateDatas };
+export { paginateDatas, clickedCount };

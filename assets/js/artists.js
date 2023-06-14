@@ -1,8 +1,7 @@
 import { getArtists } from "./utils/musicApi.js";
 import { showAlert } from "./utils/alert.js";
-import { _ ,createHtmlFromArtist } from "./utils/general.js";
+import { _, createHtmlFromArtist ,showHelpTag,hideHelpTag} from "./utils/general.js";
 
-const helpTag = _.querySelector(".help");
 const allArtistsContainer = _.querySelector(".artists__container");
 const searchInput = _.querySelector(".search-input");
 
@@ -21,38 +20,41 @@ async function getArtistsData(artistName = "") {
     if (Object.keys(artists).length <= 0) {
       allArtistsContainer.innerHTML = "";
 
-      helpTag.innerHTML = "No Artists Found !";
-      helpTag.style.display = "block";
+      showHelpTag("No Artists Found !");
     } else {
-      helpTag.style.display = "none";
-      createHTMLElementsFromData(artists);
+      hideHelpTag();
+      createArtistsCards(artists);
     }
   } catch (e) {
     if (e) {
       console.log(e);
-      showAlert("error", "Something went wrong !",1500);
+      showAlert("error", "Something went wrong !", 1500);
     }
   }
 }
 
 /*
  * create HTML Elements (artist card) using the artists created Array with getArtistsData function
- * @function createHTMLElementsFromData
+ * @function createArtistsCards
  * @param {array} artists - all artists
  */
-function createHTMLElementsFromData(artists = []) {
-  // the wrapper of all artists
-  const allArtistsWrapper = _.createElement("div");
-  let artistCardsTemplate = "";
+let allArtistsWrapper = _.createElement("div"),
+artistCardsTemplate = "";
 
-  allArtistsWrapper.className = "artists-section";
+allArtistsWrapper.className = "artists-section";
+
+function createArtistsCards(artists = []) {
+  allArtistsWrapper = allArtistsWrapper.cloneNode(true);
+
+  allArtistsWrapper.innerHTML = "";
+  artistCardsTemplate = "";
 
   for (let { artist } of artists) {
     artistCardsTemplate += createHtmlFromArtist(artist);
   }
-  
+
   allArtistsWrapper.insertAdjacentHTML("beforeend", artistCardsTemplate);
-  appendContainerIntoDom(allArtistsWrapper);
+  appendWrapperInContainer(allArtistsWrapper);
 }
 
 /*
@@ -60,9 +62,10 @@ function createHTMLElementsFromData(artists = []) {
  * @function appendContainerIntoDom
  * @param {HTMLElement} wrapper - the wrapper of artists
  */
-function appendContainerIntoDom(wrapper) {
+function appendWrapperInContainer(wrapper) {
   allArtistsContainer.innerHTML = "";
-  allArtistsContainer.appendChild(wrapper);
+
+  allArtistsContainer.append(wrapper);
 }
 
 /*
@@ -76,8 +79,7 @@ function handleSearch(e) {
   if (!e.target.value) {
     allArtistsContainer.innerHTML = "";
 
-    helpTag.innerHTML = "Please Search a Artist Name !";
-    helpTag.style.display = "block";
+    showHelpTag("Please Search a Artist Name !")
   } else {
     clearTimeout(timeout);
     timeout = setTimeout(() => getArtistsData(inputValue), 800);

@@ -1,7 +1,7 @@
-import {getArtistMusics} from "./utils/musicApi.js";
+import { getArtistMusics } from "./utils/musicApi.js";
 import { hidePreloader } from "./utils/preloader.js";
-import { showAlert,hideAlert} from "./utils/alert.js";
-import { _ ,createHtmlFromSong} from "./utils/general.js";
+import { showAlert, hideAlert } from "./utils/alert.js";
+import { _, createHtmlFromSong } from "./utils/general.js";
 
 const container = _.querySelector(".artist-musics");
 
@@ -12,15 +12,14 @@ window.addEventListener("load", setDocumentTitle);
  * @function setTitles
  */
 function setDocumentTitle() {
-  // artist name element
-  const titleElement = _.querySelector(".artist-name");
-  const locationSearch = location.search;
-  const artistName = new URLSearchParams(locationSearch).get("q");
+  const artistsTitleElement = _.querySelector(".artist-name");
+  const searchParams = location.search;
+  const artistName = new URLSearchParams(searchParams).get("q");
 
   _.title = `Musipart || ${artistName}`;
-  titleElement.textContent = artistName;
+  artistsTitleElement.textContent = artistName;
 
-  getDatasAndFilterIt(artistName);
+  getArtistSongs(artistName);
 }
 
 /*
@@ -28,12 +27,12 @@ function setDocumentTitle() {
  * @function getDatasAndFilterIt
  * @param {string} artistName - artist fullName
  */
-async function getDatasAndFilterIt(artistName = "") {
+async function getArtistSongs(artistName = "") {
   try {
     const artistMusics = await getArtistMusics(artistName);
 
     if (artistMusics.length > 0) {
-      createHTMLElementsFromData(artistMusics);
+      createArtistSongsCard(artistMusics);
     } else {
       hidePreloader();
 
@@ -44,9 +43,7 @@ async function getDatasAndFilterIt(artistName = "") {
     if (e) {
       console.log(e);
       hidePreloader();
-
-      showAlert("error", "Something went Wrong !");
-      setTimeout(hideAlert, 1000);
+      showAlert("error", "Something went Wrong !", 1500);
     }
   }
 }
@@ -56,18 +53,18 @@ async function getDatasAndFilterIt(artistName = "") {
  * @function createHTMLElementsFromData
  * @param {array} filteredData - filtered Musics
  */
-function createHTMLElementsFromData(artistMusics = []) {
-  let musicCardsTemplate = '';
+function createArtistSongsCard(artistMusics = []) {
+  const songsWrapper = _.createElement("div");
+  let musicCardsTemplate = "";
 
-  const wrapper = _.createElement("div");
-  wrapper.className = "allmusics-section";
+  songsWrapper.className = "allmusics-section";
 
-  for(let {song} of artistMusics){
+  for (let { song } of artistMusics) {
     musicCardsTemplate += createHtmlFromSong(song);
   }
 
-  wrapper.insertAdjacentHTML("beforeend", musicCardsTemplate);
-  appendMusicsIntoDom(wrapper);
+  songsWrapper.insertAdjacentHTML("beforeend", musicCardsTemplate);
+  appendMusicsIntoDom(songsWrapper);
 }
 
 /*
