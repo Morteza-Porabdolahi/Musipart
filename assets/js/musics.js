@@ -1,7 +1,8 @@
 import { showAlert, hideAlert } from "./utils/alert.js";
-import { getWeeklyMusics, getDailyMusics, getNewMusics } from "./utils/api.js";
+import { getWeeklyMusics, getDailyMusics, getNewMusics } from "./utils/musicApi.js";
 import { hidePreloader } from "./utils/preloader.js";
-import { perClick, clickedCount, setClickCount } from "./utils/general.js";
+import { paginateDatas } from "./utils/pagination.js";
+import { _ } from "./utils/general.js";
 
 window.addEventListener("load", getSpecificSongs);
 
@@ -14,8 +15,6 @@ let results;
  */
 async function getSpecificSongs() {
   try {
-    setClickCount(clickedCount + 1);
-
     if (urlQuery === "daily") {
       const dailyMusics = await getDailyMusics();
       results = dailyMusics;
@@ -28,8 +27,8 @@ async function getSpecificSongs() {
       results = newMusics
     }
 
-    createHtmlFromSongs(results.slice()
-    .splice(clickedCount * perClick - perClick, perClick));
+    const paginatedDatas = paginateDatas(results,10);
+    createHtmlFromSongs(paginatedDatas);
   } catch (e) {
     if (e) {
       console.log(e);
@@ -43,7 +42,7 @@ async function getSpecificSongs() {
 
 
 // create a wrapper for songs
-const songsWrapper = document.createElement("div");
+const songsWrapper = _.createElement("div");
 songsWrapper.className = "allmusics-section";
 
 /*
@@ -60,28 +59,7 @@ function createHtmlFromSongs(songs = []) {
       '<p class="content__not-found">No Musics Found !</p>';
   } else {
     for (let song of songs) {
-      musicCardsTemplate += `
-        <div class="music-card"> 
-          <div class="music-card__img-container"> 
-            <img loading="lazy" class="music-card__img" src="${
-              song.image.cover.url
-            }"/> 
-            <button onclick="playEntireMusic(event,'${
-              song.id
-            }')" class="music-card__play-btn">   
-              <img src="/assets/icons/play-mini-line.svg"/> 
-            </button> 
-          </div> 
-          <div class="music-card__informations"> 
-            <a class="informations__music-name" href="/pages/singlemusicpage.html?id=${
-              song.id
-            }">${song.title}</a> 
-            ${song.artists.map(
-              (artist) =>
-                `<a class="informations__music-artist" href="/pages/artistmusics.html?q=${artist.fullName}">${artist.fullName}</a>`
-            )} 
-          </div> 
-        </div>`;
+      musicCardsTemplate += createHtmlFromSongs(song);
     }
     songsWrapper.insertAdjacentHTML("beforeend", musicCardsTemplate);
   }
@@ -97,8 +75,8 @@ function createHtmlFromSongs(songs = []) {
  * @param {HTMLElement} wrapper - the wrapper of Musics
  */
 function appendMusicsIntoDom(wrapper) {
-  const songsContaienr = document.querySelector(".allmusics");
-  const loadMoreBtn = document.querySelector(".load-more");
+  const songsContaienr = _.querySelector(".allmusics");
+  const loadMoreBtn = _.querySelector(".load-more");
 
   songsContaienr.appendChild(wrapper);
 

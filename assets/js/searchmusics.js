@@ -1,8 +1,9 @@
-import {searchMusics} from './utils/api.js'
+import {searchMusics} from './utils/musicApi.js'
+import { _, createHtmlFromSong } from './utils/general.js';
 
-const searchInput = document.querySelector(".search-input");
-const helpTag = document.querySelector(".help");
-const container = document.querySelector(".allmusics__searched");
+const searchInput = _.querySelector(".search-input");
+const helpTag = _.querySelector(".help");
+const container = _.querySelector(".allmusics__searched");
 
 // for Debouncing
 let timeout;
@@ -54,7 +55,7 @@ async function getDatasFromApi(query = "") {
 }
 
 let musicsCard = '';
-let musicsWrapper = document.createElement("div");
+let musicsWrapper = _.createElement("div");
 
 musicsWrapper.className = "allmusics-section";
 /*
@@ -69,28 +70,9 @@ function manipulateHtml(songs = []) {
   musicsWrapper.innerHTML = "";
   musicsCard = '';
 
-  songs.forEach(({ song }) => {
-    musicsCard += `
-<div class="music-card">
-<div class="music-card__img-container">
-<img class="music-card__img" src="${song.image.cover.url}" loading="lazy" />
-<button class="music-card__play-btn" onclick="playEntireMusic(event,'${
-      song.id
-    }')">
-<img src="/assets/icons/play-mini-line.svg"/>
-</button>
-</div>
-<div class="music-card__informations">
-<a href="/pages/singlemusicpage.html?id=${
-      song.id
-    }" class="informations__music-name">${song.title}</a>  
-${song.artists.map(
-  (artist) =>
-    `<a class="informations__music-artist" href="/pages/artistmusics.html?q=${artist.fullName}">${artist.fullName}</a>`
-)}
-</div>
-</div>`;
-  });
+  for(let {song} of songs){
+    musicsCard += createHtmlFromSong(song);
+  }
 
   musicsWrapper.insertAdjacentHTML("beforeend", musicsCard);
   insertInDom(musicsWrapper);

@@ -1,7 +1,9 @@
-const modalContainer = document.querySelector(".modal-container");
+import { _ } from "./utils/general";
+
+const modalContainer = _.querySelector(".modal-container");
 
 // using the event bubbling
-document.documentElement.addEventListener("click", handleClickedElements);
+_.documentElement.addEventListener("click", handleClickedElements);
 
 /*
  * handle Clicks using event event bubbling

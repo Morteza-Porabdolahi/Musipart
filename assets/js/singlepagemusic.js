@@ -1,8 +1,9 @@
-import { getSingleMusic } from "./utils/api.js";
-import {hidePreloader} from './utils/preloader.js'
+import { getSingleMusic } from "./utils/musicApi.js";
+import {hidePreloader} from './utils/preloader.js';
+import { _ } from "./utils/general.js";
 
-const playBtn = document.querySelector(".control:nth-child(2)");
-const audioElem = document.querySelector("audio");
+const playBtn = _.querySelector(".control:nth-child(2)");
+const audioElem = _.querySelector("audio");
 
 playBtn.addEventListener("click", playOrPauseAudio);
 window.addEventListener("load", getSongInformation);
@@ -21,7 +22,7 @@ async function getSongInformation() {
     if (!music.hasOwnProperty("id")) {
       location.href = "/pages/404.html";
     } else {
-      document.title = `Musipart || ${music.title}`;
+      _.title = `Musipart || ${music.title}`;
       setMusicInfos(music);
     }
   } catch (e) {
@@ -40,10 +41,10 @@ async function getSongInformation() {
  * @param {object} song - the song Object
  */
 function setMusicInfos(song) {
-  const musicImage = document.querySelector(".description__image > img");
-  const musicTitle = document.querySelector(".texts__titles > h3");
-  const musicArtists = document.querySelector(".texts__titles > p");
-  const lyricsContainer = document.querySelector(".description__lyrics > p");
+  const musicImage = _.querySelector(".description__image > img");
+  const musicTitle = _.querySelector(".texts__titles > h3");
+  const musicArtists = _.querySelector(".texts__titles > p");
+  const lyricsContainer = _.querySelector(".description__lyrics > p");
 
   musicImage.alt = song.title;
   musicImage.src = song.image.cover.url;

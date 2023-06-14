@@ -1,8 +1,9 @@
-import {getArtistMusics} from "./utils/api.js";
+import {getArtistMusics} from "./utils/musicApi.js";
 import { hidePreloader } from "./utils/preloader.js";
 import { showAlert,hideAlert} from "./utils/alert.js";
+import { _ ,createHtmlFromSong} from "./utils/general.js";
 
-const container = document.querySelector(".artist-musics");
+const container = _.querySelector(".artist-musics");
 
 window.addEventListener("load", setDocumentTitle);
 
@@ -12,11 +13,11 @@ window.addEventListener("load", setDocumentTitle);
  */
 function setDocumentTitle() {
   // artist name element
-  const titleElement = document.querySelector(".artist-name");
+  const titleElement = _.querySelector(".artist-name");
   const locationSearch = location.search;
   const artistName = new URLSearchParams(locationSearch).get("q");
 
-  document.title = `Musipart || ${artistName}`;
+  _.title = `Musipart || ${artistName}`;
   titleElement.textContent = artistName;
 
   getDatasAndFilterIt(artistName);
@@ -58,30 +59,12 @@ async function getDatasAndFilterIt(artistName = "") {
 function createHTMLElementsFromData(artistMusics = []) {
   let musicCardsTemplate = '';
 
-  const wrapper = document.createElement("div");
+  const wrapper = _.createElement("div");
   wrapper.className = "allmusics-section";
 
-  artistMusics.forEach(({song}) => {
-    musicCardsTemplate += `
-<div class="music-card">
-<div class="music-card__img-container">
-<img loading="lazy" class="music-card__img" src="${song.image.cover.url}" />
-<button class="music-card__play-btn" onclick="playEntireMusic(event,'${
-      song.id
-    }')">
-<img src="/assets/icons/play-mini-line.svg"/>
-</button>
-</div>
-<div class="music-card__informations">
-<a href="/pages/singlemusicpage.html?id=${
-      song.id
-    }" class="informations__music-name">${song.title}</a>  
-<small class="informations__music-artist">${song.artists.map(
-      (artist) => artist.fullName
-    )}</small>
-</div>
-</div>`;
-  });
+  for(let {song} of artistMusics){
+    musicCardsTemplate += createHtmlFromSong(song);
+  }
 
   wrapper.insertAdjacentHTML("beforeend", musicCardsTemplate);
   appendMusicsIntoDom(wrapper);

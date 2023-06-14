@@ -4,8 +4,9 @@ import {
   getDailyMusics,
   getWeeklyMusics,
   getTopArtists,
-} from "./utils/api.js";
+} from "./utils/musicApi.js";
 import { hidePreloader } from "./utils/preloader.js";
+import { _ ,createHtmlFromArtist,createHtmlFromSong} from "./utils/general.js";
 
 window.addEventListener("load", getAllSongsAndArtists);
 
@@ -29,7 +30,7 @@ function getAllSongsAndArtists() {
 }
 
 async function handleNewMusics() {
-  const newMusicsContainer = document.querySelector(".newMusics");
+  const newMusicsContainer = _.querySelector(".newMusics");
   const newMusics = await getNewMusics();
   const manipulatedDatas = manipulateDatas(newMusics);
 
@@ -37,7 +38,7 @@ async function handleNewMusics() {
 }
 
 async function handleDailyMusics() {
-  const dailyMusicsContainer = document.querySelector(".dailyMusics");
+  const dailyMusicsContainer = _.querySelector(".dailyMusics");
   const dailyMusics = await getDailyMusics();
   const manipulatedDatas = manipulateDatas(dailyMusics);
 
@@ -45,7 +46,7 @@ async function handleDailyMusics() {
 }
 
 async function handleWeeklyMusics() {
-  const weeklyMusicsContainer = document.querySelector(".weeklyMusics");
+  const weeklyMusicsContainer = _.querySelector(".weeklyMusics");
   const weeklyMusics = await getWeeklyMusics();
   const manipulatedDatas = manipulateDatas(weeklyMusics);
 
@@ -53,7 +54,7 @@ async function handleWeeklyMusics() {
 }
 
 async function handleArtists() {
-  const artistsContainer = document.querySelector(".topArtists");
+  const artistsContainer = _.querySelector(".topArtists");
   const artists = await getTopArtists();
   const manipulatedDatas = manipulateDatas(artists);
 
@@ -91,7 +92,7 @@ function makeStartAndEndIndex(datas = [], elemNum) {
  * @param {object} newDatas - filtered Datas
  */
 function createHtmlElementsFromSongs(songs = [], container) {
-  let wrapper = document.createElement("div"),
+  let wrapper = _.createElement("div"),
     musicsCard = "";
 
   wrapper.className = "section__content";
@@ -103,28 +104,7 @@ function createHtmlElementsFromSongs(songs = [], container) {
     wrapper.innerHTML = '<p class="content__not-found">No Musics Found !</p>';
   } else {
     for (let song of songs) {
-      musicsCard += `
-      <div class="music-card"> 
-        <div class="music-card__img-container"> 
-          <img loading="lazy" class="music-card__img" src="${
-            song.image.cover.url
-          }"/> 
-          <button onclick="playEntireMusic(event,'${
-            song.id
-          }')" class="music-card__play-btn">   
-            <img src="/assets/icons/play-mini-line.svg"/> 
-          </button> 
-        </div> 
-        <div class="music-card__informations"> 
-          <a class="informations__music-name" href="/pages/singlemusicpage.html?id=${
-            song.id
-          }">${song.title}</a> 
-          ${song.artists.map(
-            (artist) =>
-              `<a class="informations__music-artist" href="/pages/artistmusics.html?q=${artist.fullName}">${artist.fullName}</a>`
-          )} 
-        </div> 
-      </div>`;
+      musicsCard += createHtmlFromSong(song);
     }
     wrapper.insertAdjacentHTML("beforeend", musicsCard);
   }
@@ -137,7 +117,7 @@ function createHtmlElementsFromSongs(songs = [], container) {
  * @param {object} newDatas - filtered Datas
  */
 function createHtmlFromArtists(artists = [], container) {
-  let wrapper = document.createElement("div"),
+  let wrapper = _.createElement("div"),
     artistsCard = "";
 
   wrapper.className = "section__content";

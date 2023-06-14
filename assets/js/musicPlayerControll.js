@@ -1,25 +1,27 @@
-import { getSingleMusic } from "./utils/api.js";
+import { getSingleMusic } from "./utils/musicApi.js";
 import { showAlert, hideAlert } from "./utils/alert.js";
-// the <audio> tag
-const audioElem = document.querySelector(".music-player__audio");
-// the music player play button
-const playerPlayBtn = document.querySelector(".control:nth-child(2)");
-// the music player image
-const playerImage = document.querySelector(".image__music-img");
-// music container itself
-const musicPlayerContainer = document.querySelector(".container__music-player");
-const volumeSlider = document.querySelector(".volume-range");
-// repeat song Button
-const repeatSong = document.querySelector(".setting:nth-child(2)");
-// change quality Button
-const qualityBtn = document.querySelector(".setting:nth-child(3)");
-// the song progress bar
-const progressBar = document.querySelector(".music-player__progress");
+import { _ } from "./utils/general.js";
 
-const musicName = document.querySelector(
+// the <audio> tag
+const audioElem = _.querySelector(".music-player__audio");
+// the music player play button
+const playerPlayBtn = _.querySelector(".control:nth-child(2)");
+// the music player image
+const playerImage = _.querySelector(".image__music-img");
+// music container itself
+const musicPlayerContainer = _.querySelector(".container__music-player");
+const volumeSlider = _.querySelector(".volume-range");
+// repeat song Button
+const repeatSong = _.querySelector(".setting:nth-child(2)");
+// change quality Button
+const qualityBtn = _.querySelector(".setting:nth-child(3)");
+// the song progress bar
+const progressBar = _.querySelector(".music-player__progress");
+
+const musicName = _.querySelector(
   ".controls-container__description > .informations__music-name"
 );
-const artistsName = document.querySelector(
+const artistsName = _.querySelector(
   ".controls-container__description > .informations__music-artist"
 );
 

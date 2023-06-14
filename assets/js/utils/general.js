@@ -1,31 +1,40 @@
-// clicked count on load more button
-let clickedCount = 0;
-// Items to show on every click on load more button
-const perClick = 10;
+const _ = document;
 
-function setClickCount(count) {
-  clickedCount = count;
+function createHtmlFromSong(song = {}) {
+  return `
+    <div class="music-card"> 
+        <div class="music-card__img-container"> 
+            <img loading="lazy" class="music-card__img" src="${
+              song.image.cover.url
+            }"/> 
+            <button onclick="playEntireMusic(event,'${
+              song.id
+            }')" class="music-card__play-btn">   
+                <img src="/assets/icons/play-mini-line.svg"/> 
+            </button> 
+        </div> 
+        <div class="music-card__informations"> 
+            <a class="informations__music-name" href="/pages/singlemusicpage.html?id=${
+              song.id
+            }">${song.title}</a> 
+            ${song.artists.map(
+              (artist) =>
+                `<a class="informations__music-artist" href="/pages/artistmusics.html?q=${artist.fullName}">${artist.fullName}</a>`
+            )} 
+        </div> 
+    </div>`;
 }
 
-export { perClick, clickedCount, setClickCount };
-/*
- * handles the user entered input in search input
- * @function handleSearch
- * @param {object} e - event object
- */
-// function handleSearch(e) {
-//   const filterResults = allResults.filter((result) => {
-//     if (e.target.value) {
-//       return result.title.toLowerCase().includes(e.target.value.toLowerCase());
-//     } else return result;
-//   });
+function createHtmlFromArtist(artist = {}) {
+  return `
+    <div class="artist-card">
+        <div class="artist-card__img-container">
+            <img loading="lazy" class="artist-card__img" src="${artist.image.cover.url}"/>
+        </div>
+        <div class="artist-card__informations">
+            <a href="/pages/artistmusics.html?q=${artist.fullName}" class="informations__artist-name">${artist.fullName}</a>
+        </div>
+    </div>`;
+}
 
-//   songsWrapper.innerHTML = '';
-
-//   // the function is in muiscs.js file
-//   createHTMLElementsFromData(filterResults);
-// }
-
-// searchInputs.forEach(input => input.addEventListener('input', handleSearch));
-
-// loadMoreBtn.addEventListener('click', manipulateData);
+export { _, createHtmlFromSong, createHtmlFromArtist };

@@ -1,9 +1,10 @@
-import { getArtists } from "./utils/api.js";
-import { showAlert, hideAlert } from "./utils/alert.js";
+import { getArtists } from "./utils/musicApi.js";
+import { showAlert } from "./utils/alert.js";
+import { _ ,createHtmlFromArtist } from "./utils/general.js";
 
-const helpTag = document.querySelector(".help");
-const allArtistsContainer = document.querySelector(".artists__container");
-const searchInput = document.querySelector(".search-input");
+const helpTag = _.querySelector(".help");
+const allArtistsContainer = _.querySelector(".artists__container");
+const searchInput = _.querySelector(".search-input");
 
 let timeout;
 
@@ -29,9 +30,7 @@ async function getArtistsData(artistName = "") {
   } catch (e) {
     if (e) {
       console.log(e);
-
-      showAlert("error", "Something went wrong !");
-      setTimeout(hideAlert, 1000);
+      showAlert("error", "Something went wrong !",1500);
     }
   }
 }
@@ -43,22 +42,15 @@ async function getArtistsData(artistName = "") {
  */
 function createHTMLElementsFromData(artists = []) {
   // the wrapper of all artists
-  const allArtistsWrapper = document.createElement("div");
+  const allArtistsWrapper = _.createElement("div");
   let artistCardsTemplate = "";
 
   allArtistsWrapper.className = "artists-section";
 
   for (let { artist } of artists) {
-    artistCardsTemplate += `
-            <div class="artist-card">
-                <div class="artist-card__img-container">
-                    <img loading="lazy" class="artist-card__img" src="${artist.image.cover.url}"/>
-                </div>
-                <div class="artist-card__informations">
-                    <a href="/pages/artistmusics.html?q=${artist.fullName}" class="informations__artist-name">${artist.fullName}</a>
-                </div>
-            </div>`;
+    artistCardsTemplate += createHtmlFromArtist(artist);
   }
+  
   allArtistsWrapper.insertAdjacentHTML("beforeend", artistCardsTemplate);
   appendContainerIntoDom(allArtistsWrapper);
 }

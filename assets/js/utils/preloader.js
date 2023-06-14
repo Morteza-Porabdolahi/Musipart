@@ -1,4 +1,6 @@
-const preloader = document.querySelector(".preloader-container");
+import { _ } from './general.js';
+
+const preloader = _.querySelector(".preloader-container");
 
 /*
  * hides the Preloader
