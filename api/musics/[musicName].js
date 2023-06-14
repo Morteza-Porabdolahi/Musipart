@@ -1,7 +1,9 @@
+const fetch = require("../_interceptFetch");
+
 export default async function getMusics(req,res){
     try {
         const getSearchedSongs = await fetch(
-          `${BACKEND_API_URL}?q=search&t=${req.query.q}`
+          `${process.env.BACKEND_API_URL}?q=search&t=${req.query.musicName}`
         );
     
         res.send(getSearchedSongs.results.filter(item => item.type === 'song'));

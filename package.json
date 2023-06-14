@@ -90,6 +90,7 @@
     "ms": "^2.1.2",
     "nanocolors": "^0.2.13",
     "negotiator": "^0.6.3",
+    "node-fetch": "^2.6.11",
     "normalize-path": "^3.0.0",
     "on-finished": "^2.4.1",
     "only": "^0.0.2",

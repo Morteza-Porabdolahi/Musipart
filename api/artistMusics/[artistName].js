@@ -1,7 +1,9 @@
-export default async function getMusic(req,res){
+const fetch = require("../_interceptFetch");
+
+export default async function getArtistsMusics(req,res){
     try {
         const allArtistDatas = await fetch(
-          `${BACKEND_API_URL}?q=search&t=${req.query.artist}`
+          `${process.env.BACKEND_API_URL}?q=search&t=${req.query.artistName}`
         );
     
         const filterArtistMusics = allArtistDatas.results.filter(

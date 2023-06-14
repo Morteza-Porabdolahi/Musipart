@@ -1,4 +1,4 @@
-const API_URL = `http://localhost:3000`;
+const API_URL = `https://musipart.vercel.app/api`;
 
 async function myFetch(...args) {
   const [url, options] = args;
@@ -15,35 +15,35 @@ async function myFetch(...args) {
 }
 
 function getSingleMusic(id) {
-  return myFetch(`${API_URL}/api/music/${id}`);
+  return myFetch(`${API_URL}/music/${id}`);
 }
 
 function getArtistMusics(artistName) {
-  return myFetch(`${API_URL}/api/artists/${artistName}/musics`);
+  return myFetch(`${API_URL}/artistMusics/${artistName}`);
 }
 
 function getArtists(artistName = "") {
-  return myFetch(`${API_URL}/api/artists?artist=${artistName}`);
+  return myFetch(`${API_URL}/artists/${artistName}`);
 }
 
 function searchMusics(query = "") {
-  return myFetch(`${API_URL}/api/musics?q=${query}`);
+  return myFetch(`${API_URL}/musics/${query}`);
 }
 
 function getNewMusics() {
-  return myFetch(`${API_URL}/api/musics/new`);
+  return myFetch(`${API_URL}/musics/newMusics`);
 }
 
 function getDailyMusics() {
-  return myFetch(`${API_URL}/api/musics/daily`);
+  return myFetch(`${API_URL}/musics/dailyMusics`);
 }
 
 function getWeeklyMusics() {
-  return myFetch(`${API_URL}/api/musics/weekly`);
+  return myFetch(`${API_URL}/musics/weeklyMusics`);
 }
 
 function getTopArtists() {
-  return myFetch(`${API_URL}/api/topArtists`);
+  return myFetch(`${API_URL}/artists/topArtists`);
 }
 
 export {
