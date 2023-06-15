@@ -1,4 +1,4 @@
-import { showAlert, hideAlert } from "./utils/alert.js";
+import { showAlert } from "./utils/alert.js";
 import {
   getNewMusics,
   getDailyMusics,
@@ -12,8 +12,6 @@ import {
   createHtmlFromSong,
 } from "./utils/general.js";
 
-window.addEventListener("load", getAllSongsAndArtists);
-
 /*
  * get all categories songs from api
  * @function getAllSongs
@@ -25,12 +23,13 @@ function getAllSongsAndArtists() {
     handleArtists();
     handleNewMusics();
   } catch (e) {
-    if (e) {
+    if (e.message) {
       hidePreloader();
-      showAlert("error", "Something went Wrong !",1500);
+      showAlert("error", e.message,2000);
     }
   }
 }
+window.addEventListener("load", getAllSongsAndArtists);
 
 async function handleNewMusics() {
   const newMusics = await getNewMusics();
@@ -110,6 +109,7 @@ function createHtmlFromSongs(songs = [], containerClass = "") {
     for (let song of songs) {
       musicsCardTemplate += createHtmlFromSong(song);
     }
+    
     wrapper.insertAdjacentHTML("beforeend", musicsCardTemplate);
   }
   insertInDom(wrapper, containerClass);

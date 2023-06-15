@@ -8,7 +8,8 @@ export default async function getArtists(req,res){
         
         res.send(searchedArtists.results.filter(item => item.type === 'artist'));
       } catch (e) {
-        if (e) console.log(e);
-        res.send(e);
+        if (e.message) {
+          res.send(e);
+        };
       }
 }

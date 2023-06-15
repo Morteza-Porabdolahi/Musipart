@@ -13,8 +13,6 @@ import {
   showLoadMoreBtn,
 } from "./utils/general.js";
 
-window.addEventListener("load", getSpecificSongs);
-
 const urlQuery = new URLSearchParams(location.search).get("q");
 const perClick = 10;
 let resultSongs;
@@ -25,30 +23,22 @@ let resultSongs;
  */
 async function getSpecificSongs() {
   try {
-    if (urlQuery === "daily") {
-      const dailyMusics = await getDailyMusics();
-      console.log(dailyMusics);
-      resultSongs = dailyMusics;
-    } else if (urlQuery === "weekly") {
-      const weeklyMusics = await getWeeklyMusics();
-
-      resultSongs = weeklyMusics;
-    } else {
-      const newMusics = await getNewMusics();
-
-      resultSongs = newMusics;
-    }
+    resultSongs = await (urlQuery === "daily"
+      ? getDailyMusics()
+      : urlQuery === "weekly"
+      ? getWeeklyMusics()
+      : getNewMusics());
 
     const paginatedDatas = paginateDatas(resultSongs, perClick);
     createHtmlFromSongs(paginatedDatas);
   } catch (e) {
-    if (e) {
-      console.log(e);
+    if (e.message) {
       hidePreloader();
-      showAlert("error", "Something went Wrong !", 1500);
+      showAlert("error",e.message, 2000);
     }
   }
 }
+window.addEventListener("load", getSpecificSongs);
 
 /*
  * create HTML Elements (music card) using the spliced musics with manipulateData function

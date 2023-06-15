@@ -6,7 +6,8 @@ export default async function fetchMusic(_,res){
     
         res.send(weeklyMusics.results);
       } catch (e) {
-        if (e) console.log(e);
-        res.send(e);
+        if (e.message) {
+          res.send(e);
+        };
       }
 }

@@ -12,7 +12,8 @@ export default async function getArtistsMusics(req,res){
     
         res.send(filterArtistMusics);
       } catch (e) {
-        if (e) console.log(e);
-        res.send(e);
+        if (e.message) {
+          res.send(e);
+        };
       }
 }

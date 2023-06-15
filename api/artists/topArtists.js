@@ -6,7 +6,8 @@ export default async function getTopArtists(_,res){
     
         res.send(topArtists.results);
       } catch (e) {
-        if (e) console.log(e);
-        res.send(e);
+        if (e.message) {
+          res.send(e);
+        };
       }
 }

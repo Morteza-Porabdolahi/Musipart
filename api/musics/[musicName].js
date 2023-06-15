@@ -8,7 +8,8 @@ export default async function getMusics(req,res){
     
         res.send(getSearchedSongs.results.filter(item => item.type === 'song'));
       } catch (e) {
-        if (e) console.log(e);
-        res.send(e);
+        if (e.message) {
+          res.send(e);
+        };
       }
 }

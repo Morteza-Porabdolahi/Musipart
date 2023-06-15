@@ -1,11 +1,9 @@
 import { getArtistMusics } from "./utils/musicApi.js";
 import { hidePreloader } from "./utils/preloader.js";
-import { showAlert, hideAlert } from "./utils/alert.js";
+import { showAlert } from "./utils/alert.js";
 import { _, createHtmlFromSong } from "./utils/general.js";
 
 const container = _.querySelector(".artist-musics");
-
-window.addEventListener("load", setDocumentTitle);
 
 /*
  * set document title as artist name and gets the artist name in search params
@@ -16,12 +14,20 @@ function setDocumentTitle() {
   const searchParams = location.search;
   const artistName = new URLSearchParams(searchParams).get("q");
 
-  _.title = `Musipart || ${artistName}`;
-  artistsTitleElement.textContent = artistName;
+  if(artistName){
+    _.title = `Musipart || ${artistName}`;
+    artistsTitleElement.textContent = artistName;
+  
+    getArtistSongs(artistName);
+  }else{
+    hidePreloader();
+    container.innerHTML =
+    '<p class="content__not-found">No Artist Found !</p>';
+  }
 
-  getArtistSongs(artistName);
 }
 
+window.addEventListener("load", setDocumentTitle);
 /*
  * get the data from artist name sent by setTitles functions
  * @function getDatasAndFilterIt
@@ -31,19 +37,18 @@ async function getArtistSongs(artistName = "") {
   try {
     const artistMusics = await getArtistMusics(artistName);
 
-    if (artistMusics.length > 0) {
-      createArtistSongsCard(artistMusics);
-    } else {
+    if (artistMusics.length <= 0) {
       hidePreloader();
 
       container.innerHTML =
         '<p class="content__not-found">No Musics Found !</p>';
+    } else {
+      createArtistSongsCard(artistMusics);
     }
   } catch (e) {
-    if (e) {
-      console.log(e);
+    if (e.message) {
       hidePreloader();
-      showAlert("error", "Something went Wrong !", 1500);
+      showAlert("error", e.message, 2000);
     }
   }
 }

@@ -1,5 +1,6 @@
 import { getSingleMusic } from "./utils/musicApi.js";
 import {hidePreloader} from './utils/preloader.js';
+import {showAlert} from './utils/alert.js';
 import { _ } from "./utils/general.js";
 
 const playBtn = _.querySelector(".control:nth-child(2)");
@@ -26,9 +27,9 @@ async function getSongInformation() {
       setMusicInfos(music);
     }
   } catch (e) {
-    if (e) {
+    if (e.message) {
       hidePreloader();
-      showAlert("error", "Something went Wrong !",1500);
+      showAlert("error", e.message,2000);
     }
   }
 }

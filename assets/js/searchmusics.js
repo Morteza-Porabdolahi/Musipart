@@ -44,8 +44,8 @@ async function getDatasFromApi(query = "") {
       createHtmlFromSongs(searchedSongs);
     }
   } catch (e) {
-    console.log(e);
-    showAlert("error", "Something Went Wrong!",1500);
+    console.log(e.message);
+    showAlert("error", e.message,2000);
   }
 }
 
@@ -65,11 +65,19 @@ function createHtmlFromSongs(songs = []) {
   songsWrapper.innerHTML = "";
   musicsCardTemplate = '';
 
-  for(let {song} of songs){
-    musicsCardTemplate += createHtmlFromSong(song);
+  
+  if (songs.length <= 0) {
+    songsWrapper.style.justifyContent = "center";
+    songsWrapper.innerHTML =
+      '<p class="content__not-found">No Musics Found !</p>';
+  } else {
+    for (let {song} of songs) {
+      musicsCardTemplate += createHtmlFromSong(song);
+    }
+
+    songsWrapper.insertAdjacentHTML("beforeend", musicsCardTemplate);
   }
 
-  songsWrapper.insertAdjacentHTML("beforeend", musicsCardTemplate);
   insertInDom(songsWrapper);
 }
 

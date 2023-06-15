@@ -6,7 +6,8 @@ export default async function getNewMusics(_, res) {
     
     res.send(newMusics.results);
   } catch (e) {
-    if (e) console.log(e);
-    res.send(e);
+    if (e.message) {
+      res.send(e);
+    };
   }
 }

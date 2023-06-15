@@ -6,7 +6,8 @@ export default async function getMusic(req,res){
     
         res.send(specificMusic);
       } catch (e) {
-        if (e) console.log(e);
-        res.send(e);
+        if (e.message) {
+          res.send(e);
+        };
       }
 }
