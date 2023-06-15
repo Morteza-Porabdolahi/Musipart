@@ -1,12 +1,9 @@
 import {searchMusics} from './utils/musicApi.js'
-import { _, createHtmlFromSong ,showHelpTag , hideHelpTag} from './utils/general.js';
+import { _, createHtmlFromSong ,showHelpTag , hideHelpTag, debounce} from './utils/general.js';
 import { showAlert } from './utils/alert.js';
 
 const searchInput = _.querySelector(".search-input");
 const container = _.querySelector(".allmusics__searched");
-
-// for Debouncing
-let timeout;
 
 searchInput.addEventListener("input", handleSearchQuery);
 
@@ -15,6 +12,8 @@ searchInput.addEventListener("input", handleSearchQuery);
  * @function handleSearchQuery
  * @param {object} e - event Object
  */
+const debouncedFunction = debounce(getDatasFromApi,800);
+
 function handleSearchQuery(e) {
   const inputValue = e.target.value;
 
@@ -23,8 +22,7 @@ function handleSearchQuery(e) {
 
     showHelpTag("Please Search a Music Name !")
   } else {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => getDatasFromApi(inputValue), 800);
+    debouncedFunction(inputValue);
   }
 }
 

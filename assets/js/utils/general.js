@@ -64,4 +64,13 @@ function hideLoadMoreBtn(callback){
   loadMoreBtn.style.display = "none";
 }
 
-export { _, createHtmlFromSong, createHtmlFromArtist,showHelpTag,hideHelpTag,showLoadMoreBtn,hideLoadMoreBtn };
+function debounce(fn,delay){
+  let timeout;
+
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(fn,delay,...args)
+  }
+}
+
+export { _, createHtmlFromSong, createHtmlFromArtist,showHelpTag,hideHelpTag,showLoadMoreBtn,hideLoadMoreBtn ,debounce};

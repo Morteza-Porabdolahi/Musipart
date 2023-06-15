@@ -1,11 +1,15 @@
 import { getArtists } from "./utils/musicApi.js";
 import { showAlert } from "./utils/alert.js";
-import { _, createHtmlFromArtist ,showHelpTag,hideHelpTag} from "./utils/general.js";
+import {
+  _,
+  createHtmlFromArtist,
+  showHelpTag,
+  hideHelpTag,
+  debounce,
+} from "./utils/general.js";
 
 const allArtistsContainer = _.querySelector(".artists__container");
 const searchInput = _.querySelector(".search-input");
-
-let timeout;
 
 searchInput.addEventListener("input", handleSearch);
 
@@ -39,7 +43,7 @@ async function getArtistsData(artistName = "") {
  * @param {array} artists - all artists
  */
 let allArtistsWrapper = _.createElement("div"),
-artistCardsTemplate = "";
+  artistCardsTemplate = "";
 
 allArtistsWrapper.className = "artists-section";
 
@@ -73,15 +77,16 @@ function appendWrapperInContainer(wrapper) {
  * @function handleSearch
  * @param {object} e - event object
  */
+const debouncedFunction = debounce(getArtistsData, 800);
+
 function handleSearch(e) {
   const inputValue = e.target.value;
 
   if (!e.target.value) {
     allArtistsContainer.innerHTML = "";
 
-    showHelpTag("Please Search a Artist Name !")
+    showHelpTag("Please Search a Artist Name !");
   } else {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => getArtistsData(inputValue), 800);
+    debouncedFunction(inputValue);
   }
 }
