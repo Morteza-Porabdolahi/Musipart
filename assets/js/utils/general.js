@@ -50,4 +50,18 @@ function hideHelpTag() {
   helpTag.style.display = "none";
 }
 
-export { _, createHtmlFromSong, createHtmlFromArtist,showHelpTag,hideHelpTag };
+function showLoadMoreBtn(callback){
+  const loadMoreBtn = _.querySelector(".load-more");
+
+  loadMoreBtn.addEventListener("click", callback);
+  loadMoreBtn.style.display = "block";
+}
+
+function hideLoadMoreBtn(callback){
+  const loadMoreBtn = _.querySelector(".load-more");
+
+  loadMoreBtn.removeEventListener("click", callback);
+  loadMoreBtn.style.display = "none";
+}
+
+export { _, createHtmlFromSong, createHtmlFromArtist,showHelpTag,hideHelpTag,showLoadMoreBtn,hideLoadMoreBtn };

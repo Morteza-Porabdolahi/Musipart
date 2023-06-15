@@ -1,8 +1,17 @@
 import { showAlert } from "./utils/alert.js";
-import { getWeeklyMusics, getDailyMusics, getNewMusics } from "./utils/musicApi.js";
+import {
+  getWeeklyMusics,
+  getDailyMusics,
+  getNewMusics,
+} from "./utils/musicApi.js";
 import { hidePreloader } from "./utils/preloader.js";
-import { paginateDatas,clickedCount } from "./utils/pagination.js";
-import { _ ,createHtmlFromSong } from "./utils/general.js";
+import { paginateDatas, clickedCount } from "./utils/pagination.js";
+import {
+  _,
+  createHtmlFromSong,
+  hideLoadMoreBtn,
+  showLoadMoreBtn,
+} from "./utils/general.js";
 
 window.addEventListener("load", getSpecificSongs);
 
@@ -18,25 +27,25 @@ async function getSpecificSongs() {
   try {
     if (urlQuery === "daily") {
       const dailyMusics = await getDailyMusics();
-console.log(dailyMusics);
+      console.log(dailyMusics);
       resultSongs = dailyMusics;
     } else if (urlQuery === "weekly") {
       const weeklyMusics = await getWeeklyMusics();
 
-      resultSongs = weeklyMusics
+      resultSongs = weeklyMusics;
     } else {
       const newMusics = await getNewMusics();
 
-      resultSongs = newMusics
+      resultSongs = newMusics;
     }
 
-    const paginatedDatas = paginateDatas(resultSongs,perClick);
+    const paginatedDatas = paginateDatas(resultSongs, perClick);
     createHtmlFromSongs(paginatedDatas);
   } catch (e) {
     if (e) {
       console.log(e);
       hidePreloader();
-      showAlert("error", "Something went Wrong !",1500);
+      showAlert("error", "Something went Wrong !", 1500);
     }
   }
 }
@@ -63,21 +72,21 @@ function createHtmlFromSongs(songs = []) {
     }
     songsWrapper.insertAdjacentHTML("beforeend", musicsCardTemplate);
   }
-  
+
   if (clickedCount === 1) {
     appendMusicsIntoDom(songsWrapper);
   }
   handleLoadMoreBtn();
 }
 
-function handleLoadMoreBtn(){
-  const loadMoreBtn = _.querySelector(".load-more");
-  if(resultSongs.length > perClick && perClick * clickedCount < resultSongs.length){
-    loadMoreBtn.addEventListener("click", getSpecificSongs);
-    loadMoreBtn.style.display = "block";
-  }else{
-    loadMoreBtn.removeEventListener("click", getSpecificSongs);
-    loadMoreBtn.style.display = "none";
+function handleLoadMoreBtn() {
+  if (
+    resultSongs.length > perClick &&
+    perClick * clickedCount < resultSongs.length
+  ) {
+    showLoadMoreBtn(getSpecificSongs);
+  } else {
+    hideLoadMoreBtn(getSpecificSongs);
   }
 }
 
