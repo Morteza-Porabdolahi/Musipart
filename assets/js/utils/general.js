@@ -7,7 +7,7 @@ function createHtmlFromSong(song = {}) {
             <img loading="lazy" class="music-card__img" src="${
               song.image.cover.url
             }"/> 
-            <button onclick="playEntireMusic(event,'${
+            <button onclick="playEntireMusic('${
               song.id
             }')" class="music-card__play-btn">   
                 <img src="/assets/icons/play-mini-line.svg"/> 

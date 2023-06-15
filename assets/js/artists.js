@@ -11,13 +11,12 @@ import {
 const allArtistsContainer = _.querySelector(".artists__container");
 const searchInput = _.querySelector(".search-input");
 
+const debouncedFunction = debounce(getArtistsData, 800);
 /*
- * handles the user entered input in search input
+ * handles the user entered input
  * @function handleSearch
  * @param {object} e - event object
  */
-const debouncedFunction = debounce(getArtistsData, 800);
-
 function handleSearch(e) {
   const inputValue = e.target.value;
 
@@ -32,7 +31,7 @@ function handleSearch(e) {
 searchInput.addEventListener("input", handleSearch);
 
 /*
- * get Artits array from api
+ * gets Artits array
  * @function getArtistsData
  */
 async function getArtistsData(artistName = "") {
@@ -54,33 +53,32 @@ async function getArtistsData(artistName = "") {
   }
 }
 
-/*
- * create HTML Elements (artist card) using the artists created Array with getArtistsData function
- * @function createArtistsCards
- * @param {array} artists - all artists
- */
 let allArtistsWrapper = _.createElement("div"),
-  artistCardsTemplate = "";
+  artistsCardsTemplate = "";
 
 allArtistsWrapper.className = "artists-section";
-
+/*
+ * Builds artist card html 
+ * @function createArtistsCards
+ * @param {array} artists - artists
+ */
 function createArtistsCards(artists = []) {
   allArtistsWrapper = allArtistsWrapper.cloneNode(true);
 
   allArtistsWrapper.innerHTML = "";
-  artistCardsTemplate = "";
+  artistsCardsTemplate = "";
 
   for (let { artist } of artists) {
-    artistCardsTemplate += createHtmlFromArtist(artist);
+    artistsCardsTemplate += createHtmlFromArtist(artist);
   }
 
-  allArtistsWrapper.insertAdjacentHTML("beforeend", artistCardsTemplate);
+  allArtistsWrapper.insertAdjacentHTML("beforeend", artistsCardsTemplate);
   appendWrapperInContainer(allArtistsWrapper);
 }
 
 /*
- * append the artists wrapper into dom
- * @function appendContainerIntoDom
+ * appends the artists wrapper into dom
+ * @function appendWrapperInContainer
  * @param {HTMLElement} wrapper - the wrapper of artists
  */
 function appendWrapperInContainer(wrapper) {

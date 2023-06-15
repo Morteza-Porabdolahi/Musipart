@@ -26,12 +26,13 @@ let isPlaying = false;
 let defaultVolume = +localStorage.getItem("player-volume") || 0.2;
 
 volumeSlider.value = defaultVolume * 100;
+
 /*
- * this function is set as an onclick event to music cards play buttons (shows when hovers on music cards)
+ * this function is set as an onclick event on music cards play buttons
  * @function playEntireMusic
  * @param {string} musicId - the id of music
  */
-window.playEntireMusic = async function (_, musicId) {
+window.playEntireMusic = async function (musicId) {
   try {
     showAlert("loading", "Loading...");
 
@@ -51,20 +52,12 @@ window.playEntireMusic = async function (_, musicId) {
   }
 };
 
-/*
- * this function is handling the errors of the audio Element
- * @function handleAudioElemErrors
- */
 function handleAudioElemErrors() {
   hideAlert();
 
-  showAlert("error", "The audio could not loaded successfully !", 1500);
+  showAlert("error", "The audio could not loaded successfully !", 2000);
 }
 
-/*
- * this function fires when the audio Elem is ready for playing the music
- * @function playTheAudioWhenReady
- */
 function playTheAudioWhenReady() {
   setRequirementEvents();
 
@@ -82,10 +75,6 @@ function playTheAudioWhenReady() {
   playMusic();
 }
 
-/*
- * set requirement events like controlling volume and etc... when the music started playing
- * @function setRequirementEvents
- */
 function setRequirementEvents() {
   volumeSlider.addEventListener("input", handleAudioVolume);
   repeatSong.addEventListener("click", handleReapetOrNot);
@@ -119,7 +108,7 @@ function resetProgressBarWidth() {
 }
 
 /*
- * handles the play and pause of the music
+ * handles the playing or pausing of the music
  * @function handlePlayerPauseOrClick
  */
 function handlePlayerPauseOrClick() {
@@ -130,10 +119,6 @@ function handlePlayerPauseOrClick() {
   }
 }
 
-/*
- * plays the music
- * @function playMusic
- */
 function playMusic() {
   isPlaying = true;
   playerPlayBtn.firstElementChild.src = "/assets/icons/pause-mini-line.svg";
@@ -141,10 +126,6 @@ function playMusic() {
   audioElem.play();
 }
 
-/*
- * pauses the music
- * @function pauseMusic
- */
 function pauseMusic() {
   isPlaying = false;
   playerPlayBtn.firstElementChild.src = "/assets/icons/play-mini-line.svg";
@@ -152,17 +133,13 @@ function pauseMusic() {
   audioElem.pause();
 }
 
-/*
- * handles the repeat button
- * @function handleReapetOrNot
- */
 function handleReapetOrNot() {
   audioElem.loop = !audioElem.loop;
 
   showAlert(
     "done",
     `Repeat Mode is Now ${audioElem.loop ? "Enabled" : "Disabled"}`,
-    1500
+    2000
   );
 }
 
@@ -178,10 +155,6 @@ function handleAudioVolume(e) {
   audioElem.volume = defaultVolume;
 }
 
-/*
- * handles the HD button on music player
- * @function handleAudioQuality
- */
 function handleAudioQuality() {
   //  save the currentTime, change the url , play the music from saved Time
   currentTime = audioElem.currentTime;

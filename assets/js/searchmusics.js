@@ -7,13 +7,13 @@ const container = _.querySelector(".allmusics__searched");
 
 searchInput.addEventListener("input", handleSearchQuery);
 
+
+const debouncedFunction = debounce(getSearchedMusics,800);
 /*
  * handles the user entered input
  * @function handleSearchQuery
  * @param {object} e - event Object
  */
-const debouncedFunction = debounce(getDatasFromApi,800);
-
 function handleSearchQuery(e) {
   const inputValue = e.target.value;
 
@@ -28,10 +28,10 @@ function handleSearchQuery(e) {
 
 /*
  * gets the data from url entered with input
- * @function getDatasFromApi
+ * @function getSearchedMusics
  * @param {string} url - user entered input as a url
  */
-async function getDatasFromApi(query = "") {
+async function getSearchedMusics(query = "") {
   try {
     const searchedSongs = await searchMusics(query);
 
@@ -44,21 +44,19 @@ async function getDatasFromApi(query = "") {
       createHtmlFromSongs(searchedSongs);
     }
   } catch (e) {
-    console.log(e.message);
     showAlert("error", e.message,2000);
   }
 }
 
-/*
- * gets the data and put it as music card into dom
- * @function manipulateHtml
- * @param {array} data - the data that api has sent to us
- */
 let songsWrapper = _.createElement("div"),
  musicsCardTemplate = '';
 
 songsWrapper.className = "allmusics-section";
-
+/*
+ * Builds music card html
+ * @function createHtmlFromSongs
+ * @param {array} songs - songs array
+ */
 function createHtmlFromSongs(songs = []) {
   songsWrapper = songsWrapper.cloneNode(true);
 
@@ -81,11 +79,6 @@ function createHtmlFromSongs(songs = []) {
   insertInDom(songsWrapper);
 }
 
-/*
- * inserts the created wrapper into dom
- * @function insertInDom
- * @param {HTMLElement} wrapper - the wrapper of musics
- */
 function insertInDom(wrapper) {
   container.innerHTML = "";
 

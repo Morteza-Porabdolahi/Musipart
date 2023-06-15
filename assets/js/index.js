@@ -12,10 +12,6 @@ import {
   createHtmlFromSong,
 } from "./utils/general.js";
 
-/*
- * get all categories songs from api
- * @function getAllSongs
- */
 function getAllSongsAndArtists() {
   try {
     handleDailyMusics();
@@ -62,18 +58,18 @@ async function handleArtists() {
 }
 
 /*
- * gets the 6 elements of every array inside datas object with the help of makeStartAndEndIndex function
- * @function manipulateData
- * @param {object} datas - the object of datas
+ * splices the 6 elements of datas array with the help of makeStartAndEndIndex function
+ * @function spliceSixElemsOfArray
+ * @param {array} datas - the array of datas
  */
 function spliceSixElemsOfArray(datas = []) {
   return datas.slice().splice(...makeStartAndEndIndex(datas, 6));
 }
 
 /*
- * get 6 elements of every results array with a shit logic <3
+ * returns indexes of 6 elements of datas array with a shit logic <3
  * @function makeStartAndEndIndex
- * @param {array} results - musics or artists Datas
+ * @param {array} datas - musics or artists array
  * @param {number} - number of elements that you wanna get
  */
 function makeStartAndEndIndex(datas = [], elemNum) {
@@ -85,17 +81,17 @@ function makeStartAndEndIndex(datas = [], elemNum) {
   }
 }
 
-/*
- * create HTML Elements (music card and artist card) using the all musics created Array with manipulateDatas function
- * @function createHTMLElementsFromData
- * @param {object} newDatas - filtered Datas
- */
 let wrapper = _.createElement("div"),
 musicsCardTemplate = "",
 artistsCardTemplate = "";
 
 wrapper.className = "section__content";
-
+/*
+ * Builds music card html
+ * @function createHtmlFromSongs
+ * @param {array} songs - songs array
+ * @param {string} containerClass - container of the cards
+ */
 function createHtmlFromSongs(songs = [], containerClass = "") {
   wrapper = wrapper.cloneNode(true);
 
@@ -116,9 +112,10 @@ function createHtmlFromSongs(songs = [], containerClass = "") {
 }
 
 /*
- * create HTML Elements (music card and artist card) using the all musics created Array with manipulateDatas function
- * @function createHTMLElementsFromData
- * @param {object} newDatas - filtered Datas
+ * Builds artist card html
+ * @function createHtmlFromArtists
+ * @param {array} artists - artists array
+ * @param {string} containerClass - container of the cards
  */
 function createHtmlFromArtists(artists = [], containerClass = "") {
   wrapper = wrapper.cloneNode(true);
@@ -139,12 +136,6 @@ function createHtmlFromArtists(artists = [], containerClass = "") {
   insertInDom(wrapper, containerClass);
 }
 
-/*
- * append the muiscs wrapper into dom
- * @function insertInDom
- * @param {string} containerClass - the container class name
- * @param {HTMLElement} toInsert - the wrapper of musics or artists
- */
 function insertInDom(wrapper, containerClass) {
   const container = _.querySelector(`.${containerClass}`);
 

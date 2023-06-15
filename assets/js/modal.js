@@ -6,7 +6,7 @@ const modalContainer = _.querySelector(".modal-container");
 _.documentElement.addEventListener("click", handleClickedElements);
 
 /*
- * handle Clicks using event event bubbling
+ * handles clicks using event bubbling
  * @function handleClickedElements
  * @param {object} e - event Object
  */
@@ -23,7 +23,7 @@ function handleClickedElements(e) {
 }
 
 /*
- * handle modal Close when clicked outside of modal
+ * handles modal Close when clicked "outside" of modal
  * @function handleModalClose
  * @param {object} e - event Object
  */
@@ -37,18 +37,10 @@ function handleModalClose(e) {
   }
 }
 
-/*
- * shows modal
- * @function showModal
- */
 function showModal() {
   modalContainer.style.display = "block";
 }
 
-/*
- * hides modal
- * @function showModal
- */
 function hideModal() {
   modalContainer.style.display = "none";
 }

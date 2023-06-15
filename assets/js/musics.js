@@ -18,7 +18,7 @@ const perClick = 10;
 let resultSongs;
 
 /*
- * this function is in multiple pages and configured by url query
+ * this function is in multiple pages and configured by url query "q"
  * @function getSpecificSongs
  */
 async function getSpecificSongs() {
@@ -40,15 +40,14 @@ async function getSpecificSongs() {
 }
 window.addEventListener("load", getSpecificSongs);
 
-/*
- * create HTML Elements (music card) using the spliced musics with manipulateData function
- * @function createHTMLElementsFromData
- * @param {array} splicedMusics - spliced Musics
- */
-
 const songsWrapper = _.createElement("div");
 songsWrapper.className = "allmusics-section";
 
+/*
+ * Builds music card html
+ * @function createHtmlFromSongs
+ * @param {array} songs - songs array
+ */
 function createHtmlFromSongs(songs = []) {
   let musicsCardTemplate = "";
 
@@ -81,9 +80,9 @@ function handleLoadMoreBtn() {
 }
 
 /*
- * append the musics wrapper into dom
+ * appends the musics wrapper into dom
  * @function appendMusicsIntoDom
- * @param {HTMLElement} wrapper - the wrapper of Musics
+ * @param {HTMLElement} wrapper - the wrapper of musics
  */
 function appendMusicsIntoDom(wrapper) {
   const songsContaienr = _.querySelector(".allmusics");
