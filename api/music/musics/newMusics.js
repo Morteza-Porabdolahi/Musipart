@@ -1,4 +1,4 @@
-const fetch = require("../_interceptFetch");
+const fetch = require("../../_interceptFetch");
 
 export default async function getNewMusics(_, res) {
   try {

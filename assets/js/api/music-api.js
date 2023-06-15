@@ -1,4 +1,4 @@
-import myFetch from './interceptFetch.js';
+import myFetch from './intercept-fetch.js';
 
 const API_URL = `http://localhost:3000/api/music`;
 
