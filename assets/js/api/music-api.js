@@ -1,9 +1,9 @@
 import myFetch from './interceptFetch.js';
 
-const API_URL = `http://localhost:3000/api`;
+const API_URL = `http://localhost:3000/api/music`;
 
 export function getSingleMusic(id) {
-  return myFetch(`${API_URL}/music/${id}`);
+  return myFetch(`${API_URL}/${id}`);
 }
 
 export function getArtistMusics(artistName) {
