@@ -1,4 +1,4 @@
-import { getArtists } from "./utils/musicApi.js";
+import { getArtists } from "./api/music-api.js";
 import { showAlert } from "./utils/alert.js";
 import {
   _,

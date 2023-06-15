@@ -1,4 +1,4 @@
-import {searchMusics} from './utils/musicApi.js'
+import {searchMusics} from './api/music-api.js'
 import { _, createHtmlFromSong ,showHelpTag , hideHelpTag, debounce} from './utils/general.js';
 import { showAlert } from './utils/alert.js';
 

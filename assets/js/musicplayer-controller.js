@@ -1,4 +1,4 @@
-import { getSingleMusic } from "./utils/musicApi.js";
+import { getSingleMusic } from "./api/music-api.js";
 import { showAlert, hideAlert } from "./utils/alert.js";
 import { _ } from "./utils/general.js";
 

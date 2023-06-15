@@ -4,7 +4,7 @@ import {
   getDailyMusics,
   getWeeklyMusics,
   getTopArtists,
-} from "./utils/musicApi.js";
+} from "./api/music-api.js";
 import { hidePreloader } from "./utils/preloader.js";
 import {
   _,

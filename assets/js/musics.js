@@ -3,7 +3,7 @@ import {
   getWeeklyMusics,
   getDailyMusics,
   getNewMusics,
-} from "./utils/musicApi.js";
+} from "./api/music-api.js";
 import { hidePreloader } from "./utils/preloader.js";
 import { paginateDatas, clickedCount } from "./utils/pagination.js";
 import {
