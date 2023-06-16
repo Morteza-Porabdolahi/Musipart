@@ -6,9 +6,6 @@
   "name": "musipart",
   "version": "1.0.0",
   "main": "index.js",
-  "dependencies": {
-    "node-fetch": "^2.6.11"
-  },
   "scripts": {
     "start": "wds --node-resolve --open --watch"
   },

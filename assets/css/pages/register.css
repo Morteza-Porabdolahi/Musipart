@@ -21,11 +21,17 @@
 @supports (display: flex) {
   .form-container__forms {
     display: flex;
+    flex-direction: row;
   }
 }
 
 .forms__form {
   min-width: 100%;
+  display: none;
+}
+
+.forms__form.active-form{
+  display: block;
 }
 
 .forms__form > h2 {
@@ -38,6 +44,20 @@
   width: 100%;
 }
 
+.form__input-container > .error, .form__radios > .error{
+  color : rgb(209, 22, 22);
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: .06rem;
+  text-align: left;
+  padding: .4rem 0 0 .4rem;
+}
+
+.form__radios > .error{
+  padding: 2rem 0 0 0;
+  text-align: center;
+}
+
 label {
   font-size: calc(0.2vw + 1.2rem);
 }
@@ -45,7 +65,7 @@ label {
 .form__input-container > label {
   position: absolute;
   color: var(--color-slate-500);
-  top: 50%;
+  top: 30%;
   left: 0.4rem;
   transform: translate(0, -50%);
   transition: transform 0.3s;
@@ -79,10 +99,11 @@ label {
 .radios__radio {
   float: left;
   margin-left: 1rem;
+
 }
 
 .form__radios {
-  width: 14rem;
+  width: 28rem;
   margin: 3rem auto;
 }
 
