@@ -1,10 +1,10 @@
 @media only screen and (min-width: 575.99px) {
   .navbar {
     -moz-column-count: 1;
-         column-count: 1;
+    column-count: 1;
     float: left;
     -moz-column-width: 5rem;
-         column-width: 5rem;
+    column-width: 5rem;
     min-height: calc(100vh - 3rem);
     padding: 2.5rem 0;
   }
@@ -21,7 +21,7 @@
   .navbar__item {
     margin-bottom: 3rem;
   }
-  
+
   .container__main {
     min-height: calc(100vh - 3rem);
     margin: 0 0 0 calc(50px + 2rem);
@@ -92,12 +92,10 @@
     display: block;
   }
 
-  .container__music-player .controls-container__controls{
+  .container__music-player .controls-container__controls {
     flex: 0 0 21%;
     justify-content: flex-start;
   }
-
-
 }
 
 @media only screen and (min-width: 1020px) {

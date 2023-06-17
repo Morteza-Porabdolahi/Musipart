@@ -1,11 +1,11 @@
-.help{
+.help {
   padding: 10rem 0;
   width: -moz-max-content;
   width: max-content;
   margin: 0 auto;
   font-size: 1.5rem;
   font-weight: bold;
-  letter-spacing: .09rem;
+  letter-spacing: 0.09rem;
   color: var(--color-slate-500);
 }
 

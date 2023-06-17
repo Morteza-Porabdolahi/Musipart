@@ -30,7 +30,7 @@
   display: none;
 }
 
-.forms__form.active-form{
+.forms__form.active-form {
   display: block;
 }
 
@@ -44,16 +44,17 @@
   width: 100%;
 }
 
-.form__input-container > .error, .form__radios > .error{
-  color : rgb(209, 22, 22);
+.form__input-container > .error,
+.form__radios > .error {
+  color: rgb(209, 22, 22);
   font-size: 1.2rem;
   font-weight: bold;
-  letter-spacing: .06rem;
+  letter-spacing: 0.06rem;
   text-align: left;
-  padding: .4rem 0 0 .4rem;
+  padding: 0.4rem 0 0 0.4rem;
 }
 
-.form__radios > .error{
+.form__radios > .error {
   padding: 2rem 0 0 0;
   text-align: center;
 }
@@ -99,7 +100,6 @@ label {
 .radios__radio {
   float: left;
   margin-left: 1rem;
-
 }
 
 .form__radios {

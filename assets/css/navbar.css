@@ -2,7 +2,7 @@
   background-color: var(--color-slate-800);
   border-radius: 1rem;
   -moz-column-count: 5;
-       column-count: 5;
+  column-count: 5;
   padding: 1rem 0;
   box-shadow: 5px 5px 10px var(--color-slate-900);
   /* transition: padding 0.3 */
@@ -12,12 +12,12 @@
   text-align: center;
 }
 
-.navbar__item  span {
+.navbar__item span {
   display: none;
   animation: displayAnimation 0.3s;
 }
 
-.navbar__item:last-child > a{
+.navbar__item:last-child > a {
   cursor: default;
 }
 

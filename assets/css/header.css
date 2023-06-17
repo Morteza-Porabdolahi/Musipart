@@ -43,7 +43,8 @@
   right: 0;
 }
 
-.options__input::-moz-placeholder, .header__input::-moz-placeholder {
+.options__input::-moz-placeholder,
+.header__input::-moz-placeholder {
   color: var(--color-slate-500);
 }
 
