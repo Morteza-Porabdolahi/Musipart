@@ -32,8 +32,8 @@ async function getSpecificSongs() {
     const paginatedDatas = paginateDatas(resultSongs, perClick);
     createHtmlFromSongs(paginatedDatas);
   } catch (e) {
-      hidePreloader();
-      showAlert("error",e.message, 2000);
+    hidePreloader();
+    showAlert("error", e.message, 2000);
   }
 }
 window.addEventListener("load", getSpecificSongs);

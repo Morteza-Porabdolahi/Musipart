@@ -50,27 +50,36 @@ function hideHelpTag() {
   helpTag.style.display = "none";
 }
 
-function showLoadMoreBtn(callback){
+function showLoadMoreBtn(callback) {
   const loadMoreBtn = _.querySelector(".load-more");
 
   loadMoreBtn.addEventListener("click", callback);
   loadMoreBtn.style.display = "block";
 }
 
-function hideLoadMoreBtn(callback){
+function hideLoadMoreBtn(callback) {
   const loadMoreBtn = _.querySelector(".load-more");
 
   loadMoreBtn.removeEventListener("click", callback);
   loadMoreBtn.style.display = "none";
 }
 
-function debounce(fn,delay){
+function debounce(fn, delay) {
   let timeout;
 
   return (...args) => {
     clearTimeout(timeout);
-    timeout = setTimeout(fn,delay,...args)
-  }
+    timeout = setTimeout(fn, delay, ...args);
+  };
 }
 
-export { _, createHtmlFromSong, createHtmlFromArtist,showHelpTag,hideHelpTag,showLoadMoreBtn,hideLoadMoreBtn ,debounce};
+export {
+  _,
+  createHtmlFromSong,
+  createHtmlFromArtist,
+  showHelpTag,
+  hideHelpTag,
+  showLoadMoreBtn,
+  hideLoadMoreBtn,
+  debounce,
+};

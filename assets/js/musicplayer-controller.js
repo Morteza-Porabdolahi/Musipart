@@ -46,7 +46,7 @@ window.playEntireMusic = async function (musicId) {
     audioElem.addEventListener("canplay", playTheAudioWhenReady);
     audioElem.addEventListener("error", handleAudioElemErrors);
   } catch (e) {
-      showAlert("error", e.message, 2000);
+    showAlert("error", e.message, 2000);
   }
 };
 
@@ -161,10 +161,10 @@ function handleAudioQuality() {
   resetProgressBarWidth();
   audioElem.src = currentMusic.audio[`${isHD ? "high" : "medium"}`].url;
   audioElem.currentTime = currentTime;
-  
+
   playMusic();
 
-  showAlert("done", `HD Mode is Now ${isHD ? "Enabled" : "Disabled"}`,1500);
+  showAlert("done", `HD Mode is Now ${isHD ? "Enabled" : "Disabled"}`, 1500);
 }
 
 /*

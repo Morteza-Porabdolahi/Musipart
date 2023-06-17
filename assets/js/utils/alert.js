@@ -8,20 +8,20 @@ import { _ } from "./general.js";
  * @param {number} ms - How long the alert should be displayed in milliseconds
  */
 
-function showAlert(type, text , ms) {
+function showAlert(type, text, ms) {
   const alertContainer = _.querySelector(".alert-container");
 
   alertContainer.lastElementChild.textContent = text;
 
-  // first hide all icons and then display the icon 
+  // first hide all icons and then display the icon
   alertContainer
     .querySelectorAll("img")
     .forEach((icon) => (icon.style.display = "none"));
   alertContainer.querySelector(`img.${type}`).style.display = "inline";
 
   alertContainer.classList.add("active");
-  
-  if(ms){
+
+  if (ms) {
     setTimeout(hideAlert, ms);
   }
 }

@@ -1,4 +1,4 @@
-import myFetch from './intercept-fetch.js';
+import myFetch from "./intercept-fetch.js";
 
 const API_URL = `http://localhost:4000/api/musics`;
 
@@ -33,5 +33,3 @@ export function getWeeklyMusics() {
 export function getTopArtists() {
   return myFetch(`${API_URL}/artists/top`);
 }
-
-

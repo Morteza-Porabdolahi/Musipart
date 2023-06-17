@@ -14,17 +14,15 @@ function setDocumentTitle() {
   const searchParams = location.search;
   const artistName = new URLSearchParams(searchParams).get("q");
 
-  if(artistName){
+  if (artistName) {
     _.title = `Musipart || ${artistName}`;
     artistsTitleElement.textContent = artistName;
-  
-    getArtistSongs(artistName);
-  }else{
-    hidePreloader();
-    container.innerHTML =
-    '<p class="content__not-found">No Artist Found !</p>';
-  }
 
+    getArtistSongs(artistName);
+  } else {
+    hidePreloader();
+    container.innerHTML = '<p class="content__not-found">No Artist Found !</p>';
+  }
 }
 
 window.addEventListener("load", setDocumentTitle);
@@ -46,13 +44,13 @@ async function getArtistSongs(artistName = "") {
       createArtistSongsCard(artistMusics);
     }
   } catch (e) {
-      hidePreloader();
-      showAlert("error", e.message, 2000);
+    hidePreloader();
+    showAlert("error", e.message, 2000);
   }
 }
 
 /*
- * Builds music card html from artist musics 
+ * Builds music card html from artist musics
  * @function createArtistSongsCard
  * @param {array} artistMusics - artist Musics
  */

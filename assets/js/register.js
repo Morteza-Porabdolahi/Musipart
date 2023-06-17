@@ -80,11 +80,11 @@ async function handleUserRegister(userObj) {
   }
 }
 
-function changeClasses(){
-  _.querySelector('#register').classList.remove('active-form')
+function changeClasses() {
+  _.querySelector("#register").classList.remove("active-form");
   _.querySelector("#login").classList.add("active-form");
 
-  _.querySelector('[data-form="register"]').classList.remove('active-toggle')
+  _.querySelector('[data-form="register"]').classList.remove("active-toggle");
   _.querySelector('[data-form="login"]').classList.add("active-toggle");
 }
 
@@ -188,18 +188,18 @@ function validatePassword(pass = "") {
   return passRegex.test(pass);
 }
 
-function clearInputValues(form){
+function clearInputValues(form) {
   const formInputs = filterFormInputs(form.elements);
 
   formInputs.forEach((input) => {
     if (input.type === "radio" && input.checked) {
       input.checked = false;
     } else {
-      input.value = '';
+      input.value = "";
     }
   });
 }
 
-function filterFormInputs(formElems = []){
-  return Array.from(formElems).filter(elem => elem.nodeName === 'INPUT')
+function filterFormInputs(formElems = []) {
+  return Array.from(formElems).filter((elem) => elem.nodeName === "INPUT");
 }

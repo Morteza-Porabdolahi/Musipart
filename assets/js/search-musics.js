@@ -1,14 +1,19 @@
-import {searchMusics} from './api/music-api.js'
-import { _, createHtmlFromSong ,showHelpTag , hideHelpTag, debounce} from './utils/general.js';
-import { showAlert } from './utils/alert.js';
+import { searchMusics } from "./api/music-api.js";
+import {
+  _,
+  createHtmlFromSong,
+  showHelpTag,
+  hideHelpTag,
+  debounce,
+} from "./utils/general.js";
+import { showAlert } from "./utils/alert.js";
 
 const searchInput = _.querySelector(".search-input");
 const container = _.querySelector(".allmusics__searched");
 
 searchInput.addEventListener("input", handleSearchQuery);
 
-
-const debouncedFunction = debounce(getSearchedMusics,800);
+const debouncedFunction = debounce(getSearchedMusics, 800);
 /*
  * handles the user entered input
  * @function handleSearchQuery
@@ -20,7 +25,7 @@ function handleSearchQuery(e) {
   if (!e.target.value) {
     container.innerHTML = "";
 
-    showHelpTag("Please Search a Music Name !")
+    showHelpTag("Please Search a Music Name !");
   } else {
     debouncedFunction(inputValue);
   }
@@ -38,18 +43,18 @@ async function getSearchedMusics(query = "") {
     if (searchedSongs.length <= 0) {
       container.innerHTML = "";
 
-      showHelpTag('No Musics Found !');
+      showHelpTag("No Musics Found !");
     } else {
       hideHelpTag();
       createHtmlFromSongs(searchedSongs);
     }
   } catch (e) {
-    showAlert("error", e.message,2000);
+    showAlert("error", e.message, 2000);
   }
 }
 
 let songsWrapper = _.createElement("div"),
- musicsCardTemplate = '';
+  musicsCardTemplate = "";
 
 songsWrapper.className = "allmusics-section";
 /*
@@ -61,15 +66,14 @@ function createHtmlFromSongs(songs = []) {
   songsWrapper = songsWrapper.cloneNode(true);
 
   songsWrapper.innerHTML = "";
-  musicsCardTemplate = '';
+  musicsCardTemplate = "";
 
-  
   if (songs.length <= 0) {
     songsWrapper.style.justifyContent = "center";
     songsWrapper.innerHTML =
       '<p class="content__not-found">No Musics Found !</p>';
   } else {
-    for (let {song} of songs) {
+    for (let { song } of songs) {
       musicsCardTemplate += createHtmlFromSong(song);
     }
 

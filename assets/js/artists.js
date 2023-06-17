@@ -47,7 +47,7 @@ async function getArtistsData(artistName = "") {
       createArtistsCards(artists);
     }
   } catch (e) {
-      showAlert("error", e.message, 2000);
+    showAlert("error", e.message, 2000);
   }
 }
 
@@ -56,7 +56,7 @@ let allArtistsWrapper = _.createElement("div"),
 
 allArtistsWrapper.className = "artists-section";
 /*
- * Builds artist card html 
+ * Builds artist card html
  * @function createArtistsCards
  * @param {array} artists - artists
  */

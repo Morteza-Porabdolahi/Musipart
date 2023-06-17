@@ -1,6 +1,6 @@
 import { getSingleMusic } from "./api/music-api.js";
-import {hidePreloader} from './utils/preloader.js';
-import {showAlert} from './utils/alert.js';
+import { hidePreloader } from "./utils/preloader.js";
+import { showAlert } from "./utils/alert.js";
 import { _ } from "./utils/general.js";
 
 const playBtn = _.querySelector(".control:nth-child(2)");
@@ -28,8 +28,8 @@ async function getSongInformation() {
       setMusicInfos(music);
     }
   } catch (e) {
-      hidePreloader();
-      showAlert("error", e.message,2000);
+    hidePreloader();
+    showAlert("error", e.message, 2000);
   }
 }
 
