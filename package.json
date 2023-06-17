@@ -12,5 +12,8 @@
   "keywords": [],
   "author": "Morteza",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.0"
+  }
 }

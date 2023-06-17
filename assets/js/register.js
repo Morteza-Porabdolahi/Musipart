@@ -47,6 +47,8 @@ function handleFormSubmit(e) {
   if (validationObj.err) {
     showErrors(validationObj, this);
   } else {
+    clearInputValues(this);
+
     if (this.id === "login") {
       handleUserLogin(validationObj);
     } else {
@@ -70,13 +72,20 @@ async function handleUserRegister(userObj) {
   try {
     const { message } = await registerUser(userObj);
 
-    forms.forEach((form) => form.classList.remove("active-form"));
-    _.querySelector("#login").classList.add("active-form");
+    changeClasses();
 
     showAlert("done", message, 2000);
   } catch (e) {
     showAlert("error", e.message, 2000);
   }
+}
+
+function changeClasses(){
+  _.querySelector('#register').classList.remove('active-form')
+  _.querySelector("#login").classList.add("active-form");
+
+  _.querySelector('[data-form="register"]').classList.remove('active-toggle')
+  _.querySelector('[data-form="login"]').classList.add("active-toggle");
 }
 
 function handleInputLabels(form) {
@@ -111,9 +120,7 @@ function showErrors(errorObj = {}, form) {
 }
 
 function clearInputErrors(form) {
-  const formInputs = Array.from(form.elements).filter(
-    (elem) => elem.nodeName === "INPUT"
-  );
+  const formInputs = filterFormInputs(form.elements);
 
   formInputs.forEach((input) => {
     if (input.type !== "radio") {
@@ -179,4 +186,20 @@ function validatePassword(pass = "") {
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])\S{1,12}$/;
 
   return passRegex.test(pass);
+}
+
+function clearInputValues(form){
+  const formInputs = filterFormInputs(form.elements);
+
+  formInputs.forEach((input) => {
+    if (input.type === "radio" && input.checked) {
+      input.checked = false;
+    } else {
+      input.value = '';
+    }
+  });
+}
+
+function filterFormInputs(formElems = []){
+  return Array.from(formElems).filter(elem => elem.nodeName === 'INPUT')
 }
