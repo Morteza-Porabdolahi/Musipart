@@ -47,9 +47,7 @@ async function getArtistsData(artistName = "") {
       createArtistsCards(artists);
     }
   } catch (e) {
-    if (e.message) {
       showAlert("error", e.message, 2000);
-    }
   }
 }
 

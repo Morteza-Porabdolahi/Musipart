@@ -28,10 +28,8 @@ async function getSongInformation() {
       setMusicInfos(music);
     }
   } catch (e) {
-    if (e.message) {
       hidePreloader();
       showAlert("error", e.message,2000);
-    }
   }
 }
 

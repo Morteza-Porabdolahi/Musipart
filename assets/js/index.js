@@ -19,10 +19,8 @@ function getAllSongsAndArtists() {
     handleArtists();
     handleNewMusics();
   } catch (e) {
-    if (e.message) {
-      hidePreloader();
-      showAlert("error", e.message,2000);
-    }
+    hidePreloader();
+    showAlert("error", e.message, 2000);
   }
 }
 window.addEventListener("load", getAllSongsAndArtists);
@@ -36,19 +34,13 @@ async function handleNewMusics() {
 async function handleDailyMusics() {
   const dailyMusics = await getDailyMusics();
 
-  createHtmlFromSongs(
-    spliceSixElemsOfArray(dailyMusics),
-    "dailyMusics"
-  );
+  createHtmlFromSongs(spliceSixElemsOfArray(dailyMusics), "dailyMusics");
 }
 
 async function handleWeeklyMusics() {
   const weeklyMusics = await getWeeklyMusics();
 
-  createHtmlFromSongs(
-    spliceSixElemsOfArray(weeklyMusics),
-    "weeklyMusics"
-  );
+  createHtmlFromSongs(spliceSixElemsOfArray(weeklyMusics), "weeklyMusics");
 }
 
 async function handleArtists() {
@@ -63,6 +55,8 @@ async function handleArtists() {
  * @param {array} datas - the array of datas
  */
 function spliceSixElemsOfArray(datas = []) {
+  if (typeof datas === "object" && !Array.isArray(datas) && datas !== null)
+    return;
   return datas.slice().splice(...makeStartAndEndIndex(datas, 6));
 }
 
@@ -82,8 +76,8 @@ function makeStartAndEndIndex(datas = [], elemNum) {
 }
 
 let wrapper = _.createElement("div"),
-musicsCardTemplate = "",
-artistsCardTemplate = "";
+  musicsCardTemplate = "",
+  artistsCardTemplate = "";
 
 wrapper.className = "section__content";
 /*
@@ -96,7 +90,7 @@ function createHtmlFromSongs(songs = [], containerClass = "") {
   wrapper = wrapper.cloneNode(true);
 
   wrapper.innerHTML = "";
-  musicsCardTemplate = '';
+  musicsCardTemplate = "";
 
   if (songs.length <= 0) {
     wrapper.style.justifyContent = "center";
@@ -105,7 +99,7 @@ function createHtmlFromSongs(songs = [], containerClass = "") {
     for (let song of songs) {
       musicsCardTemplate += createHtmlFromSong(song);
     }
-    
+
     wrapper.insertAdjacentHTML("beforeend", musicsCardTemplate);
   }
   insertInDom(wrapper, containerClass);
@@ -121,7 +115,7 @@ function createHtmlFromArtists(artists = [], containerClass = "") {
   wrapper = wrapper.cloneNode(true);
 
   wrapper.innerHTML = "";
-  artistsCardTemplate = '';
+  artistsCardTemplate = "";
 
   if (artists.length <= 0) {
     wrapper.style.justifyContent = "center";

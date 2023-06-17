@@ -7,9 +7,7 @@ export default async function (...args) {
 
     if (response.status >= 200 && response.status <= 299 && response.ok) {
       return response.json();
-    } else if(response.status >= 400 && response.status <= 499) {
-      throw Error(`There is a problem with your network connection !`);
-    }else{
+    } else {
       throw Error(response.statusText);
     }
   }

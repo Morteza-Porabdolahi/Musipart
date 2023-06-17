@@ -46,9 +46,7 @@ window.playEntireMusic = async function (musicId) {
     audioElem.addEventListener("canplay", playTheAudioWhenReady);
     audioElem.addEventListener("error", handleAudioElemErrors);
   } catch (e) {
-    if (e.message) {
       showAlert("error", e.message, 2000);
-    }
   }
 };
 
