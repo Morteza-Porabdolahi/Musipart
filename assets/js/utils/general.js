@@ -1,4 +1,35 @@
+(function () {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    import("jwt-decode").then(({ default: decode }) => {
+      const decodedToken = decode(token);
+
+      if(Date.now() < decodedToken.exp * 1000){
+        changeUserAppearance(decodedToken);
+      }else{
+        localStorage.removeItem('token');
+      }
+    });
+  }
+})();
+
 const _ = document;
+
+function changeUserAppearance(decodedToken = {}) {
+  const { username } = decodedToken.user;
+  const signInLink = _.querySelector(".options__signin");
+  const playListsLink = _.querySelector('.navbar__item:last-child > a');
+
+
+  playListsLink.href = '/pages/playlists.html';
+  playListsLink.title= 'Your Playlists';
+  playListsLink.style.cursor = 'pointer';
+
+  signInLink.textContent = username;
+  signInLink.href = "/pages/account-panel.html";
+  signInLink.title = "Your Account";
+}
 
 function createHtmlFromSong(song = {}) {
   return `
