@@ -1,13 +1,17 @@
 {
   "devDependencies": {
+    "@vitejs/plugin-basic-ssl": "^1.0.1",
     "@web/dev-server": "^0.2.2",
-    "prettier": "2.8.8"
+    "prettier": "2.8.8",
+    "vite": "^4.3.9"
   },
   "name": "musipart",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "wds --node-resolve --open --watch"
+    "start": "vite --port=8000 --https",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "keywords": [],
   "author": "Morteza",
