@@ -25,10 +25,11 @@ function changeUserAppearance(decodedToken = {}) {
   playListsLink.href = '/pages/playlists.html';
   playListsLink.title= 'Your Playlists';
   playListsLink.style.cursor = 'pointer';
+  playListsLink.firstElementChild.setAttribute('fill','#cbd5e1');
 
-  signInLink.textContent = username;
+  signInLink.textContent = `${username}'s Profile`;
   signInLink.href = "/pages/account-panel.html";
-  signInLink.title = "Your Account";
+  signInLink.title = "Your Profile";
 }
 
 function createHtmlFromSong(song = {}) {
