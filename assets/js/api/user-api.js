@@ -21,3 +21,21 @@ export function loginUser(userData = {}) {
     body: JSON.stringify(userData),
   });
 }
+
+export function getUserPlaylists(userId = "", token = "") {
+  return myFetch(`${API_URL}/${userId}/playlists`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export function createPlaylist(userId = "", token = "", formData) {
+  return myFetch(`${API_URL}/${userId}/playlists`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  });
+}

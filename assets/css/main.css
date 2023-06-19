@@ -457,7 +457,7 @@
   background-color: var(--color-slate-900);
   padding: 2rem;
   width: 90%;
-  z-index: 1;
+  z-index: 2;
   box-shadow: 1px 1px 9px var(--color-slate-900);
   border-radius: 0.5rem;
 }

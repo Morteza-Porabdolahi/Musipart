@@ -1,8 +1,23 @@
+.help {
+  padding: 10rem 0;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 0 auto;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.09rem;
+  color: var(--color-slate-500);
+}
+
 .playlist__name {
   color: #fff;
   display: block;
   margin: 0.9rem 0 0 0.5rem;
   font-size: calc(0.3vw + 1.2rem);
+}
+
+.loadmore-container .load-more{
+  display: block;
 }
 
 /* New playlist modal Styles */

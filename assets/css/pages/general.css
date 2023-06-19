@@ -22,7 +22,7 @@
 
 .artists-section,
 .allmusics-section,
-.playlists {
+.playlists__container {
   display: -ms-flexbox;
   display: -moz-box;
   flex-wrap: wrap;
@@ -36,7 +36,7 @@
 @supports (display: flex) {
   .artists-section,
   .allmusics-section,
-  .playlists {
+  .playlists__container {
     display: flex;
     justify-content: center;
   }

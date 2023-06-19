@@ -5,10 +5,10 @@
     import("jwt-decode").then(({ default: decode }) => {
       const decodedToken = decode(token);
 
-      if(Date.now() < decodedToken.exp * 1000){
+      if (Date.now() < decodedToken.exp * 1000) {
         changeUserAppearance(decodedToken);
-      }else{
-        localStorage.removeItem('token');
+      } else {
+        localStorage.removeItem("token");
       }
     });
   }
@@ -16,19 +16,26 @@
 
 const _ = document;
 
+function getUserToken(){
+  return localStorage.getItem('token');
+}
+
+function getUserIdFromParams(){
+  return new URLSearchParams(location.search).get("userId");
+}
+
 function changeUserAppearance(decodedToken = {}) {
-  const { username } = decodedToken.user;
+  const { username, userId } = decodedToken.user;
   const signInLink = _.querySelector(".options__signin");
-  const playListsLink = _.querySelector('.navbar__item:last-child > a');
+  const playListsLink = _.querySelector(".navbar__item:last-child > a");
 
-
-  playListsLink.href = '/pages/playlists.html';
-  playListsLink.title= 'Your Playlists';
-  playListsLink.style.cursor = 'pointer';
-  playListsLink.firstElementChild.setAttribute('fill','#cbd5e1');
+  playListsLink.href = `/pages/playlists.html?userId=${userId}`;
+  playListsLink.title = "Your Playlists";
+  playListsLink.style.cursor = "pointer";
+  playListsLink.firstElementChild.setAttribute("fill", "#cbd5e1");
 
   signInLink.textContent = `${username}'s Profile`;
-  signInLink.href = "/pages/account-panel.html";
+  signInLink.href = `/pages/account-panel.html?userId=${userId}`;
   signInLink.title = "Your Profile";
 }
 
@@ -114,4 +121,6 @@ export {
   showLoadMoreBtn,
   hideLoadMoreBtn,
   debounce,
+  getUserToken,
+  getUserIdFromParams
 };
