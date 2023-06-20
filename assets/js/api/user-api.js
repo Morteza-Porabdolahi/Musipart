@@ -39,3 +39,12 @@ export function createPlaylist(userId = "", token = "", formData) {
     body: formData,
   });
 }
+
+export function getPlaylist(userId = "", token = "", playlistId = "") {
+  return myFetch(`${API_URL}/${userId}/playlists/${playlistId}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}

@@ -25,9 +25,9 @@ export async function handleUserPlaylists() {
 
     if (userPlaylists.length > 0) {
       playlists = userPlaylists;
-      
+
       hideHelpTag();
-      createHtmlFromPlaylists(userPlaylists);
+      createHtmlFromPlaylists(userPlaylists, userId);
     } else {
       hidePreloader();
     }
@@ -37,7 +37,7 @@ export async function handleUserPlaylists() {
   }
 }
 
-function createHtmlFromPlaylist(playlist = {}) {
+function createHtmlFromPlaylist(playlist = {}, userId = "") {
   return `
   <div class="music-card">
     <div class="music-card__img-container">
@@ -45,18 +45,18 @@ function createHtmlFromPlaylist(playlist = {}) {
         playlist.imageUrl || "/assets/images/placeholder-200.png"
       }" />
     </div>
-    <a href="/pages/playlistpage.html?id=${playlist.id}" title="${
+    <a href="/pages/playlistpage.html?playlistId=${playlist.id}&&userId=${userId}" title="${
     playlist.name
   }" class="playlist__name">${playlist.name}</a>
   </div>
   `;
 }
 
-function createHtmlFromPlaylists(playlists = []) {
-  let playlistsTemplate = _.createElement("template");
+function createHtmlFromPlaylists(playlists = [], userId = "") {
+  const playlistsTemplate = _.createElement("template");
 
   for (let playlist of playlists) {
-    playlistsTemplate.innerHTML += createHtmlFromPlaylist(playlist);
+    playlistsTemplate.innerHTML += createHtmlFromPlaylist(playlist, userId);
   }
 
   appendPlaylistsIntoDom(playlistsTemplate.content);

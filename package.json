@@ -9,7 +9,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite --port=8000 --https",
+    "start": "vite --port=8000",
     "build": "vite build",
     "preview": "vite preview"
   },
