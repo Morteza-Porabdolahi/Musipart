@@ -1,32 +1,32 @@
-.not-found{
+.not-found {
   width: max-content;
   margin: 0 auto;
   padding: 10rem 1rem;
   text-align: center;
 }
 
-.not-found__title{
+.not-found__title {
   font-size: calc(8vw + 15em);
   text-shadow: 1rem 1rem 6rem var(--color-slate-700);
 }
 
-.not-found__description{
-  font-size: calc(.6vw + 1.1rem);
+.not-found__description {
+  font-size: calc(0.6vw + 1.1rem);
   color: var(--color-slate-500);
 }
 
-.not-found__btn{
+.not-found__btn {
   padding: 1.7rem 4.5rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 2px 3px 9px #000000;
-  font-size: calc(.3vw + 1.4rem);
+  font-size: calc(0.3vw + 1.4rem);
   margin-top: 5rem;
   display: inline-block;
   position: relative;
 }
 
-.not-found__btn::before{
+.not-found__btn::before {
   content: "\1F3E0";
   background-color: var(--color-slate-900);
   position: absolute;
@@ -37,9 +37,9 @@
   font-size: 2.5rem;
   line-height: 55px;
   transform: scale(0);
-  transition: transform .3s;
+  transition: transform 0.3s;
 }
 
-.not-found__btn:hover::before{
+.not-found__btn:hover::before {
   transform: scale(1);
 }

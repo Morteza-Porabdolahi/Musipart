@@ -1,5 +1,6 @@
-import { getSingleMusic } from "./utils/musicApi.js";
-import {hidePreloader} from './utils/preloader.js';
+import { getSingleMusic } from "./api/music-api.js";
+import { hidePreloader } from "./utils/preloader.js";
+import { showAlert } from "./utils/alert.js";
 import { _ } from "./utils/general.js";
 
 const playBtn = _.querySelector(".control:nth-child(2)");
@@ -19,6 +20,7 @@ async function getSongInformation() {
     const musicId = new URLSearchParams(location.search).get("id");
     const music = await getSingleMusic(musicId);
 
+    // if music is not found then redirect user to 404 page
     if (!music.hasOwnProperty("id")) {
       location.href = "/pages/404.html";
     } else {
@@ -26,19 +28,17 @@ async function getSongInformation() {
       setMusicInfos(music);
     }
   } catch (e) {
-    if (e) {
-      hidePreloader();
-      showAlert("error", "Something went Wrong !",1500);
-    }
+    hidePreloader();
+    showAlert("error", e.message, 2000);
   }
 }
 
 /*
- * put the song informations such as lyrics,title,... into dom
- * @function getSingleMuaic
+ * inserts the song informations such as lyrics,title,... into dom
+ * @function setMusicInfos
  * @param {object} song - the song Object
  */
-function setMusicInfos(song) {
+function setMusicInfos(song = {}) {
   const musicImage = _.querySelector(".description__image > img");
   const musicTitle = _.querySelector(".texts__titles > h3");
   const musicArtists = _.querySelector(".texts__titles > p");
@@ -59,10 +59,6 @@ function setMusicInfos(song) {
   hidePreloader();
 }
 
-/*
- * pauses the playing music
- * @function pauseMusic
- */
 function pauseMusic() {
   isPlaying = false;
   playBtn.firstElementChild.src = "/assets/icons/play-mini-line.svg";
@@ -70,10 +66,6 @@ function pauseMusic() {
   audioElem.pause();
 }
 
-/*
- * plays the music
- * @function playMusic
- */
 function playMusic() {
   isPlaying = true;
   playBtn.firstElementChild.src = "/assets/icons/pause-mini-line.svg";
@@ -81,10 +73,6 @@ function playMusic() {
   audioElem.play();
 }
 
-/*
- * if the music is playing pause it and else play it
- * @function playOrPauseAudio
- */
 function playOrPauseAudio() {
   if (!isPlaying) {
     playMusic();

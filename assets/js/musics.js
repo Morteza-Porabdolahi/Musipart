@@ -1,55 +1,52 @@
 import { showAlert } from "./utils/alert.js";
-import { getWeeklyMusics, getDailyMusics, getNewMusics } from "./utils/musicApi.js";
+import {
+  getWeeklyMusics,
+  getDailyMusics,
+  getNewMusics,
+} from "./api/music-api.js";
 import { hidePreloader } from "./utils/preloader.js";
-import { paginateDatas,clickedCount } from "./utils/pagination.js";
-import { _ ,createHtmlFromSong } from "./utils/general.js";
-
-window.addEventListener("load", getSpecificSongs);
+import { paginateDatas, clickedCount } from "./utils/pagination.js";
+import {
+  _,
+  createHtmlFromSong,
+  hideLoadMoreBtn,
+  showLoadMoreBtn,
+} from "./utils/general.js";
+import "./addMusicToPlaylist.js";
 
 const urlQuery = new URLSearchParams(location.search).get("q");
 const perClick = 10;
 let resultSongs;
 
 /*
- * this function is in multiple pages and configured by url query
+ * this function is in multiple pages and configured by url query "q"
  * @function getSpecificSongs
  */
 async function getSpecificSongs() {
   try {
-    if (urlQuery === "daily") {
-      const dailyMusics = await getDailyMusics();
-console.log(dailyMusics);
-      resultSongs = dailyMusics;
-    } else if (urlQuery === "weekly") {
-      const weeklyMusics = await getWeeklyMusics();
+    resultSongs = await (urlQuery === "daily"
+      ? getDailyMusics()
+      : urlQuery === "weekly"
+      ? getWeeklyMusics()
+      : getNewMusics());
 
-      resultSongs = weeklyMusics
-    } else {
-      const newMusics = await getNewMusics();
-
-      resultSongs = newMusics
-    }
-
-    const paginatedDatas = paginateDatas(resultSongs,perClick);
+    const paginatedDatas = paginateDatas(resultSongs, perClick);
     createHtmlFromSongs(paginatedDatas);
   } catch (e) {
-    if (e) {
-      console.log(e);
-      hidePreloader();
-      showAlert("error", "Something went Wrong !",1500);
-    }
+    hidePreloader();
+    showAlert("error", e.message, 2000);
   }
 }
-
-/*
- * create HTML Elements (music card) using the spliced musics with manipulateData function
- * @function createHTMLElementsFromData
- * @param {array} splicedMusics - spliced Musics
- */
+window.addEventListener("load", getSpecificSongs);
 
 const songsWrapper = _.createElement("div");
 songsWrapper.className = "allmusics-section";
 
+/*
+ * Builds music card html
+ * @function createHtmlFromSongs
+ * @param {array} songs - songs array
+ */
 function createHtmlFromSongs(songs = []) {
   let musicsCardTemplate = "";
 
@@ -63,28 +60,28 @@ function createHtmlFromSongs(songs = []) {
     }
     songsWrapper.insertAdjacentHTML("beforeend", musicsCardTemplate);
   }
-  
+
   if (clickedCount === 1) {
     appendMusicsIntoDom(songsWrapper);
   }
   handleLoadMoreBtn();
 }
 
-function handleLoadMoreBtn(){
-  const loadMoreBtn = _.querySelector(".load-more");
-  if(resultSongs.length > perClick && perClick * clickedCount < resultSongs.length){
-    loadMoreBtn.addEventListener("click", getSpecificSongs);
-    loadMoreBtn.style.display = "block";
-  }else{
-    loadMoreBtn.removeEventListener("click", getSpecificSongs);
-    loadMoreBtn.style.display = "none";
+function handleLoadMoreBtn() {
+  if (
+    resultSongs.length > perClick &&
+    perClick * clickedCount < resultSongs.length
+  ) {
+    showLoadMoreBtn(getSpecificSongs);
+  } else {
+    hideLoadMoreBtn(getSpecificSongs);
   }
 }
 
 /*
- * append the musics wrapper into dom
+ * appends the musics wrapper into dom
  * @function appendMusicsIntoDom
- * @param {HTMLElement} wrapper - the wrapper of Musics
+ * @param {HTMLElement} wrapper - the wrapper of musics
  */
 function appendMusicsIntoDom(wrapper) {
   const songsContaienr = _.querySelector(".allmusics");
