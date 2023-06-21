@@ -1,6 +1,6 @@
 import myFetch from "./intercept-fetch.js";
 
-const API_URL = `http://localhost:4000/api/users`;
+const API_URL = `https://musipartapi.iran.liara.run/api/users`;
 
 export function registerUser(userData = {}) {
   return myFetch(`${API_URL}/register`, {

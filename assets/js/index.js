@@ -14,40 +14,55 @@ import {
 import "./addMusicToPlaylist.js";
 
 function getAllSongsAndArtists() {
+  handleDailyMusics();
+  handleWeeklyMusics();
+  handleArtists();
+  handleNewMusics();
+}
+window.addEventListener("load", getAllSongsAndArtists);
+
+async function handleNewMusics() {
   try {
-    handleDailyMusics();
-    handleWeeklyMusics();
-    handleArtists();
-    handleNewMusics();
+    const newMusics = await getNewMusics();
+
+    createHtmlFromSongs(spliceSixElemsOfArray(newMusics), "newMusics");
   } catch (e) {
     hidePreloader();
     showAlert("error", e.message, 2000);
   }
 }
-window.addEventListener("load", getAllSongsAndArtists);
-
-async function handleNewMusics() {
-  const newMusics = await getNewMusics();
-
-  createHtmlFromSongs(spliceSixElemsOfArray(newMusics), "newMusics");
-}
 
 async function handleDailyMusics() {
-  const dailyMusics = await getDailyMusics();
+  try {
+    const dailyMusics = await getDailyMusics();
 
-  createHtmlFromSongs(spliceSixElemsOfArray(dailyMusics), "dailyMusics");
+    createHtmlFromSongs(spliceSixElemsOfArray(dailyMusics), "dailyMusics");
+  } catch (e) {
+    hidePreloader();
+    showAlert("error", e.message, 2000);
+  }
 }
 
 async function handleWeeklyMusics() {
-  const weeklyMusics = await getWeeklyMusics();
+  try {
+    const weeklyMusics = await getWeeklyMusics();
 
-  createHtmlFromSongs(spliceSixElemsOfArray(weeklyMusics), "weeklyMusics");
+    createHtmlFromSongs(spliceSixElemsOfArray(weeklyMusics), "weeklyMusics");
+  } catch (e) {
+    hidePreloader();
+    showAlert("error", e.message, 2000);
+  }
 }
 
 async function handleArtists() {
-  const artists = await getTopArtists();
+  try {
+    const artists = await getTopArtists();
 
-  createHtmlFromArtists(spliceSixElemsOfArray(artists), "topArtists");
+    createHtmlFromArtists(spliceSixElemsOfArray(artists), "topArtists");
+  } catch (e) {
+    hidePreloader();
+    showAlert("error", e.message, 2000);
+  }
 }
 
 /*
