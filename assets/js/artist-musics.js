@@ -1,57 +1,59 @@
-import { getArtistMusics } from "./utils/musicApi.js";
+import { getArtistMusics } from "./api/artist-api.js";
 import { hidePreloader } from "./utils/preloader.js";
-import { showAlert, hideAlert } from "./utils/alert.js";
+import { showAlert } from "./utils/alert.js";
 import { _, createHtmlFromSong } from "./utils/general.js";
+import "./addMusicToPlaylist.js";
 
 const container = _.querySelector(".artist-musics");
 
-window.addEventListener("load", setDocumentTitle);
-
 /*
- * set document title as artist name and gets the artist name in search params
- * @function setTitles
+ * Gets the artist name in search params and sets it as document title
+ * @function setDocumentTitle
  */
 function setDocumentTitle() {
   const artistsTitleElement = _.querySelector(".artist-name");
   const searchParams = location.search;
   const artistName = new URLSearchParams(searchParams).get("q");
 
-  _.title = `Musipart || ${artistName}`;
-  artistsTitleElement.textContent = artistName;
+  if (artistName) {
+    _.title = `Musipart || ${artistName}`;
+    artistsTitleElement.textContent = artistName;
 
-  getArtistSongs(artistName);
+    getArtistSongs(artistName);
+  } else {
+    hidePreloader();
+    container.innerHTML = '<p class="content__not-found">No Artist Found !</p>';
+  }
 }
 
+window.addEventListener("load", setDocumentTitle);
 /*
- * get the data from artist name sent by setTitles functions
- * @function getDatasAndFilterIt
+ * gets artist songs
+ * @function getArtistSongs
  * @param {string} artistName - artist fullName
  */
 async function getArtistSongs(artistName = "") {
   try {
     const artistMusics = await getArtistMusics(artistName);
 
-    if (artistMusics.length > 0) {
-      createArtistSongsCard(artistMusics);
-    } else {
+    if (artistMusics.length <= 0) {
       hidePreloader();
 
       container.innerHTML =
         '<p class="content__not-found">No Musics Found !</p>';
+    } else {
+      createArtistSongsCard(artistMusics);
     }
   } catch (e) {
-    if (e) {
-      console.log(e);
-      hidePreloader();
-      showAlert("error", "Something went Wrong !", 1500);
-    }
+    hidePreloader();
+    showAlert("error", e.message, 2000);
   }
 }
 
 /*
- * create HTML Elements (music card and artist card) using the filtered musics with getDatasAndFilterIt function
- * @function createHTMLElementsFromData
- * @param {array} filteredData - filtered Musics
+ * Builds music card html from artist musics
+ * @function createArtistSongsCard
+ * @param {array} artistMusics - artist Musics
  */
 function createArtistSongsCard(artistMusics = []) {
   const songsWrapper = _.createElement("div");
@@ -68,7 +70,7 @@ function createArtistSongsCard(artistMusics = []) {
 }
 
 /*
- * append the musics wrapper into dom
+ * appends the musics wrapper into dom
  * @function appendMusicsIntoDom
  * @param {HTMLElement} wrapper - the wrapper of Musics
  */

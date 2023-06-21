@@ -1,7 +1,7 @@
 footer > p {
   text-align: center;
   font-style: italic;
-  font-weight:100;
+  font-weight: 100;
   font-size: 1.5rem;
   padding: 3rem 0 1.5rem 0;
   border-top: 1px solid var(--color-slate-600);
@@ -10,6 +10,5 @@ footer > p {
 footer > p > a {
   color: var(--color-slate-300);
 }
-
 
 /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL2Fzc2V0cy9jc3MvZm9vdGVyLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtFQUNsQixrQkFBa0I7RUFDbEIsZUFBZTtFQUNmLGlCQUFpQjtFQUNqQix3QkFBd0I7RUFDeEIsNENBQTRDO0FBQzlDOztBQUVBO0VBQ0UsNkJBQTZCO0FBQy9CIiwiZmlsZSI6ImZvb3Rlci5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJmb290ZXIgPiBwIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBmb250LXN0eWxlOiBpdGFsaWM7XG4gIGZvbnQtd2VpZ2h0OjEwMDtcbiAgZm9udC1zaXplOiAxLjVyZW07XG4gIHBhZGRpbmc6IDNyZW0gMCAxLjVyZW0gMDtcbiAgYm9yZGVyLXRvcDogMXB4IHNvbGlkIHZhcigtLWNvbG9yLXNsYXRlLTYwMCk7XG59XG5cbmZvb3RlciA+IHAgPiBhIHtcbiAgY29sb3I6IHZhcigtLWNvbG9yLXNsYXRlLTMwMCk7XG59XG5cbiJdfQ== */

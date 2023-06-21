@@ -1,149 +1,149 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta
-      name="keywords"
-      content="music player, online musicPlayer, best Musics of Year, best Musics"
-    />
-    <link rel="icon" type="image/x-icon" href="/assets/images/logo.png" />
-    <link rel="stylesheet" href="../assets/css/reset.css" />
-    <link rel="stylesheet" href="../assets/fonts/FontIcon/remixicon.css" />
-    <link rel="stylesheet" href="../assets/css/index.css" />
-    <link rel="stylesheet" href="../assets/css/navbar.css" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="../assets/css/header.css" />
-    <link rel="stylesheet" href="../assets/css/footer.css" />
-    <link rel="stylesheet" href="../assets/css/pages/register.css" />
-    <link rel="stylesheet" href="../assets/css/mediaQueries.css" />
-    <title>Musipart || Register</title>
-  </head>
-  <body>
-    <!-- Start Website Container -->
-    <section class="container">
-      <!-- Start navbar -->
-      <section class="container__navbar">
-        <nav>
-          <ul class="navbar">
-            <li class="navbar__item">
-              <a title="Home" href="/" class="navbar__item-link">
-                <i class="ri-home-2-line"></i>
-                <span>Home</span>
-              </a>
-            </li>
-            <li class="navbar__item">
-              <a
-                class="all-artists-btn navbar__item-link"
-                href="./artists.html"
-                title="Artists"
-              >
-                <i class="ri-mic-fill"></i>
-                <span>Artists</span>
-              </a>
-            </li>
-            <li class="navbar__item">
-              <a class="navbar__item-link" title="Coming Soon">
-                <i class="ri-play-list-line"></i>
-                <span>PlayLists</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </section>
-      <!-- End navbar and Start main contaienr -->
-      <section class="container__main">
-        <header class="header">
-          <img
-            src="/assets/images/logo.png"
-            class="header__logo"
-            alt="a skyBlue colored Music Note and has some colored dots on top"
-          />
-          <div class="header__options">
-            <a title="Coming Soon" class="options__signin"
-              >Sign In / Register</a
-            >
-          </div>
-        </header>
+
+<head>
+  <meta name="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="keywords" content="music player, online musicPlayer, best Musics of Year, best Musics" />
+  <link rel="icon" type="image/x-icon" href="/assets/images/logo.png" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/index.css" />
+  <link rel="stylesheet" href="/assets/css/navbar.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/header.css" />
+  <link rel="stylesheet" href="/assets/css/footer.css" />
+  <link rel="stylesheet" href="/assets/css/pages/register.css" />
+  <link rel="stylesheet" href="/assets/css/mediaQueries.css" />
+  <title>Musipart || Register</title>
+</head>
+
+<body>
+  <!-- Start Website Container -->
+  <section class="container">
+    <div class="alert-container">
+      <img alt="a blue Loading Icon" class="loading" src="/assets/icons/loader-5-line.svg" />
+      <img alt="a green check Icon" class="done" src="/assets/icons/check-line.svg" />
+      <img alt="a yellow circled Icon with a Exclamation mark in it" class="warning"
+        src="/assets/icons/error-warning-line.svg" />
+      <img alt="a red circled Icon with a Exclamation mark in it" class="error"
+        src="/assets/icons/error-warning-fill.svg" />
+      <span></span>
+    </div>
+    <!-- Start navbar -->
+    <section class="container__navbar">
+      <nav>
+        <ul class="navbar">
+          <li class="navbar__item">
+            <a title="Home" href="/" class="navbar__item-link">
+              <img alt="a white Home Icon" src="/assets/icons/home-2-line.svg" />
+              <span>Home</span>
+            </a>
+          </li>
+          <li class="navbar__item">
+            <a href="/pages/artists.html" class="all-artists-btn navbar__item-link" title="Artists">
+              <img alt="a white Microphone Icon" src="/assets/icons/mic-line.svg" />
+              <span>Artists</span>
+            </a>
+          </li>
+          <li class="navbar__item">
+            <a href="/pages/search-musics.html" class="navbar__item-link" title="Search Musics">
+              <img alt="a white search Icon" src="/assets/icons/search-line.svg" />
+              <span>Search Musics</span>
+            </a>
+          </li>
+          <li class="navbar__item">
+            <a class="navbar__item-link" title="Coming Soon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="#475569" height="27" viewBox="0 -960 960 960" width="27">
+                <path
+                  d="M640.118-160Q591-160 556-193.559q-35-33.559-35-81.5t33.542-81.441Q588.083-390 636-390q16 0 31.5 3t30.5 10v-343h182v71H758v375q0 47.5-34.382 80.75-34.383 33.25-83.5 33.25ZM120-330v-60h306v60H120Zm0-165v-60h473v60H120Zm0-165v-60h473v60H120Z" />
+              </svg>
+              <span>PlayLists</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+    <!-- End navbar and Start main contaienr -->
+    <section class="container__main">
+      <header class="header">
+        <img src="/assets/images/logo.png" class="header__logo"
+          alt="a skyBlue colored Music Note and has some colored dots on top" />
+        <div class="header__options">
+          <a title="Coming Soon" class="options__signin">Sign In / Register</a>
+        </div>
+      </header>
+      <!-- start main and footer container -->
+      <div class="main-footer-container">
         <!-- Start main -->
         <main class="main">
           <section class="main__form-container">
             <section class="form-container__toggle-buttons">
-              <button class="toggle-button">Login</button>
-              <button class="toggle-button active-toggle">Register</button>
+              <button class="toggle-button" data-form="login">Login</button>
+              <button class="toggle-button active-toggle" data-form="register">
+                Register
+              </button>
             </section>
             <div class="form-container__forms">
-              <form class="forms__form">
+              <form class="forms__form active-form" id="register">
                 <h2>Register</h2>
                 <div class="form__input-container">
-                  <input
-                    type="text"
-                    id="username"
-                    class="input-container__input"
-                  />
+                  <input type="text" name="username" id="username" class="input-container__input" />
                   <label for="username">Username</label>
+                  <p class="error"></p>
                 </div>
                 <div class="form__input-container">
-                  <input
-                    type="text"
-                    id="password"
-                    class="input-container__input"
-                  />
+                  <input type="text" name="password" id="password" class="input-container__input" />
                   <label for="password">Password</label>
+                  <p class="error"></p>
                 </div>
                 <div class="form__input-container">
-                  <input
-                    type="text"
-                    id="confpassword"
-                    class="input-container__input"
-                  />
+                  <input type="text" name="confirmPass" id="confpassword" class="input-container__input" />
                   <label for="confpassword">Confirm Password</label>
+                  <p class="error"></p>
                 </div>
                 <div class="form__input-container">
-                  <input
-                    type="email"
-                    id="email"
-                    class="input-container__input"
-                  />
+                  <input type="email" id="email" name="email" class="input-container__input" />
                   <label for="email">Email</label>
+                  <p class="error"></p>
                 </div>
                 <div class="form__input-container">
-                  <input type="tel" id="phone" class="input-container__input" />
+                  <input name="phone" type="tel" id="phone" class="input-container__input" />
                   <label for="phone">Phone Number</label>
+                  <p class="error"></p>
                 </div>
                 <div class="form__radios">
-                  <div class="radios__radio">
-                    <label for="man">Man</label>
-                    <input type="radio" name="gender" id="man" />
+                  <div class="radios__container">
+                    <div class="radios__radio">
+                      <label for="male">Man</label>
+                      <input type="radio" name="gender" value="male" id="male" />
+                    </div>
+                    <div class="radios__radio">
+                      <label for="female">Woman</label>
+                      <input type="radio" name="gender" value="female" id="female" />
+                    </div>
+                    <div class="radios__radio">
+                      <label for="nothing">Prefer not to say</label>
+                      <input type="radio" name="gender" value="" id="nothing" />
+                    </div>
                   </div>
-
-                  <div class="radios__radio">
-                    <label for="woman">Woman</label>
-                    <input type="radio" name="gender" id="woman" />
-                  </div>
+                  <p class="error"></p>
                 </div>
-                <input type="submit" value="Submit" class="form__submit-btn" />
+                <button type="submit" class="form__submit-btn">Submit</button>
               </form>
 
-              <form class="forms__form active-form">
+              <form class="forms__form" id="login">
                 <h2>Login</h2>
                 <div class="form__input-container">
-                  <input
-                    type="text"
-                    id="username"
-                    class="input-container__input"
-                  />
-                  <label for="username">Username</label>
+                  <input name="email" type="email" id="loginEmail" class="input-container__input" />
+                  <label for="loginEmail">Email</label>
+                  <p class="error"></p>
                 </div>
                 <div class="form__input-container">
-                  <input
-                    type="text"
-                    id="password"
-                    class="input-container__input"
-                  />
-                  <label for="password">Password</label>
+                  <input name="password" type="text" id="loginPass" class="input-container__input" />
+                  <label for="loginPass">Password</label>
+                  <p class="error"></p>
                 </div>
-                <input type="submit" class="form__submit-btn" />
+                <button class="form__submit-btn" type="submit">Submit</button>
               </form>
             </div>
           </section>
@@ -151,20 +151,19 @@
         <!-- End main and Start Footer -->
         <footer class="footer">
           <p>
-            2022 | Made With <span class="purple"><3</span> by
-            <a
-              title="Morteza's Github"
-              href="https://github.com/Morteza355"
-              refer="noopener,norefer"
-              target="_blank"
-              >Morteza</a
-            >
+            2022 | Made With <span class="purple">&lt;3</span> by
+            <a title="Morteza's Github" href="https://github.com/Morteza355" rel="noopener noreferrer"
+              target="_blank">Morteza</a>
           </p>
         </footer>
-        <!-- End Footer -->
-      </section>
-      <!--End main container -->
+        <!-- End footer -->
+      </div>
+      <!-- End main and footer container -->
     </section>
-    <!-- End Website Container -->
-  </body>
+    <!--End main container -->
+  </section>
+  <!-- End Website Container -->
+  <script src="/assets/js/register.js" type="module"></script>
+</body>
+
 </html>
