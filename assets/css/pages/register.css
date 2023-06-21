@@ -53,6 +53,7 @@
   letter-spacing: 0.06rem;
   text-align: left;
   padding: 0.4rem 0 0 0.4rem;
+  line-height: 1.1rem;
 }
 
 .form__radios > .error {
@@ -67,7 +68,7 @@ label {
 .form__input-container > label {
   position: absolute;
   color: var(--color-slate-500);
-  top: 30%;
+  top: 1.4rem;
   left: 0.4rem;
   transform: translate(0, -50%);
   transition: transform 0.3s;
@@ -85,7 +86,6 @@ label {
 }
 
 .input-container__input:focus + label {
-  transform: translate(-4%, -180%);
   color: var(--color-slate-300);
 }
 

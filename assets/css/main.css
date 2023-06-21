@@ -1,6 +1,6 @@
 /* Container styles */
 .main-footer-container {
-  min-height: calc(100vh - 13rem);
+  min-height: calc(100vh - 17rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -99,7 +99,6 @@ function handleInputLabels(form) {
 function handleLabels(e) {
   if (e.target.value) {
     e.target.nextElementSibling.style.transform = "translate(-4%, -180%)";
-    e.target.nextElementSibling.style.color = "var(--color-slate-300);";
   } else {
     e.target.nextElementSibling.style.transform = "translate(0, -50%)";
   }
@@ -152,7 +151,7 @@ function validateForm(formDatasObj = {}, form) {
     } else if (key === "password") {
       if (!validatePassword(trimmedValue)) {
         errors[key] =
-          "Password must be between 1-12 characters and it should contain uppercase, lowercase and special characters";
+          "Password must be between 7-12 characters and it should contain uppercase, lowercase and special characters";
       }
     } else if (key === "confirmPass") {
       if (userData.password !== trimmedValue) {
@@ -183,7 +182,7 @@ function validateEmail(email = "") {
 
 function validatePassword(pass = "") {
   const passRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])\S{1,12}$/;
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])\S{7,12}$/;
 
   return passRegex.test(pass);
 }
