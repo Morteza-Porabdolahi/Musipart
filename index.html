@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./assets/css/main.css" />
     <link rel="stylesheet" href="./assets/css/header.css" />
     <link rel="stylesheet" href="./assets/css/footer.css" />
+    <link rel="stylesheet" href="./assets/css/pages/mainpage.css" />
     <link rel="stylesheet" href="./assets/css/mediaQueries.css" />
     <link rel="canonical" href="/index.html" />
     <title>Musipart</title>
@@ -195,7 +196,26 @@
         </div>
         <!-- End main and footer container -->
       </div>
-      <!-- End main container and Start music Player -->
+      <!--End main container and Start add playlist modal -->
+      <section class="container__modal">
+        <section class="modal">
+          <section class="modal__modal-header">
+            <h3>Add to Playlist</h3>
+            <a class="close-modal">&times;</a>
+          </section>
+          <section class="modal__modal-body">
+            <input type="text" placeholder="Search playlist" class="modal-body__search-input">
+            <div class="modal-body__playlists">
+              <h2>Your Playlists</h2>
+              <div class="playlists__container">
+                <p class="help">No playlists found !</p>
+                <div class="playlists__wrapper"></div>
+              </div>
+            </div>
+          </section>
+        </section>
+      </section>
+      <!-- End add playlist modal and Start music Player -->
       <section class="container__music-player">
         <audio hidden class="music-player__audio"></audio>
         <div class="music-player__progress"></div>
@@ -260,6 +280,7 @@
       </section>
       <!-- End music Player -->
     </div>
+
     <!-- End Website Container -->
     <script src="assets/js/index.js" type="module"></script>
     <script src="assets/js/musicplayer-controller.js" type="module"></script>

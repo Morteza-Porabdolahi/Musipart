@@ -48,3 +48,14 @@ export function getPlaylist(userId = "", token = "", playlistId = "") {
     },
   });
 }
+
+export function updatePlaylist(userId = "", token = "", playlist = {}) {
+  return myFetch(`${API_URL}/${userId}/playlists/${playlist.id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(playlist),
+  });
+}

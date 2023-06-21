@@ -4,6 +4,7 @@ import {
   getUserToken,
   hideHelpTag,
   showHelpTag,
+  filterPlaylists
 } from "./utils/general.js";
 import { getUserPlaylists } from "./api/user-api.js";
 import { hidePreloader } from "./utils/preloader.js";
@@ -45,9 +46,11 @@ function createHtmlFromPlaylist(playlist = {}, userId = "") {
         playlist.imageUrl || "/assets/images/placeholder-200.png"
       }" />
     </div>
-    <a href="/pages/playlistpage.html?playlistId=${playlist.id}&&userId=${userId}" title="${
+    <a href="/pages/playlistpage.html?playlistId=${
+      playlist.id
+    }&&userId=${userId}" title="${playlist.name}" class="playlist__name">${
     playlist.name
-  }" class="playlist__name">${playlist.name}</a>
+  }</a>
   </div>
   `;
 }
@@ -70,11 +73,7 @@ function appendPlaylistsIntoDom(playlistsElem) {
 }
 
 function handlePlaylistsSearch(e) {
-  const inputValue = e.target.value;
-
-  const filteredPlaylists = playlists.filter((playlist) =>
-    playlist.name.toLowerCase().includes(inputValue.toLowerCase())
-  );
+  const filteredPlaylists = filterPlaylists(e);
 
   if (filteredPlaylists.length > 0) {
     hideHelpTag();

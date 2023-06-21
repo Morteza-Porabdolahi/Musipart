@@ -3,10 +3,11 @@
 }
 
 .main__form-container {
-  background-image: url("../../images/pattern.png");
+  background-image: url("../../images/pattern.webp");
   background-size: 10px 10px;
   padding: 2rem;
   margin: 0 auto;
+  background-color: var(--color-slate-900);
   max-width: 40rem;
   border-radius: 0.7rem;
   text-align: center;
