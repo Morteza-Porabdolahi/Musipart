@@ -9,10 +9,12 @@ import {
 import { showAlert } from "./utils/alert.js";
 import "./addMusicToPlaylist.js";
 
-const searchInput = _.querySelector(".search-input");
+const searchInputs = _.querySelectorAll(".search-input");
 const container = _.querySelector(".allmusics__searched");
 
-searchInput.addEventListener("input", handleSearchQuery);
+searchInputs.forEach((searchInput) =>
+  searchInput.addEventListener("input", handleSearchQuery)
+);
 
 const debouncedFunction = debounce(getSearchedMusics, 800);
 /*

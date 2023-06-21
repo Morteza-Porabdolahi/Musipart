@@ -1,4 +1,4 @@
-import { getArtistMusics } from "./api/music-api.js";
+import { getArtistMusics } from "./api/artist-api.js";
 import { hidePreloader } from "./utils/preloader.js";
 import { showAlert } from "./utils/alert.js";
 import { _, createHtmlFromSong } from "./utils/general.js";

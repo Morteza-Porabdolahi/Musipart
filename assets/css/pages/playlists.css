@@ -1,13 +1,12 @@
 .help {
   padding: 10rem 0;
-  width: -moz-max-content;
-  width: max-content;
-  margin: 0 auto;
+  width: 100%;
+  text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 0.09rem;
   color: var(--color-slate-500);
-}
+}  
 
 .playlist__name {
   color: #fff;
@@ -23,6 +22,24 @@
 .music-card__img {
   width: 100%;
   aspect-ratio: 3/3;
+}
+
+.music-card__img-container{
+  position: relative;
+}
+
+.img-container__more-options{
+  position: absolute;
+  top: 1rem;
+  right: .5rem;
+}
+
+.music-card__img-container:hover > .img-container__more-options{
+  display: block;
+}
+
+.img-container__more-options{
+  display: none;
 }
 
 .form__input{

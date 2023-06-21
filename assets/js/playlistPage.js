@@ -1,13 +1,15 @@
 import { _, getUserIdFromParams, getUserToken } from "./utils/general";
 import { showAlert } from "./utils/alert";
-import { getPlaylist } from "./api/user-api";
+import { getPlaylist } from "./api/playlist-api";
 import { hidePreloader } from "./utils/preloader";
 import { hideHelpTag, showHelpTag } from "./utils/general";
 
 const playlistMusicsWrapper = _.querySelector(".boxes__container");
-const searchInput = _.querySelector('.header__input');
+const searchInputs = _.querySelectorAll('.search-input');
 
-searchInput.addEventListener('input',searchPlaylistMusics);
+searchInputs.forEach((searchInput) =>
+  searchInput.addEventListener("input", searchPlaylistMusics)
+);
 window.addEventListener("load", handleSinglePlaylist);
 
 let playlistMusics = [];
@@ -90,7 +92,7 @@ function searchPlaylistMusics(e){
   if (filteredMusics.length > 0) {
     handlePlaylistMusics(filteredMusics);
   } else {
-    playlistsContainer.innerHTML = "";
+    playlistMusicsWrapper.innerHTML = "";
     showHelpTag('No Musics Found in the playlist , try to add new one !');
   }
 }

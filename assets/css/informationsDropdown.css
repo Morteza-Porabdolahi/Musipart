@@ -33,7 +33,7 @@
 .informations__more>input:checked~.dropdown {
     max-width: initial;
     max-height: 10rem;
-    width: 17rem;
+    width: 12rem;
 }
 
 .music-card__informations {

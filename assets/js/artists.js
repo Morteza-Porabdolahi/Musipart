@@ -1,4 +1,4 @@
-import { getArtists } from "./api/music-api.js";
+import { getArtists } from "./api/artist-api.js";
 import { showAlert } from "./utils/alert.js";
 import {
   _,
@@ -9,7 +9,7 @@ import {
 } from "./utils/general.js";
 
 const allArtistsContainer = _.querySelector(".artists__container");
-const searchInput = _.querySelector(".search-input");
+const searchInputs = _.querySelectorAll(".search-input");
 
 const debouncedFunction = debounce(getArtistsData, 800);
 /*
@@ -28,8 +28,9 @@ function handleSearch(e) {
     debouncedFunction(inputValue);
   }
 }
-searchInput.addEventListener("input", handleSearch);
-
+searchInputs.forEach((searchInput) =>
+  searchInput.addEventListener("input", handleSearch)
+);
 /*
  * gets Artits array
  * @function getArtistsData

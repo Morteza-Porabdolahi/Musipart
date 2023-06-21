@@ -1,4 +1,4 @@
-import { createPlaylist } from "./api/user-api.js";
+import { createPlaylist } from "./api/playlist-api.js";
 import { handleUserPlaylists } from "./playlists.js";
 import { showAlert } from "./utils/alert.js";
 import {

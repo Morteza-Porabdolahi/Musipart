@@ -3,8 +3,8 @@ import {
   getNewMusics,
   getDailyMusics,
   getWeeklyMusics,
-  getTopArtists,
 } from "./api/music-api.js";
+import { getTopArtists } from "./api/artist-api.js";
 import { hidePreloader } from "./utils/preloader.js";
 import {
   _,
