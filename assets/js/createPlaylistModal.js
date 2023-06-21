@@ -14,6 +14,14 @@ const playlistCreateBtn = _.querySelector('.add-new-playlist');
 
 playlistCreateBtn.addEventListener('click', showModal)
 playlistCreateForm.addEventListener("submit", handleFormSubmit);
+playlistCreateForm.querySelector('input[type="file"]').addEventListener('change',handleFileInput);
+
+function handleFileInput(e){
+  const inputLabel = e.target.parentElement;
+  if(e.target.value){
+    inputLabel.style.color = 'rgb(0, 255, 34)';
+  }
+}
 
 async function handleCreatePlaylist(formData = "") {
   try {
@@ -39,6 +47,7 @@ function handleFormSubmit(e) {
   if (formElems.playlistName.value.trim() && formElems.image.value) {
     const formData = new FormData(form);
 
+    formElems.image.value = '';
     handleCreatePlaylist(formData);
   }
 }

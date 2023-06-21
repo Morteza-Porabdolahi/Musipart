@@ -157,37 +157,63 @@
       </section>
       <!--End main container and Start music player -->
       <section class="container__music-player">
+        <audio hidden class="music-player__audio"></audio>
         <div class="music-player__progress"></div>
         <div class="music-player__controls-container">
-          <img src="" alt="" />
+          <div class="controls-container__description">
+            <img class="image__music-img" src="" alt="" />
+            <small class="informations__music-name"></small>
+            <small class="informations__music-artist"></small>
+          </div>
           <div class="controls-container__controls">
             <div class="control">
-              <i class="ri-skip-back-line"></i>
+              <img
+                alt="a white Skip to back Icon"
+                src="/assets/icons/skip-back-line.svg"
+              />
             </div>
             <div class="control">
-              <i class="ri-play-line"></i>
+              <img
+                alt="a white play Icon"
+                src="/assets/icons/play-mini-line.svg"
+              />
             </div>
             <div class="control">
-              <i class="ri-skip-forward-line"></i>
+              <img
+                alt="a white skip to forward Icon"
+                src="/assets/icons/skip-forward-line.svg"
+              />
             </div>
           </div>
           <div class="controls-container__settings">
             <div class="setting">
-              <i class="ri-volume-up-line"></i>
+              <img
+                alt="an speaker Icon wich has a high sound"
+                src="/assets/icons/volume-up-line.svg"
+              />
               <div class="volume-container">
-                <i class="ri-volume-down-line"></i>
-                <input type="range" class="volume-range" />
-                <i class="ri-volume-up-line"></i>
+                <img
+                  alt="an speaker Icon wich has a low sound"
+                  src="/assets/icons/volume-down-line.svg"
+                />
+                <input value="20" type="range" class="volume-range" max="100" />
+                <img
+                  alt="an speaker Icon wich has a high sound"
+                  src="/assets/icons/volume-up-line.svg"
+                />
               </div>
             </div>
             <div class="setting">
-              <i class="ri-shuffle-line"></i>
+              <img
+                src="/assets/icons/repeat-line.svg"
+                alt="a white repeat Icon"
+              />
             </div>
             <div class="setting">
-              <i class="ri-repeat-line"></i>
-            </div>
-            <div class="setting">
-              <i class="ri-hd-line"></i>
+              <img
+                src="/assets/icons/hd-line.svg"
+                alt="Hd switching icon which has a text on it, HD"
+              />
             </div>
           </div>
         </div>
@@ -196,5 +222,6 @@
     </section>
     <!-- End Website Container -->
     <script src="/assets/js/playlistPage.js" type="module"></script>
+    <script src="/assets/js/musicplayer-controller.js" type="module"></script>
   </body>
 </html>

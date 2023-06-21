@@ -51,12 +51,12 @@ function handlePlaylistMusics(musics = []) {
 
 function createHtmlFromPlaylistMusic(music = {}) {
   return `
-    <div class="boxes__box">
+    <div class="boxes__box" onclick="playEntireMusic('${music.id}')">
         <div class="box__information">
             <div class="information__img">
-                <img src="${music.image.cover.url}" loading="lazy" alt="${
-    music.title
-  }" />
+              <img src="${music.image.thumbnail_small.url}" loading="lazy" alt="${
+              music.title
+              }" />
             </div>
             <div class="information__text">
                 <p>${music.title}</p>
@@ -75,6 +75,8 @@ function createHtmlFromPlaylistMusic(music = {}) {
 }
 
 function appendPlaylistMusicsIntoDom(playlists) {
+  playlistMusicsWrapper.innerHTML = '';
+  
   playlistMusicsWrapper.append(playlists);
   hidePreloader();
   hideHelpTag();

@@ -7,6 +7,7 @@ import {
   debounce,
 } from "./utils/general.js";
 import { showAlert } from "./utils/alert.js";
+import "./addMusicToPlaylist.js";
 
 const searchInput = _.querySelector(".search-input");
 const container = _.querySelector(".allmusics__searched");

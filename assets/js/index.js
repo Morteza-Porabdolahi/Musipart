@@ -11,6 +11,7 @@ import {
   createHtmlFromArtist,
   createHtmlFromSong,
 } from "./utils/general.js";
+import "./addMusicToPlaylist.js";
 
 function getAllSongsAndArtists() {
   try {

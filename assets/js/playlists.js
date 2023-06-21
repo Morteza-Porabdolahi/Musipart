@@ -73,7 +73,7 @@ function appendPlaylistsIntoDom(playlistsElem) {
 }
 
 function handlePlaylistsSearch(e) {
-  const filteredPlaylists = filterPlaylists(e);
+  const filteredPlaylists = filterPlaylists(e, playlists);
 
   if (filteredPlaylists.length > 0) {
     hideHelpTag();

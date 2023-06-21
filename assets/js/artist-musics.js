@@ -2,6 +2,7 @@ import { getArtistMusics } from "./api/music-api.js";
 import { hidePreloader } from "./utils/preloader.js";
 import { showAlert } from "./utils/alert.js";
 import { _, createHtmlFromSong } from "./utils/general.js";
+import "./addMusicToPlaylist.js";
 
 const container = _.querySelector(".artist-musics");
 

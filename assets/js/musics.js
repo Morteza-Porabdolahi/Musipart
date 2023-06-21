@@ -12,6 +12,7 @@ import {
   hideLoadMoreBtn,
   showLoadMoreBtn,
 } from "./utils/general.js";
+import "./addMusicToPlaylist.js";
 
 const urlQuery = new URLSearchParams(location.search).get("q");
 const perClick = 10;

@@ -81,44 +81,6 @@
   }
 }
 
-.informations__more {
-  position: relative;
-}
-
-.dropdown {
-  max-height: 0;
-  max-width: 0;
-  right: 0;
-  top: -5rem;
-  overflow: hidden;
-  position: absolute;
-  border-radius: 5px;
-  z-index: 1;
-  background-color: var(--color-slate-900);
-  transition: max-height 0.5s;
-  box-shadow: 2px 2px 4px var(--color-slate-900);
-}
-
-.dropdown__item {
-  padding: 1.3rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.dropdown__item:hover {
-  background-color: var(--color-slate-800);
-}
-
-.dropdown__item > span {
-  font-size: 1.4rem;
-}
-
-#toggleDropDown:checked ~ .dropdown {
-  max-width: initial;
-  max-height: 10rem;
-  width: 17rem;
-}
-
 .music-card,
 .artist-card {
   min-width: calc(50% - 1rem);
@@ -137,17 +99,6 @@
 
 .artist-card__img {
   border-radius: 50%;
-}
-
-.music-card__informations {
-  margin: 0.9rem 0 0 0.5rem;
-  /* Supporting older Browsers */
-  display: -ms-flexbox;
-  display: -moz-box;
-  -ms-flex-pack: justify;
-  -ms-flex-align: center;
-  box-pack: justify;
-  box-align: center;
 }
 
 .artist-card__informations {
@@ -548,6 +499,7 @@
 
 .modal {
   max-width: 100%;
+  width: 90%;
   margin: 0 auto;
   text-align: center;
   border-radius: 0.6rem;

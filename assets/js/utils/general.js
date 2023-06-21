@@ -1,15 +1,7 @@
-import { getPlaylist, getUserPlaylists, updatePlaylist } from "../api/user-api";
 import jwtDecode from "jwt-decode";
-import { showAlert } from "./alert";
-import { getSingleMusic } from "../api/music-api";
 
 const _ = document;
-const playlistsContainer = _.querySelector(".playlists__wrapper");
 const modalContainer = _.querySelector(".container__modal");
-// const modalPlaylistsSearchInput = _.querySelector(".modal-body__search-input");
-let playlists = [];
-
-// modalPlaylistsSearchInput.addEventListener("input", handlePlaylistsSearch);
 
 (function () {
   const token = localStorage.getItem("token");
@@ -24,6 +16,13 @@ let playlists = [];
     }
   }
 })();
+
+function getUserIdAndToken() {
+  const userToken = getUserToken();
+  const userId = jwtDecode(userToken).user.userId;
+
+  return [userId, userToken];
+}
 
 function getUserToken() {
   return localStorage.getItem("token");
@@ -48,100 +47,6 @@ function changeUserAppearance(decodedToken = {}) {
   signInLink.title = "Your Profile";
 }
 
-window.openSelectPlaylistModal = function (musicId = "") {
-  showModal();
-  handleUserPlaylists(musicId);
-};
-
-function getUserIdAndToken() {
-  const userToken = getUserToken();
-  const userId = jwtDecode(userToken).user.userId;
-
-  return [userId, userToken];
-}
-
-async function handleUserPlaylists(musicId = "") {
-  try {
-    const [userId, userToken] = getUserIdAndToken();
-    const userPlaylists = await getUserPlaylists(userId, userToken);
-
-    if (userPlaylists.length > 0) {
-      playlists = userPlaylists;
-
-      hideHelpTag();
-      showPlaylistsInModal(userPlaylists, musicId);
-    }
-  } catch (e) {
-    showAlert("error", e.message, 2000);
-  }
-}
-
-function showPlaylistsInModal(playlists = [], musicId = "") {
-  const playlistsTemplate = _.createElement("template");
-
-  for (let playlist of playlists) {
-    playlistsTemplate.innerHTML += `
-    <div class="playlists__playlist" onclick="getMusicAndPlaylist('${musicId}','${playlist.id}')">
-      <span class="playlist__name">${playlist.name}</span>
-    </div>
-    `;
-  }
-
-  playlistsContainer.innerHTML = "";
-  playlistsContainer.append(playlistsTemplate.content);
-}
-
-window.getMusicAndPlaylist = async function (musicId = "", playlistId = "") {
-  try {
-    const [userId, userToken] = getUserIdAndToken();
-    const clickedMusic = await getSingleMusic(musicId);
-    const clickedPlaylist = await getPlaylist(userId, userToken, playlistId);
-
-    addMusicObjectToPlaylist(clickedPlaylist, clickedMusic);
-  } catch (e) {
-    showAlert("error", e.message, 2000);
-  }
-};
-
-function addMusicObjectToPlaylist(playlist = {}, music = {}) {
-  const copyPlaylistObject = structuredClone(playlist);
-
-  copyPlaylistObject.musics.push(music);
-  editExistingPlaylist(copyPlaylistObject);
-}
-
-async function editExistingPlaylist(newPlaylist = {}) {
-  try {
-    const [userId, userToken] = getUserIdAndToken();
-    const { message } = await updatePlaylist(userId, userToken, newPlaylist);
-
-    showAlert("done", message, 2000);
-    hideModal();
-  } catch (e) {
-    showAlert("error", e.message, 2000);
-  }
-}
-
-export function filterPlaylists(e) {
-  const inputValue = e.target.value;
-
-  return playlists.filter((playlist) =>
-    playlist.name?.toLowerCase().includes(inputValue.toLowerCase())
-  );
-}
-
-function handlePlaylistsSearch(e) {
-  const filteredPlaylists = filterPlaylists(e);
-
-  if (filteredPlaylists.length > 0) {
-    hideHelpTag();
-    showPlaylistsInModal(filteredPlaylists);
-  } else {
-    playlistsContainer.innerHTML = "";
-    showHelpTag("No playlists found !");
-  }
-}
-
 function createHtmlFromArtist(artist = {}) {
   return `
     <div class="artist-card">
@@ -154,7 +59,18 @@ function createHtmlFromArtist(artist = {}) {
     </div>`;
 }
 
+function filterPlaylists(e, playlists = []) {
+  const inputValue = e.target.value;
+
+  return playlists.filter((playlist) =>
+    playlist.name?.toLowerCase().includes(inputValue.toLowerCase())
+  );
+}
+
+let uniqueIdForCheckbox;
 function createHtmlFromSong(song = {}) {
+  uniqueIdForCheckbox = Math.floor(Math.random() * 10e3);
+
   return `
     <div class="music-card"> 
         <div class="music-card__img-container"> 
@@ -178,8 +94,8 @@ function createHtmlFromSong(song = {}) {
               )} 
             </div>
             <div class="informations__more">
-                <input type="checkbox" hidden id="toggleDropDown"/>
-                <label for="toggleDropDown">
+                <input type="checkbox" hidden id="${uniqueIdForCheckbox}"/>
+                <label for="${uniqueIdForCheckbox}">
                   <img class="more__icon" src="/assets/icons/more-three-dots.svg" />
                 </label>
                 <div class="dropdown">
@@ -237,10 +153,10 @@ function debounce(fn, delay) {
  */
 function handleModalClose(e) {
   // get the modal content
-  const modal = modalContainer.firstElementChild;
+  const modal = modalContainer?.firstElementChild;
 
   // if clicked Element does not inside the modal content then hide the Modal
-  if (e.target.contains(modal)) {
+  if (modal && e.target.contains(modal)) {
     hideModal();
   }
 }
@@ -285,4 +201,6 @@ export {
   debounce,
   getUserToken,
   getUserIdFromParams,
+  getUserIdAndToken,
+  filterPlaylists
 };
