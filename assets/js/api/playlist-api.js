@@ -10,9 +10,9 @@ export function getUserPlaylists(userId = "", token = "") {
   });
 }
 
-export function removePlaylist(userId = "", token = "",playlistId = "") {
+export function removePlaylist(userId = "", token = "", playlistId = "") {
   return myFetch(`${API_URL}/${userId}/playlists/${playlistId}`, {
-    method : 'DELETE',
+    method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -38,13 +38,33 @@ export function getPlaylist(userId = "", token = "", playlistId = "") {
   });
 }
 
-export function updatePlaylist(userId = "", token = "", playlist = {}) {
-  return myFetch(`${API_URL}/${userId}/playlists/${playlist._id}`, {
-    method: "PUT",
+export function addMusic(
+  userId = "",
+  token = "",
+  playlistId = "",
+  musicObj = {}
+) {
+  return myFetch(`${API_URL}/${userId}/playlists/${playlistId}`, {
+    method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(playlist),
+    body: JSON.stringify(musicObj),
+  });
+}
+
+export function removeMusic(
+  userId = "",
+  token = "",
+  playlistId = "",
+  musicId = ""
+) {
+  return myFetch(`${API_URL}/${userId}/playlists/${playlistId}/${musicId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
   });
 }

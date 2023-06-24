@@ -2,6 +2,11 @@ import { getSingleMusic } from "./api/music-api.js";
 import { showAlert, hideAlert } from "./utils/alert.js";
 import { _ } from "./utils/general.js";
 
+import pauseButton from "../icons/pause-mini-line.svg";
+import placeHolder from '../images/placeholder-200.png';
+import playButton from "../icons/play-mini-line.svg";
+
+
 const audioElem = _.querySelector(".music-player__audio");
 const playerPlayBtn = _.querySelector(".control:nth-child(2)");
 // the music player image
@@ -59,7 +64,10 @@ function handleAudioElemErrors() {
 function playTheAudioWhenReady() {
   setRequirementEvents();
 
-  playerImage.src = currentMusic.image.thumbnail_small.url;
+  playerImage.src = currentMusic.image.thumbnail_small.url || placeHolder;
+  playerImage.onerror = function(){
+    this.src = placeHolder; 
+  }
   playerImage.alt = currentMusic.title;
   musicName.textContent = currentMusic.title;
   artistsName.textContent = currentMusic.artists.map(
@@ -119,14 +127,14 @@ function handlePlayerPauseOrClick() {
 
 function playMusic() {
   isPlaying = true;
-  playerPlayBtn.firstElementChild.src = "/assets/icons/pause-mini-line.svg";
+  playerPlayBtn.firstElementChild.src = pauseButton;
 
   audioElem.play();
 }
 
 function pauseMusic() {
   isPlaying = false;
-  playerPlayBtn.firstElementChild.src = "/assets/icons/play-mini-line.svg";
+  playerPlayBtn.firstElementChild.src = playButton;
 
   audioElem.pause();
 }
