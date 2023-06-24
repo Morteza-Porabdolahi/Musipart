@@ -1,6 +1,8 @@
 import jwtDecode from "jwt-decode";
-import threeDots from '../../icons/more-three-dots.svg';
-import playButton from '../../icons/play-mini-line.svg';
+
+import threeDots from "../../icons/more-three-dots.svg";
+import playButton from "../../icons/play-mini-line.svg";
+import placeHolder from "../../images/placeholder-200.png";
 
 const _ = document;
 const modalContainer = _.querySelector(".container__modal");
@@ -52,14 +54,18 @@ function changeUserAppearance(decodedToken = {}) {
 function createHtmlFromArtist(artist = {}) {
   return `
     <div class="artist-card">
-        <div class="artist-card__img-container">
-            <img loading="lazy" class="artist-card__img" src="${artist.image.cover.url}"/>
+        <div class="artist-card__img-container" onclick="gotoArtistMusics('${artist.fullName}')">
+            <img onerror="this.src = '${placeHolder}'" loading="lazy" class="artist-card__img" src="${artist.image.cover.url}"/>
         </div>
         <div class="artist-card__informations">
             <a href="/pages/artistmusics.html?q=${artist.fullName}" class="informations__artist-name">${artist.fullName}</a>
         </div>
     </div>`;
 }
+
+window.gotoArtistMusics = function (artistName = "") {
+    location.href = `/pages/artistmusics.html?q=${artistName}`;
+};
 
 function filterPlaylists(e, playlists = []) {
   const inputValue = e.target.value;
@@ -70,15 +76,18 @@ function filterPlaylists(e, playlists = []) {
 }
 
 let uniqueIdForCheckbox;
+
 function createHtmlFromSong(song = {}) {
   uniqueIdForCheckbox = Math.floor(Math.random() * 10e3);
-console.log(song)
+
   return `
     <div class="music-card"> 
-        <div class="music-card__img-container"> 
-            <img loading="lazy" class="music-card__img" src="${
-              song.image.cover_small.url
-            }"/> 
+        <div class="music-card__img-container" onclick="gotoSingleMusicPage(event,'${
+          song.id
+        }')"> 
+            <img loading="lazy" class="music-card__img" onerror="this.src = '${placeHolder}'" src="${
+    song.image.cover_small.url
+  }"/> 
             <button onclick="playEntireMusic('${
               song.id
             }')" class="music-card__play-btn">   
@@ -98,7 +107,11 @@ console.log(song)
             <div class="informations__more">
                 <input type="checkbox" hidden id="${uniqueIdForCheckbox}"/>
                 <label for="${uniqueIdForCheckbox}">
-                  ${getUserToken() ? `<img class="more__icon" src="${threeDots}" />` : ''}
+                  ${
+                    getUserToken()
+                      ? `<img class="more__icon" src="${threeDots}" />`
+                      : ""
+                  }
                 </label>
                 <div class="dropdown">
                   <div class="dropdown__item" onclick="openSelectPlaylistModal('${
@@ -111,6 +124,27 @@ console.log(song)
         </div> 
     </div>`;
 }
+
+function getUserBrowserWidth(){
+  
+    if (self.innerWidth) {
+      return self.innerWidth;
+    }
+  
+    if (document.documentElement && document.documentElement.clientWidth) {
+      return document.documentElement.clientWidth;
+    }
+  
+    if (document.body) {
+      return document.body.clientWidth;
+    }
+}
+
+window.gotoSingleMusicPage = function (e = event, songId = "") {
+  if (e.target.classList.contains("music-card__img-container") && getUserBrowserWidth() > 768) {
+    location.href = `/pages/singlemusicpage.html?id=${songId}`;
+  }
+};
 
 function showHelpTag(content = "") {
   const helpTag = _.querySelector(".help");
@@ -204,5 +238,6 @@ export {
   getUserToken,
   getUserIdFromParams,
   getUserIdAndToken,
-  filterPlaylists
+  filterPlaylists,
+  getUserBrowserWidth
 };

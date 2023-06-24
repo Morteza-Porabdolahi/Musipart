@@ -1,9 +1,8 @@
 import { showAlert } from "./utils/alert";
 import { getSingleMusic } from "./api/music-api";
 import {
-  getPlaylist,
   getUserPlaylists,
-  updatePlaylist,
+  addMusic
 } from "./api/playlist-api";
 import {
   getUserIdAndToken,
@@ -11,7 +10,6 @@ import {
   showModal,
   hideModal,
   filterPlaylists,
-  getUserToken,
 } from "./utils/general";
 
 const playlistsContainer = _.querySelector(".playlists__wrapper");
@@ -59,41 +57,23 @@ function showPlaylistsInModal(playlists = [], musicId = "") {
 
 window.getMusicAndPlaylist = async function (musicId = "", playlistId = "") {
   try {
-    const [userId, userToken] = getUserIdAndToken();
     const clickedMusic = await getSingleMusic(musicId);
-    const clickedPlaylist = await getPlaylist(userId, userToken, playlistId);
 
-    addMusicObjectToPlaylist(clickedPlaylist, clickedMusic);
+    addMusicToPlaylist(clickedMusic, playlistId);
   } catch (e) {
     showAlert("error", e.message, 2000);
   }
 };
 
-function addMusicObjectToPlaylist(playlist = {}, music = {}) {
-  const { id, album, artists, audio, duration, title, lyrics, image } = music;
-  const copyPlaylistObject = structuredClone(playlist);
-  const newMusicObj = {
-    id,
-    album,
-    artists,
-    audio,
-    duration,
-    title,
-    lyrics,
-    image,
-  };
-
-  copyPlaylistObject.musics.push(newMusicObj);
-  editExistingPlaylist(copyPlaylistObject);
-}
-
-async function editExistingPlaylist(newPlaylist = {}) {
+async function addMusicToPlaylist(clickedMusic, playlistId) {
   try {
-    const userToken = getUserToken();
-    const { message } = await updatePlaylist(
-      newPlaylist.userId,
+    const [userId, userToken] = getUserIdAndToken();
+
+    const { message } = await addMusic(
+      userId,
       userToken,
-      newPlaylist
+      playlistId,
+      clickedMusic
     );
 
     showAlert("done", message, 2000);
