@@ -1,4 +1,6 @@
 import jwtDecode from "jwt-decode";
+import threeDots from '../../icons/more-three-dots.svg';
+import playButton from '../../icons/play-mini-line.svg';
 
 const _ = document;
 const modalContainer = _.querySelector(".container__modal");
@@ -70,17 +72,17 @@ function filterPlaylists(e, playlists = []) {
 let uniqueIdForCheckbox;
 function createHtmlFromSong(song = {}) {
   uniqueIdForCheckbox = Math.floor(Math.random() * 10e3);
-
+console.log(song)
   return `
     <div class="music-card"> 
         <div class="music-card__img-container"> 
             <img loading="lazy" class="music-card__img" src="${
-              song.image.cover.url
+              song.image.cover_small.url
             }"/> 
             <button onclick="playEntireMusic('${
               song.id
             }')" class="music-card__play-btn">   
-                <img src="/assets/icons/play-mini-line.svg"/> 
+                <img src="${playButton}"/> 
             </button> 
         </div> 
         <div class="music-card__informations">
@@ -96,7 +98,7 @@ function createHtmlFromSong(song = {}) {
             <div class="informations__more">
                 <input type="checkbox" hidden id="${uniqueIdForCheckbox}"/>
                 <label for="${uniqueIdForCheckbox}">
-                  <img class="more__icon" src="/assets/icons/more-three-dots.svg" />
+                  ${getUserToken() ? `<img class="more__icon" src="${threeDots}" />` : ''}
                 </label>
                 <div class="dropdown">
                   <div class="dropdown__item" onclick="openSelectPlaylistModal('${

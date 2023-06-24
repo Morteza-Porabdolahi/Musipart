@@ -1,13 +1,13 @@
 import myFetch from "./intercept-fetch.js";
 
-const API_URL = `https://musipartapi.iran.liara.run/api/musics`;
+const API_URL = `https://nodejs-production-7a06.up.railway.app/api/musics`;
 
 export function getSingleMusic(id) {
   return myFetch(`${API_URL}/${id}`);
 }
 
 export function searchMusics(query = "") {
-  return myFetch(`${API_URL}/${query}`);
+  return myFetch(`${API_URL}/search/${query}`);
 }
 
 export function getNewMusics() {

@@ -19,6 +19,13 @@ async function handleSinglePlaylist() {
     const userId = getUserIdFromParams();
     const userToken = getUserToken();
     const playlistId = new URLSearchParams(location.search).get("playlistId");
+
+    if(!userToken || !userId){
+      location.href = '/pages/register.html';
+    }else if(!playlistId){
+      location.href = '/404.html';
+    }
+    
     const playlist = await getPlaylist(userId, userToken, playlistId);
 
     handleDomWithDatas(playlist);

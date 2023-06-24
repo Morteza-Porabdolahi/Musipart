@@ -412,7 +412,7 @@
 .preloader-container {
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 4;
   bottom: 0;
   left: 0;
   right: 0;
@@ -456,14 +456,14 @@
   position: fixed;
   top: 2rem;
   right: 4rem;
-  left: -100rem;
-  transition: left 0.2s;
+  left: -60rem;
+  transition: left 0.3s;
   font-size: 1.5rem;
   background-color: var(--color-slate-900);
   padding: 2rem;
   width: 90%;
   z-index: 3;
-  box-shadow: 1px 1px 9px var(--color-slate-900);
+  box-shadow: inset 1px 1px 5px var(--color-slate-700);
   border-radius: 0.5rem;
 }
 

@@ -1,6 +1,6 @@
 import myFetch from "./intercept-fetch.js";
 
-const API_URL = `https://musipartapi.iran.liara.run/api`;
+const API_URL = `https://nodejs-production-7a06.up.railway.app/api`;
 
 export function getUserPlaylists(userId = "", token = "") {
   return myFetch(`${API_URL}/${userId}/playlists`, {

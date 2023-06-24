@@ -72,9 +72,8 @@ async function handleUserRegister(userObj) {
   try {
     const { message } = await registerUser(userObj);
 
-    changeClasses();
-
     showAlert("done", message, 2000);
+    changeClasses();
   } catch (e) {
     showAlert("error", e.message, 2000);
   }

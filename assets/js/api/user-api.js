@@ -1,6 +1,6 @@
 import myFetch from "./intercept-fetch.js";
 
-const API_URL = `https://musipartapi.iran.liara.run/api/users`;
+const API_URL = `https://nodejs-production-7a06.up.railway.app/api/users`;
 
 export function registerUser(userData = {}) {
   return myFetch(`${API_URL}/register`, {

@@ -8,6 +8,6 @@ export default async function (...args) {
   if (response.status >= 200 && response.status <= 299 && response.ok) {
     return response.json();
   } else {
-    throw Error(response.statusText);
+    throw await response.json();
   }
 }

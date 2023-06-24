@@ -38,6 +38,7 @@
   .allmusics-section,
   .playlists__container {
     display: flex;
+    justify-content: center;
   }
 }
 
