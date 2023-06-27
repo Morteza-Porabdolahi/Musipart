@@ -1,6 +1,6 @@
 import myFetch from "./intercept-fetch.js";
 
-const API_URL = `https://nodejs-production-7a06.up.railway.app/api/musics`;
+const API_URL = `https://musipartapi.onrender.com/api/musics`;
 
 export function getSingleMusic(id) {
   return myFetch(`${API_URL}/${id}`);
