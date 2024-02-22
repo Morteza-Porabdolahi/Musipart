@@ -1,0 +1,17 @@
+version: "3"
+services:
+  backend:
+    image: mortezaporabdolahi/musipart-backend
+    build:
+      context: ./server
+    ports: 
+      - 3000:3000
+    dns: 
+      - 8.8.8.8
+      - 1.1.1.1
+  frontend:
+    image: mortezaporabdolahi/musipart-frontend
+    build:
+      context: ./client
+    ports: 
+      - 8080:80

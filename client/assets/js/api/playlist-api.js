@@ -1,6 +1,7 @@
 import myFetch from "./intercept-fetch.js";
 
-const API_URL = `https://musipartapi.onrender.com/api`;
+// const API_URL = `https://musipartapi.onrender.com/api`;
+const API_URL = `http://localhost:3000/api`;
 
 export function getUserPlaylists(userId = "", token = "") {
   return myFetch(`${API_URL}/${userId}/playlists`, {
